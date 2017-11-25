@@ -25,12 +25,14 @@ npm install typescript --save
 npm install localforage --save
 /*Hoping to remove*/
 npm install react-tap-event-plugin --save
+npm install @types/react-tap-event-plugin --save-dev
 npm install @types/material-ui --save-dev
 npm install @types/redux-logger --save-dev
 npm install @types/react-router-redux --save-dev
 npm install @types/react-redux --save-dev
 npm install @types/react-router-dom --save-dev
-
+npm install @types/webfontloader --save-dev
+ 
 
 /*tsconfig*/
 set the following:

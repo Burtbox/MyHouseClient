@@ -28,14 +28,16 @@ class APIHelper {
     }
   
     static checkStatus(response: any) {
+        let ret: any = false;
         if (response.ok && response.status === 204) {
-            return true;
+            ret = true;
         } else if (response.ok) {
-            return response.json();
+            ret = response.json();
         } else {
             const error: Error = new Error(response.statusText);
             throw error;
         }
+        return ret;
     }
 }
   

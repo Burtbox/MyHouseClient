@@ -4,8 +4,6 @@ import { connect } from 'react-redux';
 import { logout } from './navActions';
 import { Toolbar, ToolbarGroup, ToolbarTitle } from 'material-ui/Toolbar';
 import IconButton from 'material-ui/IconButton';
-import AddButton from 'material-ui/svg-icons/content/add';
-import ViewButton from 'material-ui/svg-icons/action/pageview';
 import Menu from 'material-ui/svg-icons/navigation/menu';
 import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
@@ -55,14 +53,6 @@ class Nav extends React.Component<INavProps, INavState> {
               </MenuItem>
             </Link>
 
-            <Link style={styles.menuItems} to="/HouseSummary">
-              <MenuItem>House Summary</MenuItem>
-            </Link>
-
-            <Link style={styles.menuItems} to="/Balance">
-              <MenuItem>My Balance</MenuItem>
-            </Link>
-
             <a style={styles.menuItems} onClick={() => this.handleLogOut()}>
               <MenuItem>Logout</MenuItem>
             </a>
@@ -73,17 +63,6 @@ class Nav extends React.Component<INavProps, INavState> {
     getLoggedInNavItems = () => {
         return (
           <ToolbarGroup>
-            <Link style={styles.menuItems} to="/AddTransaction">
-              <IconButton tooltip="Add Transaction">
-                <AddButton />
-              </IconButton>
-            </Link>
-
-            <Link style={styles.menuItems} to="/ViewTransactions">
-              <IconButton tooltip="View Transactions">
-                <ViewButton />
-              </IconButton>
-            </Link>
           </ToolbarGroup>
         );
     }
