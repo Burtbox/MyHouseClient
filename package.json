@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@types/material-ui": "^0.18.4",
     "firebase": "^4.6.2",
     "history": "^4.7.2",
     "localforage": "^1.5.3",
@@ -18,7 +17,7 @@
     "react-tap-event-plugin": "^3.0.2",
     "redux": "^3.7.2",
     "redux-logger": "^3.0.6",
-    "redux-persist": "^5.4.0",
+    "redux-persist": "^4.10.1",
     "redux-promise-middleware": "^5.0.0",
     "redux-thunk": "^2.2.0",
     "typescript": "^2.6.1",
@@ -32,9 +31,16 @@
   },
   "devDependencies": {
     "@types/jest": "^21.1.8",
+    "@types/material-ui": "^0.18.4",
     "@types/node": "^8.0.53",
     "@types/react": "^16.0.25",
     "@types/react-dom": "^16.0.3",
+    "@types/react-redux": "^5.0.13",
+    "@types/react-router-dom": "^4.2.2",
+    "@types/react-router-redux": "^5.0.10",
+    "@types/react-tap-event-plugin": "0.0.30",
+    "@types/redux-logger": "^3.0.5",
+    "@types/webfontloader": "^1.6.29",
     "tslint": "^5.8.0",
     "tslint-config-airbnb": "^5.4.2",
     "tslint-react": "^3.2.0"
