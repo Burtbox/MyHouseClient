@@ -1,1 +1,3 @@
 Create a single sign on login and sign up page that redirects you to another react app
+
+figure out redirects and return urls
