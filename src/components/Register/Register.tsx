@@ -36,7 +36,7 @@ class Register extends React.Component<IRegisterProps, IRegisterState> {
             };
             this.setState({ loading: true });
             dispatch(registerUser(user))
-              .then(() => { history.push('/AddTransaction'); })
+              .then(() => { history.push('/MyAccount'); })
               .catch((error: Error) => { this.setState({ error, loading: false }); });
         } else {
             // ED! This is lazy - make this better

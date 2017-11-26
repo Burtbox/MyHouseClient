@@ -34,7 +34,7 @@ class Login extends React.Component<ILoginProps, ILoginState> {
         this.setState({ loading: true });
         dispatch(loginUser(login))
           .then(() => {
-              history.push('/Balance');
+              history.push('/MyAccount');
           })
           .catch((error: Error) => {
               this.setState({ error, loading: false });

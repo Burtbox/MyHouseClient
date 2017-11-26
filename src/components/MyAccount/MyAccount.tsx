@@ -82,7 +82,7 @@ class MyAccount extends React.Component<IMyAccountProps, IMyAccountState> {
                     name="email"
                     hintText="email@example.com"
                     floatingLabelText="Email Address"
-                    defaultValue={this.state.userUpdate.userId}
+                    defaultValue={this.state.userUpdate.email}
                     required
                     onChange={this.handleInputChange}
                     disabled={true}
