@@ -80,7 +80,7 @@ class Nav extends React.Component<INavProps, INavState> {
                   <ActionHome />
                 </IconButton>
               </Link>
-              <ToolbarTitle text="House Money" />
+              <ToolbarTitle text="My House" />
             </ToolbarGroup>
             <ToolbarGroup>
               {this.props.isLoggedIn
