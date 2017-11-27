@@ -5,9 +5,9 @@ import Routes from '../Routes';
 import ErrorMessage from '../ErrorMessage';
 import Footer from '../Footer';
 
-function App()  {
+function App() {
     return (
-        <div>
+        <div style={{ height: '100%' }}>
             <Nav />
             <Routes />
             <ErrorMessage />
