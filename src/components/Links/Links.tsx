@@ -21,8 +21,8 @@ class Links extends React.Component {
         return (
             <Paper style={style.paper}>
                 <Menu>
-                    <MenuItem primaryText="House Money" leftIcon={<LocalAtm />} href="http://housemoney.surge.sh/" />
-                    <MenuItem primaryText="House Food" leftIcon={<Restaurant />} href="http://housefood.surge.sh/" />
+                    <MenuItem primaryText="Money" leftIcon={<LocalAtm />} href="http://housemoney.surge.sh/" />
+                    <MenuItem primaryText="Food" leftIcon={<Restaurant />} href="http://housefood.surge.sh/" />
 
                 </Menu>
             </Paper>
