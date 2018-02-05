@@ -15,7 +15,7 @@ export function loginUser(login: IUserAuthenticationObject) {
           .then((response: IUserResponseObject) => {
               // Add this in to debug V3 api
               auth.currentUser.getToken(true).then((idToken: any) => {
-                  console.log(idToken);
+                  console.log('Bearer ' + idToken);
               }).catch((error: Error) => {
                     // Handle error
               });

@@ -5,6 +5,7 @@ class APIHelper {
     static apiCall(method: string, endpoint: string, body?: object, urlParams?: string) {
         const customheaders: ICustomApiHeaders = {
             'Content-Type': 'application/json;charset=UTF-8',
+            Authorization: 'Bearer',
         };
         const headers: Headers = new Headers(customheaders);
         let calledUrl: string = baseURL + endpoint;
