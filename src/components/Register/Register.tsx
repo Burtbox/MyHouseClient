@@ -7,6 +7,7 @@ import { registerUser } from './registerActions';
 import appStyles from '../../styles';
 import { IRegisterProps, IRegisterState, IRegisterUserObject } from './interfaces';
 import { addError } from '../ErrorMessage/errorMessageActions';
+import { myHouseRoutes } from '../../enums/routesEnum';
 
 class Register extends React.Component<IRegisterProps, IRegisterState> {
     constructor(props: IRegisterProps) {
@@ -37,7 +38,7 @@ class Register extends React.Component<IRegisterProps, IRegisterState> {
             };
             this.setState({ loading: true });
             dispatch(registerUser(user))
-              .then(() => { history.push('/MyAccount'); })
+              .then(() => { history.push(myHouseRoutes.MyAccount); })
               .catch((error: Error) => { this.setState({ error, loading: false }); });
         } else {
             // ED! This is lazy - make this better
@@ -64,7 +65,7 @@ class Register extends React.Component<IRegisterProps, IRegisterState> {
               <FlatButton
                 secondary={true}
                 label="Sign In"
-                onClick={() => this.props.history.push('/Login')}
+                onClick={() => this.props.history.push(myHouseRoutes.Login)}
               />
             </div>
 

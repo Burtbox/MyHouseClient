@@ -6,6 +6,7 @@ import CircularProgress from 'material-ui/CircularProgress';
 import appStyles from '../../styles';
 import { ILoginProps, ILoginState } from './interfaces';
 import { loginUser } from './loginActions';
+import { myHouseRoutes } from '../../enums/routesEnum';
 
 class Login extends React.Component<ILoginProps, ILoginState> {
     constructor(props: ILoginProps) {
@@ -36,7 +37,7 @@ class Login extends React.Component<ILoginProps, ILoginState> {
         this.setState({ loading: true });
         dispatch(loginUser(login))
           .then(() => {
-              history.push('/Links');
+              history.push(myHouseRoutes.Links);
           })
           .catch((error: Error) => {
               this.setState({ error, loading: false });
@@ -96,7 +97,7 @@ class Login extends React.Component<ILoginProps, ILoginState> {
                 <FlatButton
                   secondary={true}
                   label="Sign Up"
-                  onClick={() => this.props.history.push('/Register')}
+                  onClick={() => this.props.history.push(myHouseRoutes.Register)}
                 />
               </span>
             </div>

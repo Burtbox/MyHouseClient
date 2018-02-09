@@ -1,6 +1,7 @@
 import * as React from 'react';
 import FlatButton from 'material-ui/FlatButton';
 import { INotFound404Props, INotFound404State } from './interfaces';
+import { myHouseRoutes } from '../../enums/routesEnum';
 
 class NotFound404 extends React.Component<INotFound404Props, INotFound404State> {
     render() {
@@ -10,7 +11,7 @@ class NotFound404 extends React.Component<INotFound404Props, INotFound404State> 
             <h2>It's dangerous to go alone! Take this.</h2>
             <FlatButton
               label="Link"
-              onClick={() => this.props.history.push('/')}
+              onClick={() => this.props.history.push(myHouseRoutes.Base)}
             />
           </div>
         );

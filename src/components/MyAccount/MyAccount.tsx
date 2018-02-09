@@ -8,6 +8,7 @@ import styles from './styles';
 import appStyles from '../../styles';
 import { IMyAccountProps, IMyAccountState } from './interfaces';
 import { editUser, deleteUser } from './myAccountActions';
+import { myHouseRoutes } from '../../enums/routesEnum';
 
 class MyAccount extends React.Component<IMyAccountProps, IMyAccountState> {
     constructor(props: IMyAccountProps) {
@@ -42,7 +43,7 @@ class MyAccount extends React.Component<IMyAccountProps, IMyAccountState> {
         const { dispatch, history } = this.props;
         const emailAddresss = this.state.userUpdate.email;
         dispatch(deleteUser(this.props.loggedInUser.token, emailAddresss))
-          .then(() => history.push('/Login'))
+          .then(() => history.push(myHouseRoutes.Login))
           .catch((error: Error) => this.setState({ error, userDeleting: false }));
     }
 
@@ -114,7 +115,7 @@ class MyAccount extends React.Component<IMyAccountProps, IMyAccountState> {
                       style={styles.button}
                       label="Change Password"
                       secondary={true}
-                      onClick={() => this.props.history.push('/ChangePassword')}
+                      onClick={() => this.props.history.push(myHouseRoutes.Register)}
                       disabled={this.state.userEditing || this.state.userDeleting}
                     />
                   </div>

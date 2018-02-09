@@ -12,6 +12,7 @@ import UserChip from '../UserChip';
 import styles from './styles';
 import { INavProps, INavState } from './interfaces';
 import history from '../../main/history';
+import { myHouseRoutes } from '../../enums/routesEnum';
 
 class Nav extends React.Component<INavProps, INavState> {
     constructor(props: INavProps) {
@@ -21,18 +22,18 @@ class Nav extends React.Component<INavProps, INavState> {
     handleLogOut = () => {
         this.props
           .dispatch(logout())
-          .then(() => history.push('/Login'))
+          .then(() => history.push(myHouseRoutes.Login))
           .catch((error: Error) => {});
     }
 
     getLoggedOutMenuOptions = () => {
         return (
           <div>
-            <Link style={styles.menuItems} to="/Login">
+            <Link style={styles.menuItems} to={myHouseRoutes.Login}>
               <MenuItem>Sign In </MenuItem>
             </Link>
 
-            <Link style={styles.menuItems} to="/Register">
+            <Link style={styles.menuItems} to={myHouseRoutes.Register}>
               <MenuItem> Sign Up</MenuItem>
             </Link>
           </div>
@@ -42,7 +43,7 @@ class Nav extends React.Component<INavProps, INavState> {
     getLoggedInMenuOptions = () => {
         return (
           <div>
-            <Link style={styles.menuItems} to="/MyAccount">
+            <Link style={styles.menuItems} to={myHouseRoutes.MyAccount}>
               <MenuItem>
                 <UserChip
                     user={this.props.loggedInUser}
@@ -51,6 +52,10 @@ class Nav extends React.Component<INavProps, INavState> {
                     history={history}
                 />
               </MenuItem>
+            </Link>
+
+            <Link style={styles.menuItems} to={myHouseRoutes.Households}>
+              <MenuItem> Households </MenuItem>
             </Link>
 
             <a style={styles.menuItems} onClick={() => this.handleLogOut()}>
@@ -75,7 +80,7 @@ class Nav extends React.Component<INavProps, INavState> {
         return (
           <Toolbar>
             <ToolbarGroup>
-              <Link to="/">
+              <Link to={myHouseRoutes.Base}>
                 <IconButton tooltip="Home">
                   <ActionHome />
                 </IconButton>
