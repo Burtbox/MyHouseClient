@@ -27,7 +27,7 @@ class ChangePassword extends React.Component<IChangePasswordProps, IChangePasswo
         event.preventDefault();
         this.setState({ passwordUpdating: true });
         const updatePassword = this.state.passwordUpdate;
-        const request = APIHelper.apiCall('PUT', 'Users/UpdateUserPassword', updatePassword);
+        const request = APIHelper.apiCall('PUT', 'Users/UpdateUserPassword', this.props.loggedInUser.token, updatePassword);
 
         return request
           .then((json: JSON) => {

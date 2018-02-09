@@ -16,6 +16,7 @@ class Login extends React.Component<ILoginProps, ILoginState> {
                 email: '',
                 password: '',
                 displayName: '',
+                token: '',
             },
             error: null,
             loading: false,
@@ -30,6 +31,7 @@ class Login extends React.Component<ILoginProps, ILoginState> {
             password: this.state.user.password,
             userId: '', // ED! This imples this is the wrong type!
             displayName: '', // ED! This imples this is the wrong type!
+            token: '',
         };
         this.setState({ loading: true });
         dispatch(loginUser(login))

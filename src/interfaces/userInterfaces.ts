@@ -7,6 +7,7 @@ export interface IUserDetailsObject {
 
 export interface IUserObject extends IUserDetailsObject {
     userId: string;
+    token: string;
 }
 
 export interface IUserAuthenticationObject extends IUserObject {
@@ -15,6 +16,7 @@ export interface IUserAuthenticationObject extends IUserObject {
 
 export interface IUserResponseObject extends IUserDetailsObject {
     uid: string;
+    token: string;
 }
 
 export interface IUserLoggedIn {

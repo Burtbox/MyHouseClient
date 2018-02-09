@@ -12,21 +12,21 @@ export function loginUser(login: IUserAuthenticationObject) {
     return (dispatch: Function) => {
         dispatch(loginStarted());
         return request
-          .then((response: IUserResponseObject) => {
-              // Add this in to debug V3 api
-              auth.currentUser.getToken(true).then((idToken: any) => {
-                  console.log('Bearer ' + idToken);
-              }).catch((error: Error) => {
-                    // Handle error
-              });
-              dispatch(loginSuccessful(response));
-              dispatch(loginAttemptComplete());
-          })
-          .catch((error: Error) => {
-              dispatch(loginFailure(error));
-              dispatch(loginAttemptComplete());
-              throw error;
-          });
+            .then((response: IUserResponseObject) => {
+                auth.currentUser.getToken(true).then((idToken: any) => {
+                    dispatch(loginSuccessful(response, idToken));
+                    dispatch(loginAttemptComplete());
+                }).catch((error: Error) => {
+                    dispatch(loginFailure(error));
+                    dispatch(loginAttemptComplete());
+                    throw error;
+                });
+            })
+            .catch((error: Error) => {
+                dispatch(loginFailure(error));
+                dispatch(loginAttemptComplete());
+                throw error;
+            });
     };
 }
 
@@ -36,10 +36,11 @@ function loginStarted() {
     };
 }
 
-function loginSuccessful(response: IUserResponseObject) {
+function loginSuccessful(response: IUserResponseObject, token: string) {
     return {
         type: RECEIVE_USER,
         payload: {
+            token,
             email: response.email,
             displayName: response.displayName,
             userId: response.uid,

@@ -8,44 +8,45 @@ export const EDIT_USER_COMPLETED = 'EDIT_USER_COMPLETED';
 export const DELETE_USER_STARTED = 'EDIT_USER_STARTED';
 export const DELETE_USER_COMPLETED = 'EDIT_USER_COMPLETED';
 
-export function editUser(user: IUserObject) {
-    const request = APIHelper.apiCall('PUT', 'Users/UpdateUserDetails', user);
+export function editUser(token: string, user: IUserObject) {
+    const request = APIHelper.apiCall('PUT', 'Users/UpdateUserDetails', token, user);
 
-    return (dispatch: Function)  => {
+    return (dispatch: Function) => {
         dispatch(editUserStarted());
         return request
-          .then((response: Response) => {
-              dispatch(editUserSuccessful(response, user));
-              dispatch(editUserAttemptComplete());
-          })
-          .catch((error: Error) => {
-              dispatch(editUserFailure(error));
-              dispatch(editUserAttemptComplete());
-              throw error;
-          });
+            .then((response: Response) => {
+                dispatch(editUserSuccessful(response, user));
+                dispatch(editUserAttemptComplete());
+            })
+            .catch((error: Error) => {
+                dispatch(editUserFailure(error));
+                dispatch(editUserAttemptComplete());
+                throw error;
+            });
     };
 }
 
-export function deleteUser(emailAddress: string) {
+export function deleteUser(token: string, emailAddress: string) {
     const request = APIHelper.apiCall(
-      'DELETE',
-      'Users/DeleteUser',
-      null,
-      'emailAddress=' + emailAddress,
+        'DELETE',
+        'Users/DeleteUser',
+        token,
+        null,
+        'emailAddress=' + emailAddress,
     );
 
     return (dispatch: Function) => {
         dispatch(deleteUserStarted());
         return request
-          .then((response: Response) => {
-              dispatch(deleteUserSuccessful(response));
-              dispatch(deleteUserAttemptComplete());
-          })
-          .catch((error: Error) => {
-              dispatch(deleteUserFailure(error));
-              dispatch(deleteUserAttemptComplete());
-              throw error;
-          });
+            .then((response: Response) => {
+                dispatch(deleteUserSuccessful(response));
+                dispatch(deleteUserAttemptComplete());
+            })
+            .catch((error: Error) => {
+                dispatch(deleteUserFailure(error));
+                dispatch(deleteUserAttemptComplete());
+                throw error;
+            });
     };
 }
 
@@ -89,6 +90,7 @@ function deleteUserSuccessful(response: Response) {
         userId: null,
         email: null,
         displayName: null,
+        token: null,
     };
 
     return {

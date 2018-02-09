@@ -17,6 +17,7 @@ class MyAccount extends React.Component<IMyAccountProps, IMyAccountState> {
                 userId: this.props.loggedInUser.userId,
                 email: this.props.loggedInUser.email,
                 displayName: this.props.loggedInUser.displayName,
+                token: this.props.loggedInUser.token,
             },
             userEditing: false,
             userEdited: false,
@@ -33,14 +34,14 @@ class MyAccount extends React.Component<IMyAccountProps, IMyAccountState> {
         event.preventDefault();
         const { dispatch } = this.props;
         const USER = this.state.userUpdate;
-        dispatch(editUser(USER)).then(() => this.setState({ userEdited: true }));
+        dispatch(editUser(this.props.loggedInUser.token, USER)).then(() => this.setState({ userEdited: true }));
     }
 
     handleDeleteUser = (event: React.MouseEvent<{}>) => {
         event.preventDefault();
         const { dispatch, history } = this.props;
         const emailAddresss = this.state.userUpdate.email;
-        dispatch(deleteUser(emailAddresss))
+        dispatch(deleteUser(this.props.loggedInUser.token, emailAddresss))
           .then(() => history.push('/Login'))
           .catch((error: Error) => this.setState({ error, userDeleting: false }));
     }

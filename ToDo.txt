@@ -1,3 +1,11 @@
 Create a single sign on login and sign up page that redirects you to another react app
 
 figure out redirects and return urls
+
+Look into ETag to replace no-cache!
+
+sort out user objects! All over the place atm
+
+Clean up and type reducer and action code
+
+sort out code formatter vs linter!

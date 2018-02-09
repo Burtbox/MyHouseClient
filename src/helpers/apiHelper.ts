@@ -1,33 +1,31 @@
-import { ICustomApiHeaders } from '../interfaces/apiInterfaces';
 import baseURL from '../appConfig';
 
 class APIHelper {
-    static apiCall(method: string, endpoint: string, body?: object, urlParams?: string) {
-        const customheaders: ICustomApiHeaders = {
-            'Content-Type': 'application/json;charset=UTF-8',
-            Authorization: 'Bearer',
-        };
-        const headers: Headers = new Headers(customheaders);
+    static apiCall(method: string, endpoint: string, token: string, body?: object, urlParams?: string) {
+        const headers: Headers = new Headers();
+        headers.append('Authorization', 'Bearer ' + token);
+        headers.append('Content-Type', 'application/json;charset=UTF-8');
+
         let calledUrl: string = baseURL + endpoint;
-  
+
         if (urlParams) {
             calledUrl = calledUrl + urlParams;
         }
-  
+
         return fetch(calledUrl, {
             method,
             headers,
             mode: 'cors',
             body: body ? JSON.stringify(body) : undefined,
         })
-        .then((response: any) => {
-            return APIHelper.checkStatus(response);
-        })
-        .catch((error: any) => {
-            throw(error);
-        });
+            .then((response: any) => {
+                return APIHelper.checkStatus(response);
+            })
+            .catch((error: any) => {
+                throw (error);
+            });
     }
-  
+
     static checkStatus(response: any) {
         let ret: any = false;
         if (response.ok && response.status === 204) {
@@ -41,5 +39,5 @@ class APIHelper {
         return ret;
     }
 }
-  
+
 export default APIHelper;

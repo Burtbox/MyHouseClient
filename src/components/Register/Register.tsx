@@ -33,6 +33,7 @@ class Register extends React.Component<IRegisterProps, IRegisterState> {
                 email: this.state.registerUser.email,
                 password: this.state.registerUser.password,
                 confirmPassword: this.state.registerUser.confirmPassword,
+                token: '',
             };
             this.setState({ loading: true });
             dispatch(registerUser(user))
