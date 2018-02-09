@@ -9,3 +9,5 @@ sort out user objects! All over the place atm
 Clean up and type reducer and action code
 
 sort out code formatter vs linter!
+
+handle logout when unauthorized ! 
