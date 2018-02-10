@@ -1,15 +1,10 @@
 import { usersActions } from './usersActions';
-import { IRecieveUserAction } from '../Users/usersInterfaces';
-import { IOccupant } from '../Occupants/occupantsInterfaces';
+import { IRecieveUserAction, IUsersProps } from '../Users/usersInterfaces';
 
 function usersReducer(
-    state: IOccupant = {
-        userId: null,
-        email: null,
-        displayName: null,
-        token: null,
-        householdId: null,
-        occupantId: null,
+    state: IUsersProps = {
+        loggedInUser: undefined,
+        isLoggedIn: undefined,
     },
     action: IRecieveUserAction,
 ) {
@@ -18,6 +13,7 @@ function usersReducer(
         return {
             ...state,
             loggedInUser: action.loggedInUser,
+            isLoggedIn: action.isLoggedIn,
         };
     default:
         return state;

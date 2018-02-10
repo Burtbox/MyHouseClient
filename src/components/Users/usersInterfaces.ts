@@ -20,9 +20,9 @@ export interface IUserResponseObject extends IUserDetailsObject {
     token: string;
 }
 
-export interface IRecieveUserAction extends Action {
+export interface IRecieveUserAction extends Action, IUsersProps { }
+
+export interface IUsersProps {
     loggedInUser: IUserObject;
     isLoggedIn: boolean;
 }
-
-export interface IUsersProps extends IRecieveUserAction {}

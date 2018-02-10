@@ -28,9 +28,9 @@ class Households extends React.Component<IHouseholdProps, IHouseholdState> {
         return (
             <Paper>
                 <List>
-                    {this.props.households.map((household: IHousehold) => {
-                        <ListItem primaryText={household.householdId} />;
-                    })}
+                    {this.props.households.map((household: IHousehold) =>
+                        <ListItem primaryText={household.name} />,
+                    )}
                 </List>
             </Paper>
         );
@@ -39,7 +39,7 @@ class Households extends React.Component<IHouseholdProps, IHouseholdState> {
     render() {
         return (
             <div style={{ display: 'block' }}>
-                {this.state.loading && this.props.households && this.props.households.length
+                {!this.state.loading && this.props.households && this.props.households.length
                     ? this.createHouseholdsList()
                     : <CircularProgress />}
             </div >
