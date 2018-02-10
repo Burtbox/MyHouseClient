@@ -1,6 +1,6 @@
 import { IConnectedComponentProps } from '../../interfaces/componentInterfaces';
 import { Action } from 'redux';
-import { IUserObject } from '../../interfaces/userInterfaces';
+import { IUserObject } from '../Users/usersInterfaces';
 
 export interface IHousehold {
     householdId: number;
@@ -9,7 +9,6 @@ export interface IHousehold {
 
 export interface IHouseholdProps extends IConnectedComponentProps {
     households: IHousehold[];
-    loading: boolean;
 }
 
 export interface IHouseholdsAction extends Action {
@@ -19,5 +18,8 @@ export interface IHouseholdsAction extends Action {
 export interface IHouseholdStore {
     households: IHousehold[];
     loggedInUser: IUserObject;
+}
+
+export interface IHouseholdState {
     loading: boolean;
 }

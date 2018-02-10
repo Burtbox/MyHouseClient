@@ -47,7 +47,7 @@ class Routes extends React.Component<IRoutesProps> {
 }
 
 const mapStateToProps = (store: IStore) => {
-    const token: string = store.navReducer.isLoggedIn ? store.navReducer.loggedInUser.token : null;
+    const token: string = store.usersReducer.isLoggedIn && store.usersReducer.loggedInUser ? store.usersReducer.loggedInUser.token : null;
     const props: IRoutesProps = {
         isLoggedIn: checkUserLoginToken(token),
     };

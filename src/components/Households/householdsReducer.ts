@@ -1,4 +1,4 @@
-import { GET_HOUSEHOLDS_OF_USER_STARTED, GET_HOUSEHOLDS_OF_USER_COMPLETED, HOUSEHOLDS_OF_USER } from './householdsActions';
+import { HouseholdsActions } from './householdsActions';
 import { IHouseholdsAction } from './householdsInterfaces';
 
 function householdsReducer(
@@ -6,17 +6,17 @@ function householdsReducer(
   action: IHouseholdsAction,
 ) {
     switch (action.type) {
-    case GET_HOUSEHOLDS_OF_USER_STARTED:
+    case HouseholdsActions.GET_HOUSEHOLDS_OF_USER_STARTED:
         return {
             ...state,
             loading: true,
         };
-    case GET_HOUSEHOLDS_OF_USER_COMPLETED:
+    case HouseholdsActions.GET_HOUSEHOLDS_OF_USER_COMPLETED:
         return {
             ...state,
             loading: false,
         };
-    case HOUSEHOLDS_OF_USER:
+    case HouseholdsActions.HOUSEHOLDS_OF_USER:
         return {
             ...state,
             loading: true,

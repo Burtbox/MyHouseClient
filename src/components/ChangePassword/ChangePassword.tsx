@@ -126,7 +126,7 @@ class ChangePassword extends React.Component<IChangePasswordProps, IChangePasswo
 
 // Retrieve data from store as props
 const mapStateToProps = (store: IStore) => {
-    return { loggedInUser: store.navReducer.loggedInUser };
+    return { loggedInUser: store.usersReducer.loggedInUser };
 };
 
 export default connect(mapStateToProps)(ChangePassword);

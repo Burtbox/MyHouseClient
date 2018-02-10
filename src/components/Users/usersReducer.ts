@@ -1,8 +1,8 @@
-import { RECEIVE_USER } from '../Nav/navActions';
-import { IRecieveUserAction } from '../../interfaces/userInterfaces';
-import { IOccupant } from '../../interfaces/occupantsInterfaces';
+import { usersActions } from './usersActions';
+import { IRecieveUserAction } from '../Users/usersInterfaces';
+import { IOccupant } from '../Occupants/occupantsInterfaces';
 
-function navReducer(
+function usersReducer(
     state: IOccupant = {
         userId: null,
         email: null,
@@ -14,7 +14,7 @@ function navReducer(
     action: IRecieveUserAction,
 ) {
     switch (action.type) {
-    case RECEIVE_USER:
+    case usersActions.RECEIVE_USER:
         return {
             ...state,
             loggedInUser: action.loggedInUser,
@@ -25,4 +25,4 @@ function navReducer(
 }
 
 // Export Reducer
-export default navReducer;
+export default usersReducer;

@@ -1,5 +1,5 @@
-import { LOGIN_STARTED, LOGIN_COMPLETED } from './loginActions';
-import { ILoginState, ILoginAction } from './interfaces';
+import { loginActions } from './loginActions';
+import { ILoginState, ILoginAction } from './loginInterfaces';
 
 function loginReducer(
   state: ILoginState = {
@@ -10,12 +10,12 @@ function loginReducer(
   action: ILoginAction,
 ) {
     switch (action.type) {
-    case LOGIN_STARTED:
+    case loginActions.LOGIN_STARTED:
         return {
             ...state,
             loading: true,
         };
-    case LOGIN_COMPLETED:
+    case loginActions.LOGIN_COMPLETED:
         return {
             ...state,
             loading: false,

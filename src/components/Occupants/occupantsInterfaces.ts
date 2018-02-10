@@ -1,4 +1,4 @@
-import { IUserObject } from './userInterfaces';
+import { IUserObject } from '../Users/usersInterfaces';
 
 export interface IOccupant extends IUserObject {
     householdId: number;

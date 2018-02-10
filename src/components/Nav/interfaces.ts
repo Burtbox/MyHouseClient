@@ -1,5 +1,5 @@
 import { Dispatch } from 'redux';
-import { IUserObject } from '../../interfaces/userInterfaces';
+import { IUserObject } from '../Users/usersInterfaces';
     
 export interface INavProps extends INavStore {
     dispatch: Dispatch<{}>;

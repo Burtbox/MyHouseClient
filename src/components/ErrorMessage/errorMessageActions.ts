@@ -1,16 +1,23 @@
+import { IErrorMessageAction } from './errorMessageInterfaces';
+
 // Export Actions
-export const ADD_ERROR = 'ADD_ERROR';
-export const REMOVE_ERROR = 'REMOVE_ERROR';
+export enum errorMessageActions {
+    ADD_ERROR = 'ADD_ERROR',
+    REMOVE_ERROR = 'REMOVE_ERROR',
+}
 
 export function addError(errorMessageText: string) {
-    return {
-        type: ADD_ERROR,
-        payload: errorMessageText,
+    const response: IErrorMessageAction = {
+        errorMessageText,
+        type: errorMessageActions.ADD_ERROR,
     };
+    return response;
 }
 
 export function removeError() {
-    return {
-        type: REMOVE_ERROR,
+    const response: IErrorMessageAction = {
+        type: errorMessageActions.REMOVE_ERROR,
+        errorMessageText: undefined,
     };
+    return response;
 }

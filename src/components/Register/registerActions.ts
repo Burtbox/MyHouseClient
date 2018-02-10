@@ -1,11 +1,13 @@
 import auth from '../../helpers/firebase';
-import { RECEIVE_USER } from '../Nav/navActions';
-import { ADD_ERROR } from '../ErrorMessage/errorMessageActions';
-import { IUserResponseObject } from '../../interfaces/userInterfaces';
-import { IUserRegistrationObject, IRegisterUserObject } from './interfaces';
+import { usersActions } from '../Users/usersActions';
+import { addError } from '../ErrorMessage/errorMessageActions';
+import { IUserResponseObject, IRecieveUserAction } from '../Users/usersInterfaces';
+import { IUserRegistrationObject, IRegisterUserObject, IRegisterAction } from './interfaces';
 
-export const REGISTER_STARTED = 'REGISTER_STARTED';
-export const REGISTER_COMPLETED = 'REGISTER_COMPLETED';
+export enum registerActions {
+    REGISTER_STARTED = 'REGISTER_STARTED',
+    REGISTER_COMPLETED = 'REGISTER_COMPLETED',
+}
 
 export function registerUser(user: IRegisterUserObject) {
     const request = auth.createUserWithEmailAndPassword(
@@ -23,7 +25,7 @@ export function registerUser(user: IRegisterUserObject) {
                   dispatch(registerAttemptComplete());
               })
               .catch((error: Error) => {
-                  dispatch(registerFailure(error));
+                  dispatch(addError(error.message));
                   dispatch(registerAttemptComplete());
                   throw error;
               });
@@ -32,33 +34,31 @@ export function registerUser(user: IRegisterUserObject) {
 }
 
 function registerStarted() {
-    return {
-        type: REGISTER_STARTED,
+    const response: IRegisterAction = {
+        type: registerActions.REGISTER_STARTED,
+        loading: true,
     };
+    return response;
 }
 
-function registerSuccessful(response: IUserResponseObject) {
-    return {
-        type: RECEIVE_USER,
-        payload: {
-            email: response.email,
-            displayName: response.displayName,
-            userId: response.uid,
+function registerSuccessful(registerResponse: IUserResponseObject) {
+    const response: IRecieveUserAction = {
+        type: usersActions.RECEIVE_USER,
+        loggedInUser: {
+            email: registerResponse.email,
+            displayName: registerResponse.displayName,
+            userId: registerResponse.uid,
+            token: registerResponse.token,
         },
         isLoggedIn: true,
     };
-}
-
-function registerFailure(error: Error) {
-    return {
-        type: ADD_ERROR,
-        payload: error.message,
-        isLoggedIn: false,
-    };
+    return response;
 }
 
 function registerAttemptComplete() {
-    return {
-        type: REGISTER_COMPLETED,
+    const response: IRegisterAction = {
+        type: registerActions.REGISTER_COMPLETED,
+        loading: false,
     };
+    return response;
 }

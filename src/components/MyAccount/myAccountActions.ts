@@ -1,12 +1,15 @@
 import APIHelper from '../../helpers/apiHelper';
-import { RECEIVE_USER } from '../Nav/navActions';
-import { ADD_ERROR } from '../ErrorMessage/errorMessageActions';
-import { IUserObject } from '../../interfaces/userInterfaces';
+import { usersActions } from '../Users/usersActions';
+import { addError } from '../ErrorMessage/errorMessageActions';
+import { IUserObject, IRecieveUserAction } from '../Users/usersInterfaces';
+import { Action } from 'redux';
 
-export const EDIT_USER_STARTED = 'EDIT_USER_STARTED';
-export const EDIT_USER_COMPLETED = 'EDIT_USER_COMPLETED';
-export const DELETE_USER_STARTED = 'EDIT_USER_STARTED';
-export const DELETE_USER_COMPLETED = 'EDIT_USER_COMPLETED';
+export enum myAccountActions {
+    EDIT_USER_STARTED = 'EDIT_USER_STARTED',
+    EDIT_USER_COMPLETED = 'EDIT_USER_COMPLETED',
+    DELETE_USER_STARTED = 'EDIT_USER_STARTED',
+    DELETE_USER_COMPLETED = 'EDIT_USER_COMPLETED',
+}
 
 export function editUser(token: string, user: IUserObject) {
     const request = APIHelper.apiCall('PUT', 'Users/UpdateUserDetails', token, user);
@@ -19,7 +22,7 @@ export function editUser(token: string, user: IUserObject) {
                 dispatch(editUserAttemptComplete());
             })
             .catch((error: Error) => {
-                dispatch(editUserFailure(error));
+                dispatch(addError(error.message));
                 dispatch(editUserAttemptComplete());
                 throw error;
             });
@@ -43,7 +46,7 @@ export function deleteUser(token: string, emailAddress: string) {
                 dispatch(deleteUserAttemptComplete());
             })
             .catch((error: Error) => {
-                dispatch(deleteUserFailure(error));
+                dispatch(addError(error.message));
                 dispatch(deleteUserAttemptComplete());
                 throw error;
             });
@@ -51,66 +54,46 @@ export function deleteUser(token: string, emailAddress: string) {
 }
 
 function editUserStarted() {
-    return {
-        type: EDIT_USER_STARTED,
+    const response: Action = {
+        type: myAccountActions.EDIT_USER_STARTED,
     };
+    return response;
 }
 
-function editUserSuccessful(response: Response, user: IUserObject) {
-    return {
-        type: RECEIVE_USER,
-        payload: {
-            email: user.email,
-            displayName: user.displayName,
-        },
+function editUserSuccessful(editUserResponse: Response, user: IUserObject) {
+    const response: IRecieveUserAction = {
+        type: usersActions.RECEIVE_USER,
+        loggedInUser: user,
+        isLoggedIn: true,
     };
-}
-
-function editUserFailure(error: Error) {
-    return {
-        type: ADD_ERROR,
-        payload: error.message,
-    };
+    return response;
 }
 
 function editUserAttemptComplete() {
-    return {
-        type: EDIT_USER_COMPLETED,
+    const response: Action = {
+        type: myAccountActions.EDIT_USER_COMPLETED,
     };
+    return response;
 }
 
 function deleteUserStarted() {
-    return {
-        type: DELETE_USER_STARTED,
+    const response: Action = {
+        type: myAccountActions.DELETE_USER_STARTED,
     };
+    return response;
 }
 
-function deleteUserSuccessful(response: Response) {
-    const deleteUser: IUserObject = {
-        userId: null,
-        email: null,
-        displayName: null,
-        token: null,
-    };
-
-    return {
-        type: RECEIVE_USER,
-        payload: {
-            deleteUser,
-        },
+function deleteUserSuccessful(deleteUserResponse: Response) {
+    const response: IRecieveUserAction = {
+        type: usersActions.RECEIVE_USER,
+        loggedInUser: undefined,
         isLoggedIn: false,
     };
-}
-
-function deleteUserFailure(error: Error) {
-    return {
-        type: ADD_ERROR,
-        payload: error.message,
-    };
+    return response;
 }
 
 function deleteUserAttemptComplete() {
     return {
-        type: DELETE_USER_COMPLETED,
+        type: myAccountActions.DELETE_USER_COMPLETED,
     };
 }

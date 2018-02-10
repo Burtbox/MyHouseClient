@@ -59,7 +59,9 @@ class Register extends React.Component<IRegisterProps, IRegisterState> {
           <form style={appStyles.container} onSubmit={this.handleAddUser}>
             <h2>Create Account</h2>
             <div>
-              Already have an hApps account?
+              <span style={{ 'vertical-align': 'middle' }}>
+              Already have a My House account?
+              </span> {' '}
               <FlatButton
                 secondary={true}
                 label="Sign In"

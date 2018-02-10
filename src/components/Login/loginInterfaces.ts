@@ -1,6 +1,6 @@
 import { Action } from 'redux';
 import { IComponentProps } from '../../interfaces/componentInterfaces';
-import { IUserObject, IUserAuthenticationObject } from '../../interfaces/userInterfaces';
+import { IUserObject, IUserAuthenticationObject } from '../Users/usersInterfaces';
     
 export interface ILoginProps extends IComponentProps {
     user: IUserObject;

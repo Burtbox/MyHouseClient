@@ -1,12 +1,12 @@
-import { INavProps } from '../components/Nav/interfaces';
-import { IErrorMessageProps } from '../components/ErrorMessage/interfaces';
-import { ILoginProps } from '../components/Login/interfaces';
+import { IUsersProps } from '../components/Users/usersInterfaces';
+import { IErrorMessageProps } from '../components/ErrorMessage/errorMessageInterfaces';
+import { ILoginProps } from '../components/Login/loginInterfaces';
 import { IRegisterProps } from '../components/Register/interfaces';
 import { IMyAccountProps } from '../components/MyAccount/interfaces';
 import { IHouseholdProps } from '../components/Households/householdsInterfaces';
 
 export interface IStore {
-    navReducer: INavProps;
+    usersReducer: IUsersProps;
     errorMessageReducer: IErrorMessageProps;
     loginReducer: ILoginProps;
     registerReducer: IRegisterProps;

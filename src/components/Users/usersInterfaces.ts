@@ -24,3 +24,5 @@ export interface IRecieveUserAction extends Action {
     loggedInUser: IUserObject;
     isLoggedIn: boolean;
 }
+
+export interface IUsersProps extends IRecieveUserAction {}

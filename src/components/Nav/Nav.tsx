@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { logout } from './navActions';
+import { logout } from '../Users/usersActions';
 import { Toolbar, ToolbarGroup, ToolbarTitle } from 'material-ui/Toolbar';
 import IconButton from 'material-ui/IconButton';
 import Menu from 'material-ui/svg-icons/navigation/menu';
@@ -14,6 +14,7 @@ import { INavProps, INavStore } from './interfaces';
 import history from '../../main/history';
 import { myHouseRoutes } from '../../enums/routesEnum';
 import { IStore } from '../../interfaces/storeInterface';
+import { checkUserLoginToken } from '../../helpers/loginHelper';
 
 class Nav extends React.Component<INavProps> {
     handleLogOut = () => {
@@ -110,9 +111,10 @@ class Nav extends React.Component<INavProps> {
 
 // Retrieve data from store as props
 const mapStateToProps = (store: IStore) => {
+    const token: string = store.usersReducer.isLoggedIn && store.usersReducer.loggedInUser ? store.usersReducer.loggedInUser.token : null;
     const props: INavStore = {
-        loggedInUser: store.navReducer.loggedInUser,
-        isLoggedIn: store.navReducer.isLoggedIn,
+        loggedInUser: store.usersReducer.loggedInUser,
+        isLoggedIn: checkUserLoginToken(token),
     };
     return props;
 };

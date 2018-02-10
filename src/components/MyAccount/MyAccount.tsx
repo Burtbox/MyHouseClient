@@ -166,7 +166,7 @@ class MyAccount extends React.Component<IMyAccountProps, IMyAccountState> {
 // Retrieve data from store as props
 const mapStateToProps = (store: any) => {
     return {
-        loggedInUser: store.navReducer.loggedInUser,
+        loggedInUser: store.usersReducer.loggedInUser,
         editing: store.myAccountReducer.editing,
         deleting: store.myAccountReducer.deleting,
     };

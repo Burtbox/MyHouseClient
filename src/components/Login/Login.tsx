@@ -4,10 +4,10 @@ import TextField from 'material-ui/TextField';
 import FlatButton from 'material-ui/FlatButton';
 import CircularProgress from 'material-ui/CircularProgress';
 import appStyles from '../../styles';
-import { ILoginProps, ILoginState } from './interfaces';
+import { ILoginProps, ILoginState } from './loginInterfaces';
 import { loginUser } from './loginActions';
 import { myHouseRoutes } from '../../enums/routesEnum';
-import { IUserAuthenticationObject } from '../../interfaces/userInterfaces';
+import { IUserAuthenticationObject } from '../Users/usersInterfaces';
 
 class Login extends React.Component<ILoginProps, ILoginState> {
     constructor(props: ILoginProps) {
@@ -87,7 +87,7 @@ class Login extends React.Component<ILoginProps, ILoginState> {
             </div>
             <br />
             <div>
-              <span> New to hApps? </span>{' '}
+              <span style={{ 'vertical-align': 'middle' }}> New to My House? </span>{' '}
               <span>
                 <FlatButton
                   secondary={true}

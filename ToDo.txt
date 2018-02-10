@@ -22,3 +22,5 @@ Design a pattern for React/Redux usage - guidelines:
 look into Redux-offline (new package to handle offline)
 
 setup Enzyme/Jest for front end tests
+
+Make all Action names into string enums!

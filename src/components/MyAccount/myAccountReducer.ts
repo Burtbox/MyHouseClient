@@ -1,9 +1,4 @@
-import {
-  EDIT_USER_STARTED,
-  EDIT_USER_COMPLETED,
-  DELETE_USER_STARTED,
-  DELETE_USER_COMPLETED,
-} from './myAccountActions';
+import { myAccountActions } from './myAccountActions';
 import { IMyAccountReducerState, IMyAccountAction } from './interfaces';
 
 function myAccountReducer(
@@ -14,22 +9,22 @@ function myAccountReducer(
   action: IMyAccountAction,
 ) {
     switch (action.type) {
-    case EDIT_USER_STARTED:
+    case myAccountActions.EDIT_USER_STARTED:
         return {
             ...state,
             editing: true,
         };
-    case EDIT_USER_COMPLETED:
+    case myAccountActions.EDIT_USER_COMPLETED:
         return {
             ...state,
             editing: false,
         };
-    case DELETE_USER_STARTED:
+    case myAccountActions.DELETE_USER_STARTED:
         return {
             ...state,
             deleting: true,
         };
-    case DELETE_USER_COMPLETED:
+    case myAccountActions.DELETE_USER_COMPLETED:
         return {
             ...state,
             deleting: false,

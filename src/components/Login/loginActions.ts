@@ -1,10 +1,13 @@
 import auth from '../../helpers/firebase';
-import { RECEIVE_USER } from '../Nav/navActions';
-import { ADD_ERROR } from '../ErrorMessage/errorMessageActions';
-import { IUserAuthenticationObject, IUserResponseObject } from '../../interfaces/userInterfaces';
+import {  addError } from '../ErrorMessage/errorMessageActions';
+import { IUserAuthenticationObject, IUserResponseObject, IRecieveUserAction } from '../Users/usersInterfaces';
+import { Action } from 'redux';
+import { usersActions } from '../Users/usersActions';
 
-export const LOGIN_STARTED = 'LOGIN_STARTED';
-export const LOGIN_COMPLETED = 'LOGIN_COMPLETED';
+export enum loginActions {
+    LOGIN_STARTED = 'LOGIN_STARTED',
+    LOGIN_COMPLETED = 'LOGIN_COMPLETED',
+}
 
 export function loginUser(login: IUserAuthenticationObject) {
     const request = auth.signInWithEmailAndPassword(login.email, login.password);
@@ -13,17 +16,17 @@ export function loginUser(login: IUserAuthenticationObject) {
         dispatch(loginStarted());
         return request
             .then((response: IUserResponseObject) => {
-                auth.currentUser.getToken(true).then((idToken: any) => {
+                auth.currentUser.getToken(true).then((idToken: string) => {
                     dispatch(loginSuccessful(response, idToken));
                     dispatch(loginAttemptComplete());
                 }).catch((error: Error) => {
-                    dispatch(loginFailure(error));
+                    dispatch(addError(error.message));
                     dispatch(loginAttemptComplete());
                     throw error;
                 });
             })
             .catch((error: Error) => {
-                dispatch(loginFailure(error));
+                dispatch(addError(error.message));
                 dispatch(loginAttemptComplete());
                 throw error;
             });
@@ -31,33 +34,29 @@ export function loginUser(login: IUserAuthenticationObject) {
 }
 
 function loginStarted() {
-    return {
-        type: LOGIN_STARTED,
+    const response: Action = {
+        type: loginActions.LOGIN_STARTED,
     };
+    return response;
 }
 
-function loginSuccessful(response: IUserResponseObject, token: string) {
-    return {
-        type: RECEIVE_USER,
-        payload: {
+function loginSuccessful(loginResponse: IUserResponseObject, token: string) {
+    const response: IRecieveUserAction = {
+        type: usersActions.RECEIVE_USER,
+        loggedInUser: {
             token,
-            email: response.email,
-            displayName: response.displayName,
-            userId: response.uid,
+            email: loginResponse.email,
+            displayName: loginResponse.displayName,
+            userId: loginResponse.uid,
         },
         isLoggedIn: true,
     };
-}
-
-function loginFailure(error: Error) {
-    return {
-        type: ADD_ERROR,
-        payload: error.message,
-    };
+    return response;
 }
 
 function loginAttemptComplete() {
-    return {
-        type: LOGIN_COMPLETED,
+    const response: Action = {
+        type: loginActions.LOGIN_COMPLETED,
     };
+    return response;
 }

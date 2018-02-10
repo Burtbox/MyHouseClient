@@ -1,4 +1,4 @@
-import { REGISTER_STARTED, REGISTER_COMPLETED } from './registerActions';
+import { registerActions } from './registerActions';
 import { IRegisterState, IRegisterAction } from './interfaces';
 
 function registerReducer(
@@ -10,12 +10,12 @@ function registerReducer(
     action: IRegisterAction,
   ) {
     switch (action.type) {
-    case REGISTER_STARTED:
+    case registerActions.REGISTER_STARTED:
         return {
             ...state,
             loading: true,
         };
-    case REGISTER_COMPLETED:
+    case registerActions.REGISTER_COMPLETED:
         return {
             ...state,
             loading: false,
