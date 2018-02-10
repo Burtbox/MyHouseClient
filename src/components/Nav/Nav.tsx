@@ -10,9 +10,10 @@ import MenuItem from 'material-ui/MenuItem';
 import ActionHome from 'material-ui/svg-icons/action/home';
 import UserChip from '../UserChip';
 import styles from './styles';
-import { INavProps } from './interfaces';
+import { INavProps, INavStore } from './interfaces';
 import history from '../../main/history';
 import { myHouseRoutes } from '../../enums/routesEnum';
+import { IStore } from '../../interfaces/storeInterface';
 
 class Nav extends React.Component<INavProps> {
     handleLogOut = () => {
@@ -84,7 +85,7 @@ class Nav extends React.Component<INavProps> {
               <ToolbarTitle text="My House" />
             </ToolbarGroup>
             <ToolbarGroup>
-              {this.props.loggedInUser
+              {this.props.isLoggedIn
                 ? this.getLoggedInNavItems()
                 : this.getLoggedOutNavItems()}
 
@@ -97,7 +98,7 @@ class Nav extends React.Component<INavProps> {
                   </IconButton>
                 }
               >
-                {this.props.loggedInUser
+                {this.props.isLoggedIn
                   ? this.getLoggedInMenuOptions()
                   : this.getLoggedOutMenuOptions()}
               </IconMenu>
@@ -108,10 +109,12 @@ class Nav extends React.Component<INavProps> {
 }
 
 // Retrieve data from store as props
-const mapStateToProps = (store: any) => {
-    return {
+const mapStateToProps = (store: IStore) => {
+    const props: INavStore = {
         loggedInUser: store.navReducer.loggedInUser,
+        isLoggedIn: store.navReducer.isLoggedIn,
     };
+    return props;
 };
 
 export default connect(mapStateToProps)(Nav);

@@ -20,3 +20,5 @@ Design a pattern for React/Redux usage - guidelines:
     Takeaway: keep data that you intend to share across components in store.
 
 look into Redux-offline (new package to handle offline)
+
+setup Enzyme/Jest for front end tests

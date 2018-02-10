@@ -1,14 +1,14 @@
 import * as React from 'react';
 import Paper from 'material-ui/Paper';
 import { IHouseholdProps, IHouseholdStore, IHousehold } from './householdsInterfaces';
-import { getHouseholdsOfOccupant } from './householdsActions';
+import { getHouseholdsOfUser } from './householdsActions';
 import { connect } from 'react-redux';
 import { List, ListItem } from 'material-ui/List';
 import { IStore } from '../../interfaces/storeInterface';
 
 class Households extends React.Component<IHouseholdProps> {
     componentWillMount() {
-        this.props.dispatch(getHouseholdsOfOccupant(this.props.loggedInUser.token, this.props.loggedInUser));
+        this.props.dispatch(getHouseholdsOfUser(this.props.loggedInUser.token, this.props.loggedInUser));
     }
 
     createHouseholdsList() {

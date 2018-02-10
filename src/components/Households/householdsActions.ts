@@ -6,13 +6,14 @@ import { IHousehold, IHouseholdsAction } from './householdsInterfaces';
 import { HouseholdsActions } from './householdsActionsEnum';
 import { IErrorMessageAction } from '../ErrorMessage/interfaces';
 import { IAsyncAction } from '../../interfaces/apiInterfaces';
+import { endpoints } from '../../enums/endpointsEnum';
 
-export const GET_HOUSEHOLDS_OF_OCCUPANT_STARTED = HouseholdsActions.GET_HOUSEHOLDS_OF_OCCUPANT_STARTED;
-export const GET_HOUSEHOLDS_OF_OCCUPANT_COMPLETED = HouseholdsActions.GET_HOUSEHOLDS_OF_OCCUPANT_COMPLETED;
-export const HOUSEHOLDS_OF_OCCUPANT = HouseholdsActions.HOUSEHOLDS_OF_OCCUPANT;
+export const GET_HOUSEHOLDS_OF_USER_STARTED = HouseholdsActions.GET_HOUSEHOLDS_OF_USER_STARTED;
+export const GET_HOUSEHOLDS_OF_USER_COMPLETED = HouseholdsActions.GET_HOUSEHOLDS_OF_USER_COMPLETED;
+export const HOUSEHOLDS_OF_USER = HouseholdsActions.HOUSEHOLDS_OF_USER;
 
-export function getHouseholdsOfOccupant(token: string, occupant: IOccupant) {
-    const request = apiHelper.apiCall(HTTPMethod.GET, 'Households/', token, null, occupant.userId);
+export function getHouseholdsOfUser(token: string, occupant: IOccupant) {
+    const request = apiHelper.apiCall(HTTPMethod.GET, endpoints.households, token, null, occupant.userId);
 
     return (dispatch: Function) => {
         dispatch(getHouseholdsOfOccupantStarted());
@@ -31,7 +32,7 @@ export function getHouseholdsOfOccupant(token: string, occupant: IOccupant) {
 
 function getHouseholdsOfOccupantStarted() {
     const response : IAsyncAction = {
-        type: GET_HOUSEHOLDS_OF_OCCUPANT_STARTED,
+        type: GET_HOUSEHOLDS_OF_USER_STARTED,
         loading: true,
     };
     return response;
@@ -39,7 +40,7 @@ function getHouseholdsOfOccupantStarted() {
 
 function getHouseholdsOfOccupantSuccessful(householdsResponse: IHousehold[]) {
     const response: IHouseholdsAction = {
-        type: HOUSEHOLDS_OF_OCCUPANT,
+        type: HOUSEHOLDS_OF_USER,
         households: householdsResponse,
     };
     return response;
@@ -55,7 +56,7 @@ function getHouseholdsOfOccupantFailure(error: Error) {
 
 function getHouseholdsOfOccupantAttemptComplete() {
     const response : IAsyncAction = {
-        type: GET_HOUSEHOLDS_OF_OCCUPANT_COMPLETED,
+        type: GET_HOUSEHOLDS_OF_USER_COMPLETED,
         loading: false,
     };
     return response;

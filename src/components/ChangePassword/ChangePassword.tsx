@@ -7,6 +7,7 @@ import appStyles from '../../styles';
 import { IChangePasswordProps, IChangePasswordState } from './interfaces';
 import { addError } from '../ErrorMessage/errorMessageActions';
 import APIHelper from '../../helpers/apiHelper';
+import { IStore } from '../../interfaces/storeInterface';
 
 class ChangePassword extends React.Component<IChangePasswordProps, IChangePasswordState> {
     constructor(props: IChangePasswordProps) {
@@ -124,7 +125,7 @@ class ChangePassword extends React.Component<IChangePasswordProps, IChangePasswo
 }
 
 // Retrieve data from store as props
-const mapStateToProps = (store: any) => {
+const mapStateToProps = (store: IStore) => {
     return { loggedInUser: store.navReducer.loggedInUser };
 };
 
