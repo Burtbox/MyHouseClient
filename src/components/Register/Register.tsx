@@ -29,12 +29,10 @@ class Register extends React.Component<IRegisterProps, IRegisterState> {
         if (this.state.registerUser.password === this.state.registerUser.confirmPassword) {
             const { dispatch, history } = this.props;
             const user: IRegisterUserObject = {
-                userId: '', // ED! wrong typing here too - need to draw out what types we really have here!
                 displayName: this.state.registerUser.displayName,
                 email: this.state.registerUser.email,
                 password: this.state.registerUser.password,
                 confirmPassword: this.state.registerUser.confirmPassword,
-                token: '',
             };
             this.setState({ loading: true });
             dispatch(registerUser(user))

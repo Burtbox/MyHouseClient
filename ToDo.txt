@@ -11,3 +11,12 @@ Clean up and type reducer and action code
 sort out code formatter vs linter!
 
 handle logout when unauthorized ! 
+
+Design a pattern for React/Redux usage - guidelines:
+    UI State (e.g. loading) - react state
+    Data from DB - redux store
+
+    Takeaway: keep UI state and transitory data (such as form inputs) in local state.
+    Takeaway: keep data that you intend to share across components in store.
+
+look into Redux-offline (new package to handle offline)

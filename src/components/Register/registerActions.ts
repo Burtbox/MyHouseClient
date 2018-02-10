@@ -1,13 +1,13 @@
 import auth from '../../helpers/firebase';
 import { RECEIVE_USER } from '../Nav/navActions';
 import { ADD_ERROR } from '../ErrorMessage/errorMessageActions';
-import { IUserAuthenticationObject, IUserResponseObject } from '../../interfaces/userInterfaces';
-import { IUserRegistrationObject } from './interfaces';
+import { IUserResponseObject } from '../../interfaces/userInterfaces';
+import { IUserRegistrationObject, IRegisterUserObject } from './interfaces';
 
 export const REGISTER_STARTED = 'REGISTER_STARTED';
 export const REGISTER_COMPLETED = 'REGISTER_COMPLETED';
 
-export function registerUser(user: IUserAuthenticationObject) {
+export function registerUser(user: IRegisterUserObject) {
     const request = auth.createUserWithEmailAndPassword(
         user.email,
         user.password,

@@ -1,12 +1,8 @@
 import { GET_HOUSEHOLDS_OF_OCCUPANT_STARTED, GET_HOUSEHOLDS_OF_OCCUPANT_COMPLETED, HOUSEHOLDS_OF_OCCUPANT } from './householdsActions';
-import { IHouseholdsState, IHouseholdsAction } from './householdsInterfaces';
+import { IHouseholdsAction } from './householdsInterfaces';
 
 function householdsReducer(
-  state: IHouseholdsState = {
-      households: null,
-      error: null,
-      loading: false,
-  },
+  state = { },
   action: IHouseholdsAction,
 ) {
     switch (action.type) {

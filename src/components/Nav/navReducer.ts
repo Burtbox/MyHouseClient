@@ -1,15 +1,15 @@
 import { RECEIVE_USER } from '../Nav/navActions';
-import { IUserLoggedIn, IRecieveUserAction } from '../../interfaces/userInterfaces';
+import { IRecieveUserAction } from '../../interfaces/userInterfaces';
+import { IOccupant } from '../../interfaces/occupantsInterfaces';
 
 function navReducer(
-    state: IUserLoggedIn = {
-        isLoggedIn: false,
-        loggedInUser: {
-            userId: '',
-            email: '',
-            displayName: '',
-            token: '',
-        },
+    state: IOccupant = {
+        userId: null,
+        email: null,
+        displayName: null,
+        token: null,
+        householdId: null,
+        occupantId: null,
     },
     action: IRecieveUserAction,
 ) {
@@ -17,8 +17,7 @@ function navReducer(
     case RECEIVE_USER:
         return {
             ...state,
-            loggedInUser: action.payload,
-            isLoggedIn: action.isLoggedIn,
+            loggedInUser: action.loggedInUser,
         };
     default:
         return state;

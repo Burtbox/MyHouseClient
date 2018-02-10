@@ -2,8 +2,10 @@ import apiHelper from '../../helpers/apiHelper';
 import { ADD_ERROR } from '../ErrorMessage/errorMessageActions';
 import { IOccupant } from '../../interfaces/occupantsInterfaces';
 import { HTTPMethod } from '../../enums/httpEnum';
-import { IHousehold } from './householdsInterfaces';
-import { HouseholdsActions } from '../../enums/householdsActionsEnum';
+import { IHousehold, IHouseholdsAction } from './householdsInterfaces';
+import { HouseholdsActions } from './householdsActionsEnum';
+import { IErrorMessageAction } from '../ErrorMessage/interfaces';
+import { IAsyncAction } from '../../interfaces/apiInterfaces';
 
 export const GET_HOUSEHOLDS_OF_OCCUPANT_STARTED = HouseholdsActions.GET_HOUSEHOLDS_OF_OCCUPANT_STARTED;
 export const GET_HOUSEHOLDS_OF_OCCUPANT_COMPLETED = HouseholdsActions.GET_HOUSEHOLDS_OF_OCCUPANT_COMPLETED;
@@ -28,27 +30,33 @@ export function getHouseholdsOfOccupant(token: string, occupant: IOccupant) {
 }
 
 function getHouseholdsOfOccupantStarted() {
-    return {
+    const response : IAsyncAction = {
         type: GET_HOUSEHOLDS_OF_OCCUPANT_STARTED,
+        loading: true,
     };
+    return response;
 }
 
-function getHouseholdsOfOccupantSuccessful(response: IHousehold[]) {
-    return {
+function getHouseholdsOfOccupantSuccessful(householdsResponse: IHousehold[]) {
+    const response: IHouseholdsAction = {
         type: HOUSEHOLDS_OF_OCCUPANT,
-        households: response,
+        households: householdsResponse,
     };
+    return response;
 }
 
 function getHouseholdsOfOccupantFailure(error: Error) {
-    return {
+    const response: IErrorMessageAction = {
         type: ADD_ERROR,
-        payload: error.message,
+        errorMessageText: error.message,
     };
+    return response;
 }
 
 function getHouseholdsOfOccupantAttemptComplete() {
-    return {
+    const response : IAsyncAction = {
         type: GET_HOUSEHOLDS_OF_OCCUPANT_COMPLETED,
+        loading: false,
     };
+    return response;
 }

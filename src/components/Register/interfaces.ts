@@ -22,6 +22,7 @@ export interface IUserRegistrationObject extends IUserAuthenticationObject {
 }
 
 export interface IRegisterUserObject extends IUserAuthenticationObject {
+    displayName: string;
     confirmPassword: string;
 }
 

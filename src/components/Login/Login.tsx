@@ -7,17 +7,15 @@ import appStyles from '../../styles';
 import { ILoginProps, ILoginState } from './interfaces';
 import { loginUser } from './loginActions';
 import { myHouseRoutes } from '../../enums/routesEnum';
+import { IUserAuthenticationObject } from '../../interfaces/userInterfaces';
 
 class Login extends React.Component<ILoginProps, ILoginState> {
     constructor(props: ILoginProps) {
         super(props);
         this.state = {
             user: {
-                userId: '',
                 email: '',
                 password: '',
-                displayName: '',
-                token: '',
             },
             error: null,
             loading: false,
@@ -27,12 +25,9 @@ class Login extends React.Component<ILoginProps, ILoginState> {
     handleLogin = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         const { dispatch, history } = this.props;
-        const login = {
+        const login: IUserAuthenticationObject = {
             email: this.state.user.email,
             password: this.state.user.password,
-            userId: '', // ED! This imples this is the wrong type!
-            displayName: '', // ED! This imples this is the wrong type!
-            token: '',
         };
         this.setState({ loading: true });
         dispatch(loginUser(login))

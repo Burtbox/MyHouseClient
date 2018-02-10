@@ -1,11 +1,9 @@
-export interface IOccupant {
-    userId: string;
-    displayName: string;
+import { IUserObject } from './userInterfaces';
+
+export interface IOccupant extends IUserObject {
     householdId: number;
     occupantId: number;
     token: string;
 }
 
-export interface IOccupantProps {
-
-}
+export interface IOccupantProps { }
