@@ -69,7 +69,7 @@
       "node"
     ],
     "setupFiles": [
-      "./tests/jestsetup.ts"
+      "./src/tests/jestsetup.ts"
     ],
     "snapshotSerializers": [
       "enzyme-to-json/serializer"
