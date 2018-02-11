@@ -22,5 +22,6 @@ Design a pattern for React/Redux usage - guidelines:
 look into Redux-offline (new package to handle offline)
 
 setup Enzyme/Jest for front end tests https://github.com/airbnb/enzyme/blob/master/docs/guides/jest.md
+https://hackernoon.com/testing-react-components-with-jest-and-enzyme-41d592c174f 
 
 Make all Action names into string enums!
