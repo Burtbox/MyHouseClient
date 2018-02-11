@@ -8,8 +8,9 @@ import { ILoginProps, ILoginState } from './loginInterfaces';
 import { loginUser } from './loginActions';
 import { myHouseRoutes } from '../../enums/routesEnum';
 import { IUserAuthenticationObject } from '../Users/usersInterfaces';
+import { IStore } from '../../interfaces/storeInterface';
 
-class Login extends React.Component<ILoginProps, ILoginState> {
+export class Login extends React.Component<ILoginProps, ILoginState> {
     constructor(props: ILoginProps) {
         super(props);
         this.state = {
@@ -31,12 +32,12 @@ class Login extends React.Component<ILoginProps, ILoginState> {
         };
         this.setState({ loading: true });
         dispatch(loginUser(login))
-          .then(() => {
-              history.push(myHouseRoutes.Links);
-          })
-          .catch((error: Error) => {
-              this.setState({ error, loading: false });
-          });
+      .then(() => {
+          history.push(myHouseRoutes.Links);
+      })
+      .catch((error: Error) => {
+          this.setState({ error, loading: false });
+      });
     }
 
     handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -51,60 +52,60 @@ class Login extends React.Component<ILoginProps, ILoginState> {
 
     render() {
         return (
-          <form style={appStyles.container} onSubmit={this.handleLogin}>
-            <h2>Welcome</h2>
-            <div>
-              <TextField
-                name="email"
-                type="text"
-                hintText="example@email.com"
-                floatingLabelText="Email Address"
-                required
-                onChange={this.handleInputChange}
-                disabled={this.state.loading}
-                maxlength="50"
-              />
-            </div>
-            <div>
-              <TextField
-                name="password"
-                type="password"
-                hintText="**********"
-                floatingLabelText="Password"
-                autoComplete="current-password"
-                required
-                onChange={this.handleInputChange}
-                disabled={this.state.loading}
-                maxlength="30"
-              />
-            </div>
-            <div>
-              {this.state.loading ? (
-                <CircularProgress />
-              ) : (
-                <FlatButton type="submit" label="Sign In" />
-              )}
-            </div>
-            <br />
-            <div>
-              <span style={{ 'vertical-align': 'middle' }}> New to My House? </span>{' '}
-              <span>
-                <FlatButton
-                  secondary={true}
-                  label="Sign Up"
-                  onClick={() => this.props.history.push(myHouseRoutes.Register)}
-                />
-              </span>
-            </div>
-          </form>
+      <form style={appStyles.container} onSubmit={this.handleLogin}>
+        <h2>Welcome</h2>
+        <div>
+          <TextField
+            name="email"
+            type="text"
+            hintText="example@email.com"
+            floatingLabelText="Email Address"
+            required
+            onChange={this.handleInputChange}
+            disabled={this.state.loading}
+            maxlength="50"
+          />
+        </div>
+        <div>
+          <TextField
+            name="password"
+            type="password"
+            hintText="**********"
+            floatingLabelText="Password"
+            autoComplete="current-password"
+            required
+            onChange={this.handleInputChange}
+            disabled={this.state.loading}
+            maxlength="30"
+          />
+        </div>
+        <div>
+          {this.state.loading ? (
+            <CircularProgress />
+          ) : (
+              <FlatButton type="submit" label="Sign In" />
+            )}
+        </div>
+        <br />
+        <div>
+          <span style={{ 'vertical-align': 'middle' }}> New to My House? </span>{' '}
+          <span>
+            <FlatButton
+              secondary={true}
+              label="Sign Up"
+              onClick={() => this.props.history.push(myHouseRoutes.Register)}
+            />
+          </span>
+        </div>
+      </form>
         );
     }
 }
 
 // Retrieve data from store as props
-const mapStateToProps = (store: any) => {
+const mapStateToProps = (store: IStore) => {
     return {
-        loggingIn: store.loginReducer.loading,
+        loggingIn: store.loginReducer.loggingIn,
     };
 };
 

@@ -1,3 +1,5 @@
-import Login from './Login';
+import Login, { Login as DisconnectedLogin } from './Login';
 
 export default Login;
+
+export { DisconnectedLogin };
