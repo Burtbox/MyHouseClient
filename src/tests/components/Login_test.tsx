@@ -4,13 +4,6 @@ import { DisconnectedLogin } from '../../components/Login';
 import { ILoginProps } from '../../components/Login/loginInterfaces';
 
 describe('Login test suite', () => {
-    test('render a div', () => {
-        const wrapper = shallow(
-            <div>Hello Jest!</div>,
-        );
-        expect(wrapper).toMatchSnapshot();
-    });
-
     // Alternative here is to wrap with provider, but that was a pain and I'm not sure of the benefit
     test('Render login screen', () => {
         const props: Readonly<ILoginProps> = {
