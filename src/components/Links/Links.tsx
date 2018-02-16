@@ -4,26 +4,15 @@ import Menu from 'material-ui/Menu';
 import MenuItem from 'material-ui/MenuItem';
 import LocalAtm from 'material-ui/svg-icons/maps/local-atm';
 import Restaurant from 'material-ui/svg-icons/maps/restaurant';
+import styles from './linksStyles';
 
 class Links extends React.Component {
     createMenu() {
-        const style = {
-            paper: {
-                display: 'inline-block',
-                float: 'left',
-                margin: '16px 32px 16px 0',
-            },
-            rightIcon: {
-                textAlign: 'center',
-                lineHeight: '24px',
-            },
-        };
         return (
-            <Paper style={style.paper}>
+            <Paper style={styles.paper}>
                 <Menu>
                     <MenuItem primaryText="Money" leftIcon={<LocalAtm />} href="http://housemoney.surge.sh/" />
                     <MenuItem primaryText="Food" leftIcon={<Restaurant />} href="http://housefood.surge.sh/" />
-
                 </Menu>
             </Paper>
         );
@@ -31,7 +20,7 @@ class Links extends React.Component {
 
     render() {
         return (
-            <div style={{ width: '20%' }}>
+            <div style={{ width: '25%' }}>
                 {this.createMenu()}
             </div >
         );

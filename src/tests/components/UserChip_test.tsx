@@ -4,7 +4,6 @@ import UserChip from '../../components/UserChip';
 import { IUserChipProps } from '../../components/UserChip/userChipInterfaces';
 
 describe('User Chip test suite', () => {
-    // Alternative here is to wrap with provider, but that was a pain and I'm not sure of the benefit
     test('Render user chip', () => {
         const props: Readonly<IUserChipProps> = {
             user: {
