@@ -1,14 +1,14 @@
 import * as React from 'react';
 import Paper from 'material-ui/Paper';
-import { IHouseholdProps, IHouseholdStore, IHousehold, IHouseholdState } from './householdsInterfaces';
+import { IHouseholdsProps, IHouseholdsStore, IHousehold, IHouseholdsState } from './householdsInterfaces';
 import { getHouseholdsOfUser } from './householdsActions';
 import { connect } from 'react-redux';
 import { List, ListItem } from 'material-ui/List';
 import { IStore } from '../../interfaces/storeInterface';
 import { CircularProgress } from 'material-ui';
 
-class Households extends React.Component<IHouseholdProps, IHouseholdState> {
-    constructor(props: IHouseholdProps) {
+export class Households extends React.Component<IHouseholdsProps, IHouseholdsState> {
+    constructor(props: IHouseholdsProps) {
         super(props);
         this.state = {
             loading: false,
@@ -49,7 +49,7 @@ class Households extends React.Component<IHouseholdProps, IHouseholdState> {
 
 // Retrieve data from store as props
 const mapStateToProps = (store: IStore) => {
-    const props: IHouseholdStore = {
+    const props: IHouseholdsStore = {
         loggedInUser: store.usersReducer.loggedInUser,
         households: store.householdsReducer.households,
     };

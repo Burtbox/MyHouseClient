@@ -2,8 +2,8 @@ import { IUsersProps } from '../components/Users/usersInterfaces';
 import { IErrorMessageProps } from '../components/ErrorMessage/errorMessageInterfaces';
 import { ILoginProps } from '../components/Login/loginInterfaces';
 import { IRegisterProps } from '../components/Register/registerInterfaces';
-import { IMyAccountProps } from '../components/MyAccount/interfaces';
-import { IHouseholdProps } from '../components/Households/householdsInterfaces';
+import { IMyAccountProps } from '../components/MyAccount/myAccountInterfaces';
+import { IHouseholdsProps } from '../components/Households/householdsInterfaces';
 
 export interface IStore {
     usersReducer: IUsersProps;
@@ -11,5 +11,5 @@ export interface IStore {
     loginReducer: ILoginProps;
     registerReducer: IRegisterProps;
     myAccountReducer: IMyAccountProps;
-    householdsReducer: IHouseholdProps;
+    householdsReducer: IHouseholdsProps;
 }

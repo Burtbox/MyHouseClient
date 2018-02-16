@@ -7,7 +7,7 @@ export interface IHousehold {
     name: string;
 }
 
-export interface IHouseholdProps extends IConnectedComponentProps {
+export interface IHouseholdsProps extends IConnectedComponentProps {
     households: IHousehold[];
 }
 
@@ -15,11 +15,11 @@ export interface IHouseholdsAction extends Action {
     households: IHousehold[];
 }
 
-export interface IHouseholdStore {
+export interface IHouseholdsStore {
     households: IHousehold[];
     loggedInUser: IUserObject;
 }
 
-export interface IHouseholdState {
+export interface IHouseholdsState {
     loading: boolean;
 }
