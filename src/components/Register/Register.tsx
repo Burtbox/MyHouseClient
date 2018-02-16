@@ -5,11 +5,11 @@ import FlatButton from 'material-ui/FlatButton';
 import CircularProgress from 'material-ui/CircularProgress';
 import { registerUser } from './registerActions';
 import appStyles from '../../styles';
-import { IRegisterProps, IRegisterState, IRegisterUserObject } from './interfaces';
+import { IRegisterProps, IRegisterState, IRegisterUserObject } from './registerInterfaces';
 import { addError } from '../ErrorMessage/errorMessageActions';
 import { myHouseRoutes } from '../../enums/routesEnum';
 
-class Register extends React.Component<IRegisterProps, IRegisterState> {
+export class Register extends React.Component<IRegisterProps, IRegisterState> {
     constructor(props: IRegisterProps) {
         super(props);
         this.state = {

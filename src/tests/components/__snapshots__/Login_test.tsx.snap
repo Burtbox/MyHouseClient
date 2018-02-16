@@ -95,9 +95,3 @@ exports[`Login test suite Render login screen 1`] = `
   </div>
 </form>
 `;
-
-exports[`Login test suite render a div 1`] = `
-<div>
-  Hello Jest!
-</div>
-`;

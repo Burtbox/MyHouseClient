@@ -1,0 +1,128 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Register test suite Render register screen 1`] = `
+<form
+  onSubmit={[Function]}
+  style={
+    Object {
+      "marginTop": "20px",
+      "textAlign": "center",
+    }
+  }
+>
+  <h2>
+    Create Account
+  </h2>
+  <div>
+    <span
+      style={
+        Object {
+          "vertical-align": "middle",
+        }
+      }
+    >
+      Already have a My House account?
+    </span>
+     
+     
+    <FlatButton
+      disabled={false}
+      fullWidth={false}
+      label="Sign In"
+      labelPosition="after"
+      labelStyle={Object {}}
+      onClick={[Function]}
+      onKeyboardFocus={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+      onTouchStart={[Function]}
+      primary={false}
+      secondary={true}
+    />
+  </div>
+  <div>
+    <TextField
+      disabled={false}
+      floatingLabelFixed={false}
+      floatingLabelText="Display Name"
+      fullWidth={false}
+      hintText="My name"
+      maxlength="100"
+      multiLine={false}
+      name="displayName"
+      onChange={[Function]}
+      required={true}
+      rows={1}
+      type="text"
+      underlineShow={true}
+    />
+  </div>
+  <div>
+    <TextField
+      disabled={false}
+      floatingLabelFixed={false}
+      floatingLabelText="Email Address"
+      fullWidth={false}
+      hintText="example@email.com"
+      maxlength="50"
+      multiLine={false}
+      name="email"
+      onChange={[Function]}
+      required={true}
+      rows={1}
+      type="text"
+      underlineShow={true}
+    />
+  </div>
+  <div>
+    <TextField
+      disabled={false}
+      floatingLabelFixed={false}
+      floatingLabelText="Password"
+      fullWidth={false}
+      hintText="**********"
+      maxlength="30"
+      multiLine={false}
+      name="password"
+      onChange={[Function]}
+      required={true}
+      rows={1}
+      type="password"
+      underlineShow={true}
+    />
+  </div>
+  <div>
+    <TextField
+      disabled={false}
+      floatingLabelFixed={false}
+      floatingLabelText="Confirm Password"
+      fullWidth={false}
+      hintText="**********"
+      maxlength="30"
+      multiLine={false}
+      name="confirmPassword"
+      onChange={[Function]}
+      required={true}
+      rows={1}
+      type="password"
+      underlineShow={true}
+    />
+  </div>
+  <div>
+    <FlatButton
+      disabled={false}
+      fullWidth={false}
+      label="Sign Up"
+      labelPosition="after"
+      labelStyle={Object {}}
+      onKeyboardFocus={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+      onTouchStart={[Function]}
+      primary={false}
+      secondary={false}
+      type="submit"
+    />
+  </div>
+</form>
+`;
