@@ -27,3 +27,6 @@ https://hackernoon.com/testing-react-components-with-jest-and-enzyme-41d592c174f
 Make all Action names into string enums!
 
 switch to ts-lint-react for linter as inconsistent spacing between dom (2 spaces) and code (4 spaces)
+
+type reducers, remove loading flags from reducers  
+

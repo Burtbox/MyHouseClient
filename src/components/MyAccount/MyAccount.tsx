@@ -4,13 +4,13 @@ import TextField from 'material-ui/TextField';
 import FlatButton from 'material-ui/FlatButton';
 import Dialog from 'material-ui/Dialog';
 import Snackbar from 'material-ui/Snackbar';
-import styles from './styles';
+import styles from './myAccountStyles';
 import appStyles from '../../styles';
-import { IMyAccountProps, IMyAccountState } from './interfaces';
+import { IMyAccountProps, IMyAccountState } from './myAccountInterfaces';
 import { editUser, deleteUser } from './myAccountActions';
 import { myHouseRoutes } from '../../enums/routesEnum';
 
-class MyAccount extends React.Component<IMyAccountProps, IMyAccountState> {
+export class MyAccount extends React.Component<IMyAccountProps, IMyAccountState> {
     constructor(props: IMyAccountProps) {
         super(props);
         this.state = {

@@ -1,5 +1,5 @@
 import { myAccountActions } from './myAccountActions';
-import { IMyAccountReducerState, IMyAccountAction } from './interfaces';
+import { IMyAccountReducerState, IMyAccountAction } from './myAccountInterfaces';
 
 function myAccountReducer(
   state: IMyAccountReducerState = {
