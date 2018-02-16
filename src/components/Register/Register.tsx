@@ -8,6 +8,7 @@ import appStyles from '../../styles';
 import { IRegisterProps, IRegisterState, IRegisterUserObject } from './registerInterfaces';
 import { addError } from '../ErrorMessage/errorMessageActions';
 import { myHouseRoutes } from '../../enums/routesEnum';
+import { IStore } from '../../interfaces/storeInterface';
 
 export class Register extends React.Component<IRegisterProps, IRegisterState> {
     constructor(props: IRegisterProps) {
@@ -128,9 +129,9 @@ export class Register extends React.Component<IRegisterProps, IRegisterState> {
 }
 
 // Retrieve data from store as props
-const mapStateToProps = (store: any) => {
+const mapStateToProps = (store: IStore) => {
     return {
-        registering: store.registerReducer.loading,
+        registering: store.registerReducer.registering,
     };
 };
 

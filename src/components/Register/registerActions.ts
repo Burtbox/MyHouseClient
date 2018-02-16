@@ -2,7 +2,7 @@ import auth from '../../helpers/firebase';
 import { usersActions } from '../Users/usersActions';
 import { addError } from '../ErrorMessage/errorMessageActions';
 import { IUserResponseObject, IRecieveUserAction } from '../Users/usersInterfaces';
-import { IUserRegistrationObject, IRegisterUserObject, IRegisterAction } from './interfaces';
+import { IUserRegistrationObject, IRegisterUserObject, IRegisterAction } from './registerInterfaces';
 
 export enum registerActions {
     REGISTER_STARTED = 'REGISTER_STARTED',
@@ -19,16 +19,16 @@ export function registerUser(user: IRegisterUserObject) {
         dispatch(registerStarted());
         return request.then((register: IUserRegistrationObject) => {
             return register
-              .updateProfile({ displayName: user.displayName })
-              .then((authenticated: IUserResponseObject) => {
-                  dispatch(registerSuccessful(authenticated)); // ED! Look at these types more carefully
-                  dispatch(registerAttemptComplete());
-              })
-              .catch((error: Error) => {
-                  dispatch(addError(error.message));
-                  dispatch(registerAttemptComplete());
-                  throw error;
-              });
+                .updateProfile({ displayName: user.displayName })
+                .then((authenticated: IUserResponseObject) => {
+                    dispatch(registerSuccessful(authenticated)); // ED! Look at these types more carefully
+                    dispatch(registerAttemptComplete());
+                })
+                .catch((error: Error) => {
+                    dispatch(addError(error.message));
+                    dispatch(registerAttemptComplete());
+                    throw error;
+                });
         });
     };
 }

@@ -1,5 +1,5 @@
 import { registerActions } from './registerActions';
-import { IRegisterState, IRegisterAction } from './interfaces';
+import { IRegisterState, IRegisterAction } from './registerInterfaces';
 
 function registerReducer(
     state: IRegisterState = {
