@@ -18,9 +18,7 @@ describe('Login test suite', () => {
             dispatch: undefined,
         };
         const loginScreen = shallow(
-            <DisconnectedLogin
-                {...props}
-            />,
+            <DisconnectedLogin {...props} />,
         );
         expect(loginScreen).toMatchSnapshot();
     });

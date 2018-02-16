@@ -11,9 +11,7 @@ describe('Register test suite', () => {
             dispatch: undefined,
         };
         const registerScreen = shallow(
-            <DisconnectedRegister
-                {...props}
-            />,
+            <DisconnectedRegister {...props} />,
         );
         expect(registerScreen).toMatchSnapshot();
     });
