@@ -9,14 +9,14 @@ import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
 import ActionHome from 'material-ui/svg-icons/action/home';
 import UserChip from '../UserChip';
-import styles from './styles';
-import { INavProps, INavStore } from './interfaces';
+import styles from './navStyles';
+import { INavProps, INavStore } from './navInterfaces';
 import history from '../../main/history';
 import { myHouseRoutes } from '../../enums/routesEnum';
 import { IStore } from '../../interfaces/storeInterface';
 import { checkUserLoginToken } from '../../helpers/loginHelper';
 
-class Nav extends React.Component<INavProps> {
+export class Nav extends React.Component<INavProps> {
     handleLogOut = () => {
         this.props
           .dispatch(logout())
