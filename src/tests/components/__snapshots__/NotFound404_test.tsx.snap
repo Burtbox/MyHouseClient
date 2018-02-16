@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Not Found 404 test suite Render not found 404 page 1`] = `
+<div
+  style={
+    Object {
+      "textAlign": "center",
+    }
+  }
+>
+  <br />
+  <h2>
+    It's dangerous to go alone! Take this.
+  </h2>
+  <FlatButton
+    disabled={false}
+    fullWidth={false}
+    label="Link"
+    labelPosition="after"
+    labelStyle={Object {}}
+    onClick={[Function]}
+    onKeyboardFocus={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+    onTouchStart={[Function]}
+    primary={false}
+    secondary={false}
+  />
+</div>
+`;
