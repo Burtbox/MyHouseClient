@@ -7,11 +7,15 @@ function errorMessageReducer(
 ) {
     switch (action.type) {
     case errorMessageActions.ADD_ERROR:
-        return Object.assign({}, state, {
+        return {
+            ...state,
             errorMessageText: action.errorMessageText,
-        });
+        };
     case errorMessageActions.REMOVE_ERROR:
-        return Object.assign({}, state, { errorMessageText: null });
+        return {
+            ...state,
+            errorMessageText: null,
+        };
     default:
         return state;
     }

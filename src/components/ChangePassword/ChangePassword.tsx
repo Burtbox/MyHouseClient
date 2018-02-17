@@ -4,12 +4,12 @@ import TextField from 'material-ui/TextField';
 import FlatButton from 'material-ui/FlatButton';
 import Snackbar from 'material-ui/Snackbar';
 import appStyles from '../../styles';
-import { IChangePasswordProps, IChangePasswordState } from './interfaces';
+import { IChangePasswordProps, IChangePasswordState } from './changePasswordInterfaces';
 import { addError } from '../ErrorMessage/errorMessageActions';
 import APIHelper from '../../helpers/apiHelper';
 import { IStore } from '../../interfaces/storeInterface';
 
-class ChangePassword extends React.Component<IChangePasswordProps, IChangePasswordState> {
+export class ChangePassword extends React.Component<IChangePasswordProps, IChangePasswordState> {
     constructor(props: IChangePasswordProps) {
         super(props);
         this.state = {

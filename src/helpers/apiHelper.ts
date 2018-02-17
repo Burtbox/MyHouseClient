@@ -17,13 +17,11 @@ class APIHelper {
             headers,
             mode: 'cors',
             body: body ? JSON.stringify(body) : undefined,
-        })
-            .then((response: any) => {
-                return APIHelper.checkStatus(response);
-            })
-            .catch((error: any) => {
-                throw (error);
-            });
+        }).then((response: any) => {
+            return APIHelper.checkStatus(response);
+        }).catch((error: any) => {
+            throw (error); // TODO: Handle unauthorized here and redirect to login!
+        });
     }
 
     static checkStatus(response: any) {

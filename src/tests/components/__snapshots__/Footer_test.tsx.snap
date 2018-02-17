@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Footer test suite Render Footer component 1`] = `
+<footer
+  style={
+    Object {
+      "bottom": "0",
+      "height": "60px",
+      "left": "0",
+      "padding": "20px",
+      "position": "fixed",
+      "textAlign": "center",
+      "width": "100%",
+    }
+  }
+>
+  <div>
+    By hApps, Version 1.0
+  </div>
+  <div>
+     Icons made by
+    <a
+      href="https://www.flaticon.com/authors/dave-gandy"
+      title="Dave Gandy"
+    >
+       Dave Gandy
+    </a>
+     from
+    <a
+      href="https://www.flaticon.com/"
+      title="Flaticon"
+    >
+       www.flaticon.com
+    </a>
+     is licensed by
+    <a
+      href="http://creativecommons.org/licenses/by/3.0/"
+      target="_blank"
+      title="Creative Commons BY 3.0"
+    >
+       CC 3.0 BY
+    </a>
+  </div>
+</footer>
+`;

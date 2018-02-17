@@ -24,7 +24,7 @@ describe('Households test suite', () => {
             dispatch: undefined,
         };
         const HouseholdsScreen = shallow(
-            <DisconnectedHouseholds {...props} />,
+            <DisconnectedHouseholds {...props} />, // TODO: Mock api calls!
         );
         expect(HouseholdsScreen).toMatchSnapshot();
     });

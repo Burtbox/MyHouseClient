@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ErrorMessage test suite Render ErrorMessage component 1`] = `
+<div>
+  <div />
+</div>
+`;
