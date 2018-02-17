@@ -1,0 +1,59 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Routes test suite Render logged in Routesbar 1`] = `
+<Route>
+  <Switch>
+    <Route
+      component={[Function]}
+      exact={true}
+      path="/"
+    />
+    <Route
+      component={[Function]}
+      path="/Links"
+    />
+    <Route
+      component={[Function]}
+      path="/Households"
+    />
+    <Route
+      component={[Function]}
+      path="/MyAccount"
+    />
+    <Route
+      component={[Function]}
+      path="/ChangePassword"
+    />
+    <Route
+      component={[Function]}
+      exact={true}
+      path="*"
+    />
+  </Switch>
+</Route>
+`;
+
+exports[`Routes test suite Render logged out Routesbar 1`] = `
+<Route>
+  <Switch>
+    <Route
+      component={[Function]}
+      exact={true}
+      path="/"
+    />
+    <Route
+      component={[Function]}
+      path="/Login"
+    />
+    <Route
+      component={[Function]}
+      path="/Register"
+    />
+    <Route
+      component={[Function]}
+      exact={true}
+      path="*"
+    />
+  </Switch>
+</Route>
+`;

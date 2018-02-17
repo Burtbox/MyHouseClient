@@ -1,3 +1,5 @@
-import Routes from './Routes';
+import Routes, { Routes as DisconnectedRoutes } from './Routes';
 
 export default Routes;
+
+export { DisconnectedRoutes };
