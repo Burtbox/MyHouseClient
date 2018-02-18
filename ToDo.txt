@@ -30,3 +30,4 @@ switch to ts-lint-react for linter as inconsistent spacing between dom (2 spaces
 
 type reducers, remove loading flags from reducers  
 
+Flag user as deleted, then a leave household button suffices, Hangfire background cleanup task after a month
