@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { shallow } from 'enzyme';
-import { DisconnectedChangePassword } from '../../components/ChangePassword';
-import { IChangePasswordProps } from '../../components/ChangePassword/changePasswordInterfaces';
-import loggedInUser from '../shared/loggedInUser';
+import { DisconnectedChangePassword } from '../../../components/ChangePassword';
+import { IChangePasswordProps } from '../../../components/ChangePassword/changePasswordInterfaces';
+import loggedInUser from '../../shared/loggedInUser';
 
 describe('Change Password test suite', () => {
     test('Render Change Password component', () => {

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { shallow } from 'enzyme';
-import { DisconnectedRegister } from '../../components/Register';
-import { IRegisterProps } from '../../components/Register/registerInterfaces';
+import { DisconnectedRegister } from '../../../components/Register';
+import { IRegisterProps } from '../../../components/Register/registerInterfaces';
 
 describe('Register test suite', () => {
     test('Render register screen', () => {

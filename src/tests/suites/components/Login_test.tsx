@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { shallow } from 'enzyme';
-import { DisconnectedLogin } from '../../components/Login';
-import { ILoginProps } from '../../components/Login/loginInterfaces';
+import { DisconnectedLogin } from '../../../components/Login';
+import { ILoginProps } from '../../../components/Login/loginInterfaces';
 
 describe('Login test suite', () => {
     // Alternative here is to wrap with provider, but that was a pain and I'm not sure of the benefit

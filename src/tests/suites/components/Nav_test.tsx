@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { shallow } from 'enzyme';
-import { DisconnectedNav } from '../../components/Nav';
-import { INavProps } from '../../components/Nav/navInterfaces';
+import { DisconnectedNav } from '../../../components/Nav';
+import { INavProps } from '../../../components/Nav/navInterfaces';
 
 describe('Nav test suite', () => {
     test('Render logged out navbar', () => {

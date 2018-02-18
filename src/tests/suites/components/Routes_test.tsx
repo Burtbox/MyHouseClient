@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { shallow } from 'enzyme';
-import { DisconnectedRoutes } from '../../components/Routes';
-import { IRoutesProps } from '../../components/Routes/routesInterfaces';
+import { DisconnectedRoutes } from '../../../components/Routes';
+import { IRoutesProps } from '../../../components/Routes/routesInterfaces';
 
 describe('Routes test suite', () => {
     test('Render logged out Routesbar', () => {

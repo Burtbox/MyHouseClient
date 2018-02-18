@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { shallow } from 'enzyme';
-import { DisconnectedErrorMessage } from '../../components/ErrorMessage';
-import { IErrorMessageProps } from '../../components/ErrorMessage/errorMessageInterfaces';
+import { DisconnectedErrorMessage } from '../../../components/ErrorMessage';
+import { IErrorMessageProps } from '../../../components/ErrorMessage/errorMessageInterfaces';
 
 describe('ErrorMessage test suite', () => {
     test('Render ErrorMessage component', () => {

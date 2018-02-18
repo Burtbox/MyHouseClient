@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { shallow } from 'enzyme';
-import Links from '../../components/Links';
+import Links from '../../../components/Links';
 
 describe('Links test suite', () => {
     test('Render apps links component', () => {
