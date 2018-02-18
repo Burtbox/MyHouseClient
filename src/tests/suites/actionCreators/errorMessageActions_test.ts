@@ -1,4 +1,4 @@
-import { addError, errorMessageActions } from '../../../components/ErrorMessage/errorMessageActions';
+import { addError, removeError, errorMessageActions } from '../../../components/ErrorMessage/errorMessageActions';
 import { IErrorMessageAction } from '../../../components/ErrorMessage/errorMessageInterfaces';
 import generateRandomString from '../../shared/randomStringGenerator';
 
@@ -11,6 +11,17 @@ describe('Error Message action creator test suite', () => {
         };
 
         const actualResponse = addError(message);
+
+        expect(actualResponse).toEqual(expectedResponse);
+    });
+
+    test('Remove error action creator test', () => {
+        const expectedResponse: IErrorMessageAction = {
+            type: errorMessageActions.REMOVE_ERROR,
+            errorMessageText: undefined,
+        };
+
+        const actualResponse = removeError();
 
         expect(actualResponse).toEqual(expectedResponse);
     });
