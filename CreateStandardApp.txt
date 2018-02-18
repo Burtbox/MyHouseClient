@@ -33,6 +33,13 @@ npm install @types/react-redux --save-dev
 npm install @types/react-router-dom --save-dev
 npm install @types/webfontloader --save-dev
  
+ /* tests */
+npm install enzyme --save-dev
+npm install enzyme-adapter-react-16 --save-dev
+npm install enzyme-to-json --save-dev
+npm install jest --save-dev
+npm install react-test-renderer --save-dev
+npm install ts-jest --save-dev
 
 /*tsconfig*/
 set the following:
