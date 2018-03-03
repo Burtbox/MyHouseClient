@@ -13,7 +13,7 @@ export enum HouseholdsActions {
 }
 
 export function getHouseholdsOfUser(token: string, occupant: IOccupant) {
-    const request = apiHelper.apiCall(HTTPMethod.GET, endpoints.households, token, null, occupant.userId);
+    const request = apiHelper.apiCall(HTTPMethod.GET, endpoints.households, token, occupant.userId);
 
     return (dispatch: Function) => {
         dispatch(getHouseholdsOfOccupantStarted());

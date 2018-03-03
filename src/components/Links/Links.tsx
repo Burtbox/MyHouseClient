@@ -6,26 +6,33 @@ import LocalAtm from 'material-ui/svg-icons/maps/local-atm';
 import Restaurant from 'material-ui/svg-icons/maps/restaurant';
 import styles from './linksStyles';
 import { IStore } from '../../interfaces/storeInterface';
-import { ILinksProps, ILinksState, ILinksStore } from './linksInterfaces';
+import { ILinksProps, ILinksState, ILinksStore, INewsFeed } from './linksInterfaces';
 import { getHouseholdsOfUser } from '../Households/householdsActions';
 import { connect } from 'react-redux';
-import { CircularProgress, List, ListItem } from 'material-ui';
+import { CircularProgress, List, ListItem, Card, CardHeader, CardText, CardActions, FlatButton } from 'material-ui';
 import { IHousehold } from '../Households/householdsInterfaces';
+import { getNewsFeed } from './linksActions';
 
 export class Links extends React.Component<ILinksProps, ILinksState> {
     constructor(props: ILinksProps) {
         super(props);
         this.state = {
-            loading: false,
+            householdsLoading: false,
+            newsFeedLoading: false,
         };
     }
 
     componentWillMount() {
-        this.setState({ loading: true });
+        this.setState({ householdsLoading: true, newsFeedLoading: true });
         this.props.dispatch(
             getHouseholdsOfUser(this.props.loggedInUser.token, this.props.loggedInUser),
         ).then(() => {
-            this.setState({ loading: false });
+            this.setState({ householdsLoading: false });
+        });
+        this.props.dispatch(
+            getNewsFeed(this.props.loggedInUser.token, this.props.loggedInUser),
+        ).then(() => {
+            this.setState({ newsFeedLoading: false });
         });
     }
 
@@ -75,13 +82,46 @@ export class Links extends React.Component<ILinksProps, ILinksState> {
         );
     }
 
+    newsFeed() {
+        return (
+            <div>
+                {this.props.newsFeed.map((newsItem: INewsFeed) => (
+                    <Card>
+                        <CardHeader
+                            title={newsItem.headline}
+                            subtitle={newsItem.author}
+                        // avatar="images/jsa-128.jpg"
+                        />
+                        {/* <CardMedia
+                            overlay={<CardTitle title="Overlay title" subtitle="Overlay subtitle" />}
+                        >
+                            <img src="images/nature-600-337.jpg" alt="" />
+                        </CardMedia> */}
+                        {/* <CardTitle title="Card title" subtitle="Card subtitle" /> */}
+                        <CardText>
+                            {newsItem.story}
+                        </CardText>
+                        <CardActions>
+                            <FlatButton label="View" />
+                        </CardActions>
+                    </Card>
+                ))}
+            </div>
+        );
+    }
+
     render() {
         return (
             <div >
                 {
-                    this.state.loading ? <CircularProgress /> :
+                    this.state.householdsLoading ? <CircularProgress /> :
                         this.props.households.length === 1 ? this.createSingleHouseholdMenu()
                             : this.createMultiHouseholdMenu()
+                }
+                {
+                    this.state.newsFeedLoading ? <CircularProgress /> :
+                        this.props.newsFeed && this.props.newsFeed.length === 0 ? this.newsFeed()
+                            : <div />
                 }
             </div >
         );

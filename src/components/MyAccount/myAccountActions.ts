@@ -12,7 +12,7 @@ export enum myAccountActions {
 }
 
 export function editUser(token: string, user: IUserObject) {
-    const request = APIHelper.apiCall('PUT', 'Users/UpdateUserDetails', token, user);
+    const request = APIHelper.apiCall('PUT', 'Users/UpdateUserDetails', token, user.userId, user);
 
     return (dispatch: Function) => {
         dispatch(editUserStarted());
@@ -34,7 +34,6 @@ export function deleteUser(token: string, emailAddress: string) {
         'DELETE',
         'Users/DeleteUser',
         token,
-        null,
         'emailAddress=' + emailAddress,
     );
 

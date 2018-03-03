@@ -1,7 +1,7 @@
 import baseURL from '../appConfig';
 
 class APIHelper {
-    static apiCall(method: string, endpoint: string, token: string, body?: object, urlParams?: string) {
+    static apiCall(method: string, endpoint: string, token: string, urlParams?: string, body?: object) {
         const headers: Headers = new Headers();
         headers.append('Authorization', 'Bearer ' + token);
         headers.append('Content-Type', 'application/json;charset=UTF-8');
