@@ -86,7 +86,9 @@ export class Links extends React.Component<ILinksProps, ILinksState> {
         return (
             <div>
                 {this.props.newsFeed.map((newsItem: INewsFeed) => (
-                    <Card>
+                    <Card style={{
+                        marginTop: '10px',
+                    }}>
                         <CardHeader
                             title={newsItem.headline}
                             subtitle={newsItem.author}
@@ -98,7 +100,7 @@ export class Links extends React.Component<ILinksProps, ILinksState> {
                             <img src="images/nature-600-337.jpg" alt="" />
                         </CardMedia> */}
                         {/* <CardTitle title="Card title" subtitle="Card subtitle" /> */}
-                        <CardText>
+                        <CardText >
                             {newsItem.story}
                         </CardText>
                         <CardActions>
@@ -113,16 +115,20 @@ export class Links extends React.Component<ILinksProps, ILinksState> {
     render() {
         return (
             <div >
-                {
-                    this.state.householdsLoading ? <CircularProgress /> :
-                        this.props.households.length === 1 ? this.createSingleHouseholdMenu()
-                            : this.createMultiHouseholdMenu()
-                }
-                {
-                    this.state.newsFeedLoading ? <CircularProgress /> :
-                        this.props.newsFeed.length > 0 ? this.newsFeed()
-                            : <div />
-                }
+                <span style={{ display: 'inline-flex', width: '20rem' }}>
+                    {
+                        this.state.householdsLoading ? <CircularProgress /> :
+                            this.props.households.length === 1 ? this.createSingleHouseholdMenu()
+                                : this.createMultiHouseholdMenu()
+                    }
+                </span>
+                <span style={{ display: 'inline-flex', width: '50rem' }}>
+                    {
+                        this.state.newsFeedLoading ? <CircularProgress /> :
+                            this.props.newsFeed.length > 0 ? this.newsFeed()
+                                : <div />
+                    }
+                </span>
             </div >
         );
     }

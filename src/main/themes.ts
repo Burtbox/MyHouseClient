@@ -35,6 +35,9 @@ const appTheme: __MaterialUI.Styles.MuiTheme = getMuiTheme({
     ripple: {
         color: blueGrey900,
     },
+    paper: {
+        backgroundColor: grey900,
+    },
 });
 
 export default appTheme;
