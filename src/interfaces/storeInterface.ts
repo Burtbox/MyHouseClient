@@ -4,6 +4,7 @@ import { ILoginProps } from '../components/Login/loginInterfaces';
 import { IRegisterProps } from '../components/Register/registerInterfaces';
 import { IMyAccountProps } from '../components/MyAccount/myAccountInterfaces';
 import { IHouseholdsProps } from '../components/Households/householdsInterfaces';
+import { ILinksProps } from '../components/Links/linksInterfaces';
 
 export interface IStore {
     usersReducer: IUsersProps;
@@ -12,4 +13,5 @@ export interface IStore {
     registerReducer: IRegisterProps;
     myAccountReducer: IMyAccountProps;
     householdsReducer: IHouseholdsProps;
+    linksReducer: ILinksProps;
 }

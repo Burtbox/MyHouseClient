@@ -120,7 +120,7 @@ export class Links extends React.Component<ILinksProps, ILinksState> {
                 }
                 {
                     this.state.newsFeedLoading ? <CircularProgress /> :
-                        this.props.newsFeed && this.props.newsFeed.length === 0 ? this.newsFeed()
+                        this.props.newsFeed.length > 0 ? this.newsFeed()
                             : <div />
                 }
             </div >
@@ -133,6 +133,7 @@ const mapStateToProps = (store: IStore) => {
     const props: ILinksStore = {
         loggedInUser: store.usersReducer.loggedInUser,
         households: store.householdsReducer.households,
+        newsFeed: store.linksReducer.newsFeed,
     };
     return props;
 };

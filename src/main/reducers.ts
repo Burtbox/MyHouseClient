@@ -6,6 +6,7 @@ import loginReducer from '../components/Login/loginReducer';
 import registerReducer from '../components/Register/registerReducer';
 import myAccountReducer from '../components/MyAccount/myAccountReducer';
 import householdsReducer from '../components/Households/householdsReducer';
+import linksReducer from '../components/Links/linksReducer';
 
 const combinedReducers: Reducer<Function> = combineReducers({
     usersReducer,
@@ -14,6 +15,7 @@ const combinedReducers: Reducer<Function> = combineReducers({
     registerReducer,
     myAccountReducer,
     householdsReducer,
+    linksReducer,
 });
 
 export default combinedReducers;

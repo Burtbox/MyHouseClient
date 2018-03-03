@@ -7,10 +7,10 @@ function linksReducer(
 ) {
     switch (action.type) {
     case NewsFeedsActions.NEWSFEEDS_OF_USER:
-        const response: INewsFeed[] = action.newsFeed;
+        const newsFeed: INewsFeed[] = action.newsFeed;
         return {
             ...state,
-            response,
+            newsFeed,
         };
     default:
         return state;

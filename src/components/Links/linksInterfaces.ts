@@ -6,6 +6,7 @@ import { Action } from 'redux';
 export interface ILinksStore {
     households: IHousehold[];
     loggedInUser: IUserObject;
+    newsFeed: INewsFeed[];
 }
 
 export interface ILinksProps extends IConnectedComponentProps {

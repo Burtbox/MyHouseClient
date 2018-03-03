@@ -1,4 +1,5 @@
 import baseURL from '../appConfig';
+import { handleLogOut } from './loginHelper';
 
 class APIHelper {
     static apiCall(method: string, endpoint: string, token: string, urlParams?: string, body?: object) {
@@ -20,7 +21,7 @@ class APIHelper {
         }).then((response: any) => {
             return APIHelper.checkStatus(response);
         }).catch((error: any) => {
-            throw (error); // TODO: Handle unauthorized here and redirect to login!
+            throw (error);
         });
     }
 
@@ -30,6 +31,8 @@ class APIHelper {
             ret = true;
         } else if (response.ok) {
             ret = response.json();
+        } else if (response.status === 401) {
+            handleLogOut();
         } else {
             const error: Error = new Error(response.statusText);
             throw error;

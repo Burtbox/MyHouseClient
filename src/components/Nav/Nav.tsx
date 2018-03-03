@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { logout } from '../Users/usersActions';
 import { Toolbar, ToolbarGroup, ToolbarTitle } from 'material-ui/Toolbar';
 import IconButton from 'material-ui/IconButton';
 import Menu from 'material-ui/svg-icons/navigation/menu';
@@ -11,19 +10,11 @@ import ActionHome from 'material-ui/svg-icons/action/home';
 import UserChip from '../UserChip';
 import styles from './navStyles';
 import { INavProps, INavStore } from './navInterfaces';
-import history from '../../main/history';
 import { myHouseRoutes } from '../../enums/routesEnum';
 import { IStore } from '../../interfaces/storeInterface';
-import { checkUserLoginToken } from '../../helpers/loginHelper';
+import { checkUserLoginToken, handleLogOut } from '../../helpers/loginHelper';
 
 export class Nav extends React.Component<INavProps> {
-    handleLogOut = () => {
-        this.props
-          .dispatch(logout())
-          .then(() => history.push(myHouseRoutes.Login))
-          .catch((error: Error) => {});
-    }
-
     getLoggedOutMenuOptions = () => {
         return (
           <div>
@@ -51,7 +42,7 @@ export class Nav extends React.Component<INavProps> {
               <MenuItem> Households </MenuItem>
             </Link>
 
-            <a style={styles.menuItems} onClick={() => this.handleLogOut()}>
+            <a style={styles.menuItems} onClick={() => handleLogOut()}>
               <MenuItem>Logout</MenuItem>
             </a>
           </div>
