@@ -13,7 +13,7 @@ const appTheme: __MaterialUI.Styles.MuiTheme = getMuiTheme({
         primary1Color: blue900,
         primary2Color: blue900,
         textColor: grey400,
-        borderColor: grey700,
+        borderColor: blueGrey900,
         disabledColor: grey700,
         pickerHeaderColor: blue900,
         canvasColor: grey900,
