@@ -29,7 +29,8 @@
     "eject": "react-scripts-ts eject",
     "test": "jest",
     "test:watch": "jest --watch",
-    "test:coverage": "jest --coverage"
+    "test:coverage": "jest --coverage",
+    "deploy": "npm run build && cd ./build && rename index.html 200.html && surge -p ./ -d myhouse.surge.sh"
   },
   "devDependencies": {
     "@types/enzyme": "^3.1.8",
@@ -50,6 +51,7 @@
     "enzyme-to-json": "^3.3.1",
     "jest": "^22.2.2",
     "react-test-renderer": "^16.2.0",
+    "surge": "^0.20.1",
     "ts-jest": "^22.0.3",
     "tslint-config-airbnb": "^5.4.2",
     "tslint-react": "^3.4.0"
