@@ -30,6 +30,6 @@ describe('Households test suite', () => {
     // });
 
     test('Render Households screen', () => {
-        expect(1).toEqual(1); // dummy whilst not fixing ^
+        expect(true).toBeTruthy(); // dummy whilst not fixing ^
     });
 });
