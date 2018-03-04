@@ -8,3 +8,7 @@ export interface ICustomApiHeaders {
 export interface IAsyncAction extends Action {
     loading: boolean;
 }
+
+export interface AuthorizationResponse {
+    isAuthorized: boolean;
+}

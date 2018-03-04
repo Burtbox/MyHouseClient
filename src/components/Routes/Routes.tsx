@@ -2,7 +2,6 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { Switch, Route, withRouter } from 'react-router-dom';
 import { IRoutesProps } from './routesInterfaces';
-
 import { myHouseRoutes } from '../../enums/routesEnum';
 import Login from '../Login';
 import Register from '../Register';
@@ -12,10 +11,12 @@ import ChangePassword from '../ChangePassword';
 import NotFound404 from '../NotFound404';
 import Households from '../Households';
 import { IStore } from '../../interfaces/storeInterface';
-import { checkUserLoginToken } from '../../helpers/loginHelper';
+import { checkAuthorization } from '../Users/usersActions';
+import { IUserObject } from '../Users/usersInterfaces';
 
 export class Routes extends React.Component<IRoutesProps> {
     getRoutes() {
+        checkAuthorization(this.props.loggedInUser);
         let routes: JSX.Element;
         if (this.props.isLoggedIn) {
             routes = (
@@ -47,9 +48,11 @@ export class Routes extends React.Component<IRoutesProps> {
 }
 
 const mapStateToProps = (store: IStore) => {
-    const token: string = store.usersReducer.isLoggedIn && store.usersReducer.loggedInUser ? store.usersReducer.loggedInUser.token : null;
+    const isLoggedIn: boolean = store.usersReducer.isLoggedIn ? store.usersReducer.isLoggedIn : false;
+    const loggedInUser: IUserObject = store.usersReducer.loggedInUser ? store.usersReducer.loggedInUser : null;
     const props: IRoutesProps = {
-        isLoggedIn: checkUserLoginToken(token),
+        isLoggedIn,
+        loggedInUser,
     };
     return props;
 };

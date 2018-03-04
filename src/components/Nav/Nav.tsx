@@ -12,7 +12,7 @@ import styles from './navStyles';
 import { INavProps, INavStore } from './navInterfaces';
 import { myHouseRoutes } from '../../enums/routesEnum';
 import { IStore } from '../../interfaces/storeInterface';
-import { checkUserLoginToken, handleLogOut } from '../../helpers/loginHelper';
+import { handleLogOut } from '../../helpers/loginHelper';
 
 export class Nav extends React.Component<INavProps> {
     getLoggedOutMenuOptions = () => {
@@ -97,10 +97,9 @@ export class Nav extends React.Component<INavProps> {
 
 // Retrieve data from store as props
 const mapStateToProps = (store: IStore) => {
-    const token: string = store.usersReducer.isLoggedIn && store.usersReducer.loggedInUser ? store.usersReducer.loggedInUser.token : null;
     const props: INavStore = {
         loggedInUser: store.usersReducer.loggedInUser,
-        isLoggedIn: checkUserLoginToken(token),
+        isLoggedIn: store.usersReducer.isLoggedIn,
     };
     return props;
 };
