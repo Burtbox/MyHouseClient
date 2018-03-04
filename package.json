@@ -30,7 +30,7 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
-    "deploy": "npm run build && cd ./build && rename index.html 200.html && surge -p ./ -d myhouse.surge.sh"
+    "deploy": "npm run build && cd ./build && copy index.html 200.html && surge -p ./ -d myhouse.surge.sh"
   },
   "devDependencies": {
     "@types/enzyme": "^3.1.8",
