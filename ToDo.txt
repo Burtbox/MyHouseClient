@@ -10,8 +10,6 @@ Clean up and type reducer and action code
 
 sort out code formatter vs linter!
 
-handle logout when unauthorized ! 
-
 Design a pattern for React/Redux usage - guidelines:
     UI State (e.g. loading) - react state
     Data from DB - redux store
@@ -21,13 +19,12 @@ Design a pattern for React/Redux usage - guidelines:
 
 look into Redux-offline (new package to handle offline)
 
-setup Enzyme/Jest for front end tests https://github.com/airbnb/enzyme/blob/master/docs/guides/jest.md
-https://hackernoon.com/testing-react-components-with-jest-and-enzyme-41d592c174f 
-
-Make all Action names into string enums!
+setup Enzyme/Jest mocking for api calls
 
 switch to ts-lint-react for linter as inconsistent spacing between dom (2 spaces) and code (4 spaces)
 
-type reducers, remove loading flags from reducers  
-
 Flag user as deleted, then a leave household button suffices, Hangfire background cleanup task after a month
+
+type reducers,  
+Switch to redux loading through action and grab from props (remove loading flags from reducers)
+
