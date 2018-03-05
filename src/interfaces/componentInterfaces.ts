@@ -1,6 +1,6 @@
 import { Dispatch } from 'redux';
 import { History } from 'history';
-import { IOccupant } from '../components/Occupants/occupantsInterfaces'; // TODO: Sort out what a user needs to look like!
+import { IUserObject } from '../components/Users/usersInterfaces';
 
 export interface IComponentProps {
     dispatch: Dispatch<Function>;
@@ -8,6 +8,6 @@ export interface IComponentProps {
 }
 
 export interface IConnectedComponentProps extends IComponentProps {
-    loggedInUser: IOccupant;
+    loggedInUser: IUserObject;
     isLoggedIn: boolean;
 }

@@ -1,15 +1,15 @@
 import apiHelper from '../../helpers/apiHelper';
 import { addError } from '../ErrorMessage/errorMessageActions';
-import { IOccupant } from '../Occupants/occupantsInterfaces';
 import { HTTPMethod } from '../../enums/httpEnum';
 import { endpoints } from '../../enums/endpointsEnum';
 import { INewsFeed, INewsFeedsAction } from './linksInterfaces';
+import { IUserObject } from '../Users/usersInterfaces';
 
 export enum NewsFeedsActions {
     NEWSFEEDS_OF_USER = 'NEWSFEEDS_OF_USER',
 }
 
-export function getNewsFeed(token: string, occupant: IOccupant) {
+export function getNewsFeed(token: string, occupant: IUserObject) {
     const request = apiHelper.apiCall(HTTPMethod.GET, endpoints.newsFeeds, token, occupant.userId);
 
     return (dispatch: Function) => {

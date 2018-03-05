@@ -5,6 +5,7 @@ html {
 }
 
 input:-webkit-autofill {
+  box-shadow: 0 0 0 1000px #212121 inset;
   -webkit-box-shadow: 0 0 0 1000px #212121 inset;
   -webkit-text-fill-color: #bdbdbd;
 }

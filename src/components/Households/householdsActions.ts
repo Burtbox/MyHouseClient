@@ -1,10 +1,10 @@
 import apiHelper from '../../helpers/apiHelper';
 import { addError } from '../ErrorMessage/errorMessageActions';
-import { IOccupant } from '../Occupants/occupantsInterfaces';
 import { HTTPMethod } from '../../enums/httpEnum';
 import { IHousehold, IHouseholdsAction } from './householdsInterfaces';
 import { IAsyncAction } from '../../interfaces/apiInterfaces';
 import { endpoints } from '../../enums/endpointsEnum';
+import { IUserObject } from '../Users/usersInterfaces';
 
 export enum HouseholdsActions {
     GET_HOUSEHOLDS_OF_USER_STARTED = 'GET_HOUSEHOLDS_OF_USER_STARTED',
@@ -12,7 +12,7 @@ export enum HouseholdsActions {
     HOUSEHOLDS_OF_USER = 'HOUSEHOLDS_OF_USER',
 }
 
-export function getHouseholdsOfUser(token: string, occupant: IOccupant) {
+export function getHouseholdsOfUser(token: string, occupant: IUserObject) {
     const request = apiHelper.apiCall(HTTPMethod.GET, endpoints.households, token, occupant.userId);
 
     return (dispatch: Function) => {
@@ -31,7 +31,7 @@ export function getHouseholdsOfUser(token: string, occupant: IOccupant) {
 }
 
 function getHouseholdsOfOccupantStarted() {
-    const response : IAsyncAction = {
+    const response: IAsyncAction = {
         type: HouseholdsActions.GET_HOUSEHOLDS_OF_USER_STARTED,
         loading: true,
     };
@@ -47,7 +47,7 @@ function getHouseholdsOfOccupantSuccessful(householdsResponse: IHousehold[]) {
 }
 
 function getHouseholdsOfOccupantAttemptComplete() {
-    const response : IAsyncAction = {
+    const response: IAsyncAction = {
         type: HouseholdsActions.GET_HOUSEHOLDS_OF_USER_COMPLETED,
         loading: false,
     };

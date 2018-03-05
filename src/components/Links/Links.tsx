@@ -12,6 +12,8 @@ import { connect } from 'react-redux';
 import { CircularProgress, List, ListItem, Card, CardHeader, CardText, CardActions, FlatButton } from 'material-ui';
 import { IHousehold } from '../Households/householdsInterfaces';
 import { getNewsFeed } from './linksActions';
+import { houseMoneyUrl, houseFoodUrl } from '../../appConfig';
+import { IOccupant } from '../Occupants/occupantsInterfaces';
 
 export class Links extends React.Component<ILinksProps, ILinksState> {
     constructor(props: ILinksProps) {
@@ -25,7 +27,7 @@ export class Links extends React.Component<ILinksProps, ILinksState> {
     componentWillMount() {
         this.setState({ householdsLoading: true, newsFeedLoading: true });
         this.props.dispatch(
-            getHouseholdsOfUser(this.props.loggedInUser.token, this.props.loggedInUser),
+            getHouseholdsOfUser(this.props.loggedInUser.token, this.props.loggedInUser), // TODO: Also return occupant id here! 
         ).then(() => {
             this.setState({ householdsLoading: false });
         });
@@ -36,12 +38,36 @@ export class Links extends React.Component<ILinksProps, ILinksState> {
         });
     }
 
+    getHouseMoneyUrl(householdId: number, occupantId: number) {
+        const urlParams: IOccupant = {
+            householdId,
+            occupantId,
+            userId: this.props.loggedInUser.userId,
+            displayName: this.props.loggedInUser.displayName,
+            email: this.props.loggedInUser.email,
+            token: this.props.loggedInUser.token,
+        };
+        return houseMoneyUrl + JSON.stringify(urlParams);
+    }
+
+    getHouseFoodUrl(householdId: number, occupantId: number) {
+        const urlParams: IOccupant = {
+            householdId,
+            occupantId,
+            userId: this.props.loggedInUser.userId,
+            displayName: this.props.loggedInUser.displayName,
+            email: this.props.loggedInUser.email,
+            token: this.props.loggedInUser.token,
+        };
+        return houseFoodUrl + JSON.stringify(urlParams);
+    }
+
     createSingleHouseholdMenu() {
         return (
             <Paper style={styles.paper}>
                 <Menu>
-                    <MenuItem primaryText="Money" leftIcon={<LocalAtm />} href="http://housemoney.surge.sh/" />
-                    <MenuItem primaryText="Food" leftIcon={<Restaurant />} href="http://housefood.surge.sh/" />
+                    <MenuItem primaryText="Money" leftIcon={<LocalAtm />} href={this.getHouseMoneyUrl(1, 1)} />
+                    <MenuItem primaryText="Food" leftIcon={<Restaurant />} href={this.getHouseFoodUrl(1, 1)} />
                 </Menu>
             </Paper>
         );
@@ -61,7 +87,7 @@ export class Links extends React.Component<ILinksProps, ILinksState> {
                                 <ListItem
                                     key={household.householdId}
                                     primaryText={household.name}
-                                    href="http://housemoney.surge.sh/"
+                                    href={this.getHouseMoneyUrl(household.householdId, 1)}
                                 />,
                             )} />
                     <ListItem
@@ -74,7 +100,7 @@ export class Links extends React.Component<ILinksProps, ILinksState> {
                                 <ListItem
                                     key={household.householdId}
                                     primaryText={household.name}
-                                    href="http://housefood.surge.sh/"
+                                    href={this.getHouseFoodUrl(household.householdId, 1)}
                                 />,
                             )} />
                 </List>
