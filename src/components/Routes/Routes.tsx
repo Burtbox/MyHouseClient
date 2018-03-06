@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { Switch, Route, withRouter } from 'react-router-dom';
+import { Switch, Route, withRouter, RouteComponentProps } from 'react-router-dom';
 import { IRoutesProps } from './routesInterfaces';
 import { myHouseRoutes } from '../../enums/routesEnum';
 import Login from '../Login';
@@ -14,7 +14,7 @@ import { IStore } from '../../interfaces/storeInterface';
 import { checkAuthorization } from '../Users/usersActions';
 import { IUserObject } from '../Users/usersInterfaces';
 
-export class Routes extends React.Component<IRoutesProps> {
+export class Routes extends React.Component<RouteComponentProps<any> & IRoutesProps> {
     getRoutes() {
         checkAuthorization(this.props.loggedInUser);
         let routes: JSX.Element;

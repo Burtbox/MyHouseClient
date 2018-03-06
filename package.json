@@ -1,6 +1,11 @@
 {
+  "homepage": "http://myhouse.surge.sh/",
   "name": "myhouseclient",
   "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Burtbox/MyHouseClient"
+  },
   "private": true,
   "dependencies": {
     "firebase": "^4.6.2",
@@ -30,7 +35,7 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
-    "deploy": "npm run build && cd ./build && copy index.html 200.html && surge -p ./ -d myhouse.surge.sh"
+    "deploy": "npm run build && cd ./build && rename index.html 200.html && surge -p ./ -d myhouse.surge.sh"
   },
   "devDependencies": {
     "@types/enzyme": "^3.1.8",
@@ -41,7 +46,7 @@
     "@types/react": "^16.0.25",
     "@types/react-dom": "^16.0.3",
     "@types/react-redux": "^5.0.13",
-    "@types/react-router-dom": "^4.2.2",
+    "@types/react-router-dom": "^4.2.4",
     "@types/react-router-redux": "^5.0.10",
     "@types/react-tap-event-plugin": "0.0.30",
     "@types/redux-logger": "^3.0.5",
@@ -56,7 +61,6 @@
     "tslint-config-airbnb": "^5.4.2",
     "tslint-react": "^3.4.0"
   },
-  "homepage": "https://github.com/Burtbox/MyHouseClient",
   "jest": {
     "transform": {
       "^.+\\.tsx?$": "ts-jest"
