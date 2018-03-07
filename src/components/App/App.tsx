@@ -5,7 +5,7 @@ import Routes from '../Routes';
 import ErrorMessage from '../ErrorMessage';
 import Footer from '../Footer';
 
-function App() {
+const App: React.StatelessComponent<{}> = (props) => {
     return (
         <div style={{ height: '100%' }}>
             <Nav />
@@ -14,6 +14,6 @@ function App() {
             <Footer />
         </div>
     );
-}
+};
 
 export default App;

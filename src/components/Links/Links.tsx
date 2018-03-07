@@ -14,6 +14,7 @@ import { IHousehold } from '../Households/householdsInterfaces';
 import { getNewsFeed } from './linksActions';
 import { houseMoneyUrl, houseFoodUrl } from '../../appConfig';
 import { IOccupant } from '../Occupants/occupantsInterfaces';
+import * as queryString from 'query-string';
 
 export class Links extends React.Component<ILinksProps, ILinksState> {
     constructor(props: ILinksProps) {
@@ -47,7 +48,7 @@ export class Links extends React.Component<ILinksProps, ILinksState> {
             email: this.props.loggedInUser.email,
             token: this.props.loggedInUser.token,
         };
-        return houseMoneyUrl + JSON.stringify(urlParams);
+        return houseMoneyUrl + queryString.stringify(urlParams);
     }
 
     getHouseFoodUrl(householdId: number, occupantId: number) {
@@ -59,15 +60,23 @@ export class Links extends React.Component<ILinksProps, ILinksState> {
             email: this.props.loggedInUser.email,
             token: this.props.loggedInUser.token,
         };
-        return houseFoodUrl + JSON.stringify(urlParams);
+        return houseFoodUrl + queryString.stringify(urlParams);
     }
 
     createSingleHouseholdMenu() {
         return (
             <Paper style={styles.paper}>
                 <Menu>
-                    <MenuItem primaryText="Money" leftIcon={<LocalAtm />} href={this.getHouseMoneyUrl(1, 1)} />
-                    <MenuItem primaryText="Food" leftIcon={<Restaurant />} href={this.getHouseFoodUrl(1, 1)} />
+                    <MenuItem
+                        primaryText="Money"
+                        leftIcon={<LocalAtm />}
+                        href={this.getHouseMoneyUrl(this.props.households[0].householdId, 1)}
+                    />
+                    <MenuItem
+                        primaryText="Food"
+                        leftIcon={<Restaurant />}
+                        href={this.getHouseFoodUrl(this.props.households[0].householdId, 1)}
+                    />
                 </Menu>
             </Paper>
         );
@@ -150,7 +159,7 @@ export class Links extends React.Component<ILinksProps, ILinksState> {
                 </span>
                 <span style={{ display: 'inline-flex', width: '50rem' }}>
                     {
-                        this.state.newsFeedLoading ? <CircularProgress /> :
+                        this.state.newsFeedLoading ? <CircularProgress /> : // TODO : implement single global loading, this looks wierd
                             this.props.newsFeed.length > 0 ? this.newsFeed()
                                 : <div />
                     }
