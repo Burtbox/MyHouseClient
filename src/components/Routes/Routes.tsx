@@ -14,38 +14,34 @@ import { IStore } from '../../interfaces/storeInterface';
 import { checkAuthorization } from '../Users/usersActions';
 import { IUserObject } from '../Users/usersInterfaces';
 
-export class Routes extends React.Component<RouteComponentProps<any> & IRoutesProps> {
-    getRoutes() {
-        checkAuthorization(this.props.loggedInUser);
-        let routes: JSX.Element;
-        if (this.props.isLoggedIn) {
-            routes = (
-                <Switch>
-                    <Route exact path={myHouseRoutes.Base} component={Links} />
-                    <Route path={myHouseRoutes.Links} component={Links} />
-                    <Route path={myHouseRoutes.Households} component={Households} />
-                    <Route path={myHouseRoutes.MyAccount} component={MyAccount} />
-                    <Route path={myHouseRoutes.ChangePassword} component={ChangePassword} />
-                    <Route exact path={myHouseRoutes.Unknown} component={NotFound404} />
-                </Switch>
-            );
-        } else {
-            routes = (
-                <Switch>
-                    <Route exact path={myHouseRoutes.Base} component={Login} />
-                    <Route path={myHouseRoutes.Login} component={Login} />
-                    <Route path={myHouseRoutes.Register} component={Register} />
-                    <Route exact path={myHouseRoutes.Unknown} component={NotFound404} />
-                </Switch>
-            );
-        }
-        return routes;
-    }
+const LoggedInRoutes: React.StatelessComponent = () => {
+    return (
+        <Switch>
+            <Route exact path={myHouseRoutes.Base} component={Links} />
+            <Route path={myHouseRoutes.Links} component={Links} />
+            <Route path={myHouseRoutes.Households} component={Households} />
+            <Route path={myHouseRoutes.MyAccount} component={MyAccount} />
+            <Route path={myHouseRoutes.ChangePassword} component={ChangePassword} />
+            <Route exact path={myHouseRoutes.Unknown} component={NotFound404} />
+        </Switch>
+    );
+};
 
-    render() {
-        return <Route>{this.getRoutes()}</Route>;
-    }
-}
+const LoggedOutRoutes: React.StatelessComponent = () => {
+    return (
+        <Switch>
+            <Route exact path={myHouseRoutes.Base} component={Login} />
+            <Route path={myHouseRoutes.Login} component={Login} />
+            <Route path={myHouseRoutes.Register} component={Register} />
+            <Route exact path={myHouseRoutes.Unknown} component={NotFound404} />
+        </Switch>
+    );
+};
+
+export const Routes: React.StatelessComponent<RouteComponentProps<any> & IRoutesProps> = (props) => {
+    checkAuthorization(props.loggedInUser);
+    return <Route>{props.isLoggedIn ? <LoggedInRoutes /> : <LoggedOutRoutes />}</Route>;
+};
 
 const mapStateToProps = (store: IStore) => {
     const isLoggedIn: boolean = store.usersReducer.isLoggedIn ? store.usersReducer.isLoggedIn : false;
