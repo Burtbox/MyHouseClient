@@ -28,3 +28,5 @@ Flag user as deleted, then a leave household button suffices, Hangfire backgroun
 type reducers,  
 Switch to redux loading through action and grab from props (remove loading flags from reducers)
 
+Refactor unit tests - can test each refactored stateless component separately for better unit tests! 
+
