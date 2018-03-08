@@ -26,7 +26,7 @@ switch to ts-lint-react for linter as inconsistent spacing between dom (2 spaces
 Flag user as deleted, then a leave household button suffices, Hangfire background cleanup task after a month
 
 type reducers,  
-Switch to redux loading through action and grab from props (remove loading flags from reducers)
+Switch to redux loading through action and grab from props (remove loading flags from reducers) =>  make app wide loading thing (steal from HouseFood)
 
 Refactor unit tests - can test each refactored stateless component separately for better unit tests! 
 

@@ -7,8 +7,9 @@ import registerReducer from '../components/Register/registerReducer';
 import myAccountReducer from '../components/MyAccount/myAccountReducer';
 import householdsReducer from '../components/Households/householdsReducer';
 import linksReducer from '../components/Links/linksReducer';
+import { IStore } from '../interfaces/storeInterface';
 
-const combinedReducers: Reducer<Function> = combineReducers({
+const combinedReducers: Reducer<IStore> = combineReducers({
     usersReducer,
     errorMessageReducer,
     loginReducer,
