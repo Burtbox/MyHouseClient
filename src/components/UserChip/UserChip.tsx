@@ -4,18 +4,15 @@ import Chip from 'material-ui/Chip';
 import { IUserChipProps } from './userChipInterfaces';
 import styles from '../../styles';
 
-class UserChip extends React.Component<IUserChipProps> {
-    render() {
-        const user = this.props.user;
-        return (
-          <Chip key={'Chip_' + user.userId} style={styles.chip}>
-            <Avatar key={'Avatar_' + user.userId}>
-              {user.displayName ? user.displayName.charAt(0).toUpperCase() : ''}
-            </Avatar>
-            {user.displayName}
-          </Chip>
-        );
-    }
-}
+const UserChip: React.StatelessComponent<IUserChipProps> = (props) => {
+    return (
+      <Chip key={'Chip_' + props.user.userId} style={styles.chip}>
+        <Avatar key={'Avatar_' + props.user.userId}>
+          {props.user.displayName ? props.user.displayName.charAt(0).toUpperCase() : ''}
+        </Avatar>
+        {props.user.displayName}
+      </Chip>
+    );
+};
 
 export default UserChip;

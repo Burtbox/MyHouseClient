@@ -14,86 +14,84 @@ import { myHouseRoutes } from '../../enums/routesEnum';
 import { IStore } from '../../interfaces/storeInterface';
 import { handleLogOut } from '../../helpers/loginHelper';
 
-export class Nav extends React.Component<INavProps> {
-    getLoggedOutMenuOptions = () => {
-        return (
-          <div>
-            <Link style={styles.menuItems} to={myHouseRoutes.Login}>
-              <MenuItem>Sign In </MenuItem>
-            </Link>
+const LoggedOutMenuOptions: React.StatelessComponent = () => {
+    return (
+      <div>
+        <Link style={styles.menuItems} to={myHouseRoutes.Login}>
+          <MenuItem>Sign In </MenuItem>
+        </Link>
 
-            <Link style={styles.menuItems} to={myHouseRoutes.Register}>
-              <MenuItem> Sign Up</MenuItem>
-            </Link>
-          </div>
-        );
-    }
+        <Link style={styles.menuItems} to={myHouseRoutes.Register}>
+          <MenuItem> Sign Up</MenuItem>
+        </Link>
+      </div>
+    );
+};
 
-    getLoggedInMenuOptions = () => {
-        return (
-          <div>
-            <Link style={styles.menuItems} to={myHouseRoutes.MyAccount}>
-              <MenuItem>
-                <UserChip user={this.props.loggedInUser} />
-              </MenuItem>
-            </Link>
+const LoggedInMenuOptions: React.StatelessComponent<INavProps> = (props) => {
+    return (
+      <div>
+        <Link style={styles.menuItems} to={myHouseRoutes.MyAccount}>
+          <MenuItem>
+            <UserChip user={props.loggedInUser} />
+          </MenuItem>
+        </Link>
 
-            <Link style={styles.menuItems} to={myHouseRoutes.Households}>
-              <MenuItem> Households </MenuItem>
-            </Link>
+        <Link style={styles.menuItems} to={myHouseRoutes.Households}>
+          <MenuItem> Households </MenuItem>
+        </Link>
 
-            <a style={styles.menuItems} onClick={() => handleLogOut()}>
-              <MenuItem>Logout</MenuItem>
-            </a>
-          </div>
-        );
-    }
+        <a style={styles.menuItems} onClick={() => handleLogOut()}>
+          <MenuItem>Logout</MenuItem>
+        </a>
+      </div>
+    );
+};
 
-    getLoggedInNavItems = () => {
-        return (
-          <ToolbarGroup>
-          </ToolbarGroup>
-        );
-    }
+const LoggedInNavItems: React.StatelessComponent = () => {
+    return (
+      <ToolbarGroup>
+      </ToolbarGroup>
+    );
+};
 
-    getLoggedOutNavItems = (): void => {
-        return undefined;
-    }
+const LoggedOutNavItems: React.StatelessComponent = () => {
+    return null;
+};
 
-    render() {
-        return (
-          <Toolbar>
-            <ToolbarGroup>
-              <Link to={myHouseRoutes.Base}>
-                <IconButton tooltip="Home">
-                  <ActionHome />
-                </IconButton>
-              </Link>
-              <ToolbarTitle text="My House" />
-            </ToolbarGroup>
-            <ToolbarGroup>
-              {this.props.isLoggedIn
-                ? this.getLoggedInNavItems()
-                : this.getLoggedOutNavItems()}
+export const Nav: React.StatelessComponent<INavProps> = (props) => {
+    return (
+      <Toolbar>
+        <ToolbarGroup>
+          <Link to={myHouseRoutes.Base}>
+            <IconButton tooltip="Home">
+              <ActionHome />
+            </IconButton>
+          </Link>
+          <ToolbarTitle text="My House" />
+        </ToolbarGroup>
+        <ToolbarGroup>
+          {props.isLoggedIn
+            ? <LoggedInNavItems />
+            : <LoggedOutNavItems />}
 
-              <IconMenu
-                anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
-                targetOrigin={{ horizontal: 'right', vertical: 'top' }}
-                iconButtonElement={
-                  <IconButton tooltip="Menu">
-                    <Menu />
-                  </IconButton>
-                }
-              >
-                {this.props.isLoggedIn
-                  ? this.getLoggedInMenuOptions()
-                  : this.getLoggedOutMenuOptions()}
-              </IconMenu>
-            </ToolbarGroup>
-          </Toolbar>
-        );
-    }
-}
+          <IconMenu
+            anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
+            targetOrigin={{ horizontal: 'right', vertical: 'top' }}
+            iconButtonElement={
+              <IconButton tooltip="Menu">
+                <Menu />
+              </IconButton>
+            }
+          >
+            {props.isLoggedIn
+              ? <LoggedInMenuOptions {...props} /> 
+              : <LoggedOutMenuOptions />}
+          </IconMenu>
+        </ToolbarGroup>
+      </Toolbar>
+    );
+};
 
 // Retrieve data from store as props
 const mapStateToProps = (store: IStore) => {
