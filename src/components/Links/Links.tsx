@@ -12,7 +12,7 @@ import { connect } from 'react-redux';
 import { CircularProgress, List, ListItem, Card, CardHeader, CardText, CardActions, FlatButton } from 'material-ui';
 import { IHousehold } from '../Households/householdsInterfaces';
 import { getNewsFeed } from './linksActions';
-import { houseMoneyUrl, houseFoodUrl } from '../../appConfig';
+import { houseMoneyLinkUrl, houseFoodLinkUrl } from '../../appConfig';
 import { IOccupant } from '../Occupants/occupantsInterfaces';
 import * as queryString from 'query-string';
 
@@ -39,7 +39,7 @@ export class Links extends React.Component<ILinksProps, ILinksState> {
         });
     }
 
-    getHouseMoneyUrl(householdId: number, occupantId: number) {
+    gethouseMoneyLinkUrl(householdId: number, occupantId: number) {
         const urlParams: IOccupant = {
             householdId,
             occupantId,
@@ -48,10 +48,10 @@ export class Links extends React.Component<ILinksProps, ILinksState> {
             email: this.props.loggedInUser.email,
             token: this.props.loggedInUser.token,
         };
-        return houseMoneyUrl + queryString.stringify(urlParams);
+        return houseMoneyLinkUrl + '?' + queryString.stringify(urlParams);
     }
 
-    getHouseFoodUrl(householdId: number, occupantId: number) {
+    gethouseFoodLinkUrl(householdId: number, occupantId: number) {
         const urlParams: IOccupant = {
             householdId,
             occupantId,
@@ -60,22 +60,23 @@ export class Links extends React.Component<ILinksProps, ILinksState> {
             email: this.props.loggedInUser.email,
             token: this.props.loggedInUser.token,
         };
-        return houseFoodUrl + queryString.stringify(urlParams);
+        return houseFoodLinkUrl + '?' + queryString.stringify(urlParams);
     }
 
-    createSingleHouseholdMenu() {
+    createSingleHouseholdMenu() { // TODO: ED Make these stateless components !
         return (
             <Paper style={styles.paper}>
                 <Menu>
                     <MenuItem
                         primaryText="Money"
                         leftIcon={<LocalAtm />}
-                        href={this.getHouseMoneyUrl(this.props.households[0].householdId, 1)}
+                        href={this.gethouseMoneyLinkUrl(this.props.households[0].householdId, 1)} 
+                        // TODO:  ED! the API needs to ret the occuapntId with the household ID to use here! 
                     />
                     <MenuItem
                         primaryText="Food"
                         leftIcon={<Restaurant />}
-                        href={this.getHouseFoodUrl(this.props.households[0].householdId, 1)}
+                        href={this.gethouseFoodLinkUrl(this.props.households[0].householdId, 1)}
                     />
                 </Menu>
             </Paper>
@@ -96,7 +97,7 @@ export class Links extends React.Component<ILinksProps, ILinksState> {
                                 <ListItem
                                     key={household.householdId}
                                     primaryText={household.name}
-                                    href={this.getHouseMoneyUrl(household.householdId, 1)}
+                                    href={this.gethouseMoneyLinkUrl(household.householdId, 1)}
                                 />,
                             )} />
                     <ListItem
@@ -109,7 +110,7 @@ export class Links extends React.Component<ILinksProps, ILinksState> {
                                 <ListItem
                                     key={household.householdId}
                                     primaryText={household.name}
-                                    href={this.getHouseFoodUrl(household.householdId, 1)}
+                                    href={this.gethouseFoodLinkUrl(household.householdId, 1)}
                                 />,
                             )} />
                 </List>
