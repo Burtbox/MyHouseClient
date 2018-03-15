@@ -30,3 +30,4 @@ Switch to redux loading through action and grab from props (remove loading flags
 
 Refactor unit tests - can test each refactored stateless component separately for better unit tests! 
 
+ED! Change auth to base off occupantId and use that in other apps ! 
