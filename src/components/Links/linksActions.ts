@@ -7,21 +7,25 @@ import { houseMoneyLinkUrl, houseFoodLinkUrl } from '../../appConfig';
 import * as queryString from 'query-string';
 import { IOccupant } from '../Occupants/occupantsInterfaces';
 import { INewsFeed, INewsFeedsAction } from '../NewsFeed/newsFeedInterfaces';
+import { loadingStarted, loadingComplete } from '../Loading/loadingActions';
 
 export enum NewsFeedsActions {
     NEWSFEEDS_OF_USER = 'NEWSFEEDS_OF_USER',
 }
 
 export function getNewsFeed(token: string, occupant: IUserObject) {
-    const request = apiHelper.apiCall(HTTPMethod.GET, endpoints.newsFeeds, token, occupant.userId);
+    const request = apiHelper.apiCall<INewsFeed[]>(HTTPMethod.GET, endpoints.newsFeeds, token, occupant.userId);
 
     return (dispatch: Function) => {
+        dispatch(loadingStarted());
         return request
             .then((response: INewsFeed[]) => {
                 dispatch(getNewsFeedSuccessful(response));
+                dispatch(loadingComplete());
             })
             .catch((error: Error) => {
                 dispatch(addError(error.message));
+                dispatch(loadingComplete());
                 throw error;
             });
     };
@@ -30,7 +34,7 @@ export function getNewsFeed(token: string, occupant: IUserObject) {
 function getNewsFeedSuccessful(newsFeedsResponse: INewsFeed[]): INewsFeedsAction {
     const response: INewsFeedsAction = {
         type: NewsFeedsActions.NEWSFEEDS_OF_USER,
-        newsFeed: newsFeedsResponse,
+        newsFeedList: newsFeedsResponse,
     };
     return response;
 }

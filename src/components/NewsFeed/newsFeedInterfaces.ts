@@ -9,6 +9,8 @@ export interface INewsFeed {
     author: string;
 }
 
-export interface INewsFeedsAction extends Action {
-    newsFeed: INewsFeed[];
+export interface INewsFeedsAction extends Action, INewsFeedProps { }
+
+export interface INewsFeedProps {
+    newsFeedList: INewsFeed[];
 }

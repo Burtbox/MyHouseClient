@@ -1,14 +1,14 @@
 import * as React from 'react';
 import { Card, CardHeader, CardText, CardActions, FlatButton } from 'material-ui';
-import { INewsFeed } from './newsFeedInterfaces';
+import { INewsFeedProps, INewsFeed } from './newsFeedInterfaces';
 
-const NewsFeed: React.StatelessComponent<INewsFeed[]> = (newsFeedList) => {
+const NewsFeed: React.StatelessComponent<INewsFeedProps> = (props) => {
     return (
         <div>
-            {newsFeedList.map((newsItem: INewsFeed) => (
+            {props.newsFeedList.map((newsItem: INewsFeed) => (
                 <Card style={{
                     marginTop: '10px',
-                }}>
+                }} >
                     <CardHeader
                         title={newsItem.headline}
                         subtitle={newsItem.author}

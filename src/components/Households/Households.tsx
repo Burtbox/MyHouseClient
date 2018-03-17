@@ -15,7 +15,7 @@ export class Households extends React.Component<IHouseholdsProps> {
         return (
             <div style={{ display: 'block' }}>
                 {!this.props.loading && this.props.households && this.props.households.length
-                    ? <HouseholdsList {...this.props.households} />
+                    ? <HouseholdsList {...this.props} />
                     : <Loading />}
             </div >
         );

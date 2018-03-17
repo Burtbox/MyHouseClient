@@ -11,6 +11,7 @@ const MultiHouseholdMenu: React.StatelessComponent<IHouseholdsProps> = (props) =
         <Paper style={styles.paper}>
             <List>
                 <ListItem
+                    key="HouseMoneyLink"
                     primaryText="Money"
                     leftIcon={<LocalAtm />}
                     initiallyOpen={true}
@@ -18,12 +19,13 @@ const MultiHouseholdMenu: React.StatelessComponent<IHouseholdsProps> = (props) =
                     nestedItems={
                         props.households.map((household: IHousehold) =>
                             <ListItem
-                                key={household.occupantId}
+                                key={'HouseMoneyLink' + household.occupantId}
                                 primaryText={household.name}
                                 href={gethouseMoneyLinkUrl(props.loggedInUser, household.occupantId)}
                             />,
                         )} />
                 <ListItem
+                    key="HouseFoodLink"
                     primaryText="Food"
                     leftIcon={<Restaurant />}
                     initiallyOpen={true}
@@ -31,7 +33,7 @@ const MultiHouseholdMenu: React.StatelessComponent<IHouseholdsProps> = (props) =
                     nestedItems={
                         props.households.map((household: IHousehold) =>
                             <ListItem
-                                key={household.occupantId}
+                                key={'HouseFoodLink' + household.occupantId}
                                 primaryText={household.name}
                                 href={gethouseFoodLinkUrl(props.loggedInUser, household.occupantId)}
                             />,

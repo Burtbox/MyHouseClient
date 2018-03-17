@@ -3,7 +3,7 @@ import { INewsFeedsAction } from '../NewsFeed/newsFeedInterfaces';
 import { ILinksReducer } from './linksInterfaces';
 
 function linksReducer(
-    state: ILinksReducer = { newsFeed: [] },
+    state: ILinksReducer = { newsFeedList: [] },
     action: INewsFeedsAction,
 ): ILinksReducer {
     let nextState: ILinksReducer;
@@ -11,7 +11,7 @@ function linksReducer(
     case NewsFeedsActions.NEWSFEEDS_OF_USER:
         nextState = {
             ...state,
-            newsFeed: action.newsFeed,
+            newsFeedList: action.newsFeedList,
         };
         break;
     default:

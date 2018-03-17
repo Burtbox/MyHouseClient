@@ -29,7 +29,7 @@ export class Links extends React.Component<ILinksProps> {
                 <span style={{ display: 'inline-flex', width: '50rem' }}>
                     {
                         this.props.loading ? <Loading /> :
-                            this.props.newsFeed.length > 0 ? <NewsFeed {...this.props.newsFeed} />
+                            this.props.newsFeedList.length > 0 ? <NewsFeed { ...this.props } />
                                 : <div />
                     }
                 </span>
@@ -43,7 +43,7 @@ const mapStateToProps = (store: IStore) => {
     const props: ILinksStore = {
         loggedInUser: store.usersReducer.loggedInUser,
         households: store.householdsReducer.households,
-        newsFeed: store.linksReducer.newsFeed,
+        newsFeedList: store.linksReducer.newsFeedList,
         loading: store.loadingReducer.loading,
     };
     return props;

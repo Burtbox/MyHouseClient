@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styles from './footerStyles';
 
-const Footer: React.StatelessComponent<{}> = () => {
+const Footer: React.StatelessComponent = () => {
     return (
         <footer style={styles.footer}>
             <div>

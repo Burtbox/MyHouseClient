@@ -9,7 +9,7 @@ export interface ILinksStore extends LinksBaseProps, ILoadingProps { }
 export interface ILinksProps extends IConnectedComponentProps, LinksBaseProps, ILoadingProps { }
 
 export interface ILinksReducer {
-    newsFeed: INewsFeed[];
+    newsFeedList: INewsFeed[];
 }
 
 interface LinksBaseProps extends ILinksReducer {
