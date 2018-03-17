@@ -1,25 +1,21 @@
 import { IConnectedComponentProps } from '../../interfaces/componentInterfaces';
 import { Action } from 'redux';
 import { IUserObject } from '../Users/usersInterfaces';
+import { ILoadingProps } from '../Loading/loadingInterfaces';
 
 export interface IHousehold {
-    householdId: number;
+    occupantId: number;
     name: string;
 }
 
-export interface IHouseholdsProps extends IConnectedComponentProps {
-    households: IHousehold[];
-}
+export interface IHouseholdsProps extends IConnectedComponentProps, IHouseholdsStore { }
 
-export interface IHouseholdsAction extends Action {
-    households: IHousehold[];
-}
+export interface IHouseholdsAction extends Action, IHouseholdsReducer { }
 
-export interface IHouseholdsStore {
-    households: IHousehold[];
+export interface IHouseholdsStore extends IHouseholdsReducer, ILoadingProps {
     loggedInUser: IUserObject;
 }
 
-export interface IHouseholdsState {
-    loading: boolean;
+export interface IHouseholdsReducer {
+    households: IHousehold[];
 }

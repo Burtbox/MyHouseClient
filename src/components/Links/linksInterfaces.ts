@@ -1,32 +1,18 @@
 import { IConnectedComponentProps } from '../../interfaces/componentInterfaces';
 import { IUserObject } from '../Users/usersInterfaces';
 import { IHousehold } from '../Households/householdsInterfaces';
-import { Action } from 'redux';
+import { ILoadingProps } from '../Loading/loadingInterfaces';
+import { INewsFeed } from '../NewsFeed/newsFeedInterfaces';
 
-export interface ILinksStore {
+export interface ILinksStore extends LinksBaseProps, ILoadingProps { }
+
+export interface ILinksProps extends IConnectedComponentProps, LinksBaseProps, ILoadingProps { }
+
+export interface ILinksReducer {
+    newsFeed: INewsFeed[];
+}
+
+interface LinksBaseProps extends ILinksReducer {
     households: IHousehold[];
     loggedInUser: IUserObject;
-    newsFeed: INewsFeed[];
-}
-
-export interface ILinksProps extends IConnectedComponentProps {
-    households: IHousehold[];
-    newsFeed: INewsFeed[];
-}
-
-export interface INewsFeed {
-    newsFeedId: number;
-    householdId: number;
-    headline: string;
-    subHeadline: string;
-    story: string;
-    author: string;
-}
-
-export interface ILinksState {
-    householdsLoading: boolean;
-    newsFeedLoading: boolean;
-}
-export interface INewsFeedsAction extends Action {
-    newsFeed: INewsFeed[];
 }

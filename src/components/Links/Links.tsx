@@ -1,151 +1,18 @@
 import * as React from 'react';
-import Paper from 'material-ui/Paper';
-import Menu from 'material-ui/Menu';
-import MenuItem from 'material-ui/MenuItem';
-import LocalAtm from 'material-ui/svg-icons/maps/local-atm';
-import Restaurant from 'material-ui/svg-icons/maps/restaurant';
-import styles from './linksStyles';
 import { IStore } from '../../interfaces/storeInterface';
-import { ILinksProps, ILinksState, ILinksStore, INewsFeed } from './linksInterfaces';
+import { ILinksProps, ILinksStore } from './linksInterfaces';
 import { getHouseholdsOfUser } from '../Households/householdsActions';
 import { connect } from 'react-redux';
-import { CircularProgress, List, ListItem, Card, CardHeader, CardText, CardActions, FlatButton } from 'material-ui';
-import { IHousehold } from '../Households/householdsInterfaces';
 import { getNewsFeed } from './linksActions';
-import { houseMoneyLinkUrl, houseFoodLinkUrl } from '../../appConfig';
-import { IOccupant } from '../Occupants/occupantsInterfaces';
-import * as queryString from 'query-string';
+import SingleHouseholdMenu from './SingleHouseholdMenu';
+import { Loading } from '../Loading';
+import MultiHouseholdMenu from './MultiHouseholdMenu';
+import NewsFeed from '../NewsFeed';
 
-export class Links extends React.Component<ILinksProps, ILinksState> {
-    constructor(props: ILinksProps) {
-        super(props);
-        this.state = {
-            householdsLoading: false,
-            newsFeedLoading: false,
-        };
-    }
-
+export class Links extends React.Component<ILinksProps> {
     componentWillMount() {
-        this.setState({ householdsLoading: true, newsFeedLoading: true });
-        this.props.dispatch(
-            getHouseholdsOfUser(this.props.loggedInUser.token, this.props.loggedInUser), // TODO: Also return occupant id here! 
-        ).then(() => {
-            this.setState({ householdsLoading: false });
-        });
-        this.props.dispatch(
-            getNewsFeed(this.props.loggedInUser.token, this.props.loggedInUser),
-        ).then(() => {
-            this.setState({ newsFeedLoading: false });
-        });
-    }
-
-    gethouseMoneyLinkUrl(householdId: number, occupantId: number) {
-        const urlParams: IOccupant = {
-            householdId,
-            occupantId,
-            userId: this.props.loggedInUser.userId,
-            displayName: this.props.loggedInUser.displayName,
-            email: this.props.loggedInUser.email,
-            token: this.props.loggedInUser.token,
-        };
-        return houseMoneyLinkUrl + '?' + queryString.stringify(urlParams);
-    }
-
-    gethouseFoodLinkUrl(householdId: number, occupantId: number) {
-        const urlParams: IOccupant = {
-            householdId,
-            occupantId,
-            userId: this.props.loggedInUser.userId,
-            displayName: this.props.loggedInUser.displayName,
-            email: this.props.loggedInUser.email,
-            token: this.props.loggedInUser.token,
-        };
-        return houseFoodLinkUrl + '?' + queryString.stringify(urlParams);
-    }
-
-    createSingleHouseholdMenu() { // TODO: ED Make these stateless components !
-        return (
-            <Paper style={styles.paper}>
-                <Menu>
-                    <MenuItem
-                        primaryText="Money"
-                        leftIcon={<LocalAtm />}
-                        href={this.gethouseMoneyLinkUrl(this.props.households[0].householdId, 1)} 
-                        // TODO:  ED! the API needs to ret the occuapntId with the household ID to use here! 
-                    />
-                    <MenuItem
-                        primaryText="Food"
-                        leftIcon={<Restaurant />}
-                        href={this.gethouseFoodLinkUrl(this.props.households[0].householdId, 1)}
-                    />
-                </Menu>
-            </Paper>
-        );
-    }
-
-    createMultiHouseholdMenu() {
-        return (
-            <Paper style={styles.paper}>
-                <List>
-                    <ListItem
-                        primaryText="Money"
-                        leftIcon={<LocalAtm />}
-                        initiallyOpen={true}
-                        primaryTogglesNestedList={true}
-                        nestedItems={
-                            this.props.households.map((household: IHousehold) =>
-                                <ListItem
-                                    key={household.householdId}
-                                    primaryText={household.name}
-                                    href={this.gethouseMoneyLinkUrl(household.householdId, 1)}
-                                />,
-                            )} />
-                    <ListItem
-                        primaryText="Food"
-                        leftIcon={<Restaurant />}
-                        initiallyOpen={true}
-                        primaryTogglesNestedList={true}
-                        nestedItems={
-                            this.props.households.map((household: IHousehold) =>
-                                <ListItem
-                                    key={household.householdId}
-                                    primaryText={household.name}
-                                    href={this.gethouseFoodLinkUrl(household.householdId, 1)}
-                                />,
-                            )} />
-                </List>
-            </Paper>
-        );
-    }
-
-    newsFeed() {
-        return (
-            <div>
-                {this.props.newsFeed.map((newsItem: INewsFeed) => (
-                    <Card style={{
-                        marginTop: '10px',
-                    }}>
-                        <CardHeader
-                            title={newsItem.headline}
-                            subtitle={newsItem.author}
-                        // avatar="images/jsa-128.jpg"
-                        />
-                        {/* <CardMedia
-                            overlay={<CardTitle title="Overlay title" subtitle="Overlay subtitle" />}
-                        >
-                            <img src="images/nature-600-337.jpg" alt="" />
-                        </CardMedia> */}
-                        {/* <CardTitle title="Card title" subtitle="Card subtitle" /> */}
-                        <CardText >
-                            {newsItem.story}
-                        </CardText>
-                        <CardActions>
-                            <FlatButton label="View" />
-                        </CardActions>
-                    </Card>
-                ))}
-            </div>
-        );
+        this.props.dispatch(getHouseholdsOfUser(this.props.loggedInUser.token, this.props.loggedInUser.userId));
+        this.props.dispatch(getNewsFeed(this.props.loggedInUser.token, this.props.loggedInUser));
     }
 
     render() {
@@ -153,15 +20,16 @@ export class Links extends React.Component<ILinksProps, ILinksState> {
             <div >
                 <span style={{ display: 'inline-flex', width: '20rem' }}>
                     {
-                        this.state.householdsLoading ? <CircularProgress /> :
-                            this.props.households.length === 1 ? this.createSingleHouseholdMenu()
-                                : this.createMultiHouseholdMenu()
+                        this.props.loading ? <Loading /> :
+                            this.props.households.length === 1 ?
+                                <SingleHouseholdMenu {... this.props} />
+                                : <MultiHouseholdMenu {...this.props} />
                     }
                 </span>
                 <span style={{ display: 'inline-flex', width: '50rem' }}>
                     {
-                        this.state.newsFeedLoading ? <CircularProgress /> : // TODO : implement single global loading, this looks wierd
-                            this.props.newsFeed.length > 0 ? this.newsFeed()
+                        this.props.loading ? <Loading /> :
+                            this.props.newsFeed.length > 0 ? <NewsFeed {...this.props.newsFeed} />
                                 : <div />
                     }
                 </span>
@@ -176,6 +44,7 @@ const mapStateToProps = (store: IStore) => {
         loggedInUser: store.usersReducer.loggedInUser,
         households: store.householdsReducer.households,
         newsFeed: store.linksReducer.newsFeed,
+        loading: store.loadingReducer.loading,
     };
     return props;
 };

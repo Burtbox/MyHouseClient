@@ -1,30 +1,25 @@
 import { HouseholdsActions } from './householdsActions';
-import { IHouseholdsAction } from './householdsInterfaces';
+import { IHouseholdsAction, IHouseholdsReducer } from './householdsInterfaces';
 
 function householdsReducer(
-  state = { },
-  action: IHouseholdsAction,
-) {
+    state: IHouseholdsReducer = {
+        households: [],
+    },
+    action: IHouseholdsAction,
+): IHouseholdsReducer {
+    let nextState: IHouseholdsReducer;
     switch (action.type) {
-    case HouseholdsActions.GET_HOUSEHOLDS_OF_USER_STARTED:
-        return {
-            ...state,
-            loading: true,
-        };
-    case HouseholdsActions.GET_HOUSEHOLDS_OF_USER_COMPLETED:
-        return {
-            ...state,
-            loading: false,
-        };
     case HouseholdsActions.HOUSEHOLDS_OF_USER:
-        return {
+        nextState = {
             ...state,
-            loading: true,
             households: action.households,
         };
+        break;
     default:
-        return state;
+        nextState = state;
+        break;
     }
+    return nextState;
 }
 
 export default householdsReducer;

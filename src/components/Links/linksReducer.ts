@@ -1,20 +1,24 @@
 import { NewsFeedsActions } from './linksActions';
-import { INewsFeedsAction, INewsFeed } from './linksInterfaces';
+import { INewsFeedsAction } from '../NewsFeed/newsFeedInterfaces';
+import { ILinksReducer } from './linksInterfaces';
 
 function linksReducer(
-  state = { },
-  action: INewsFeedsAction,
-) {
+    state: ILinksReducer = { newsFeed: [] },
+    action: INewsFeedsAction,
+): ILinksReducer {
+    let nextState: ILinksReducer;
     switch (action.type) {
     case NewsFeedsActions.NEWSFEEDS_OF_USER:
-        const newsFeed: INewsFeed[] = action.newsFeed;
-        return {
+        nextState = {
             ...state,
-            newsFeed,
+            newsFeed: action.newsFeed,
         };
+        break;
     default:
-        return state;
+        nextState = state;
+        break;
     }
+    return nextState;
 }
 
 export default linksReducer;

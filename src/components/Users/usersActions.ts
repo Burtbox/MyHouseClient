@@ -17,7 +17,7 @@ export enum usersActions {
 export async function checkAuthorization(user: IUserObject): Promise<boolean> {
     let isLoggedIn = false;
     if (user && user.token && user.userId) {
-        await apiHelper.apiCall(HTTPMethod.GET, endpoints.authorization, user.token, user.userId)
+        await apiHelper.apiCall<AuthorizationResponse>(HTTPMethod.GET, endpoints.authorization, user.token, user.userId)
             .then((authorizationResponse: AuthorizationResponse) => {
                 isLoggedIn = authorizationResponse.isAuthorized;
             });
@@ -27,8 +27,10 @@ export async function checkAuthorization(user: IUserObject): Promise<boolean> {
 
 export async function checkHouseholdAuthorization(occupant: IOccupant): Promise<boolean> {
     let isLoggedIn = false;
-    if (occupant && occupant.token && occupant.userId && occupant.householdId) {
-        await apiHelper.apiCall(HTTPMethod.GET, endpoints.authorization, occupant.token, occupant.userId + occupant.householdId)
+    if (occupant && occupant.token && occupant.userId && occupant.occupantId) {
+        await apiHelper.apiCall<AuthorizationResponse>(
+            HTTPMethod.GET, endpoints.authorization, occupant.token, occupant.userId + occupant.occupantId,
+        )
             .then((authorizationResponse: AuthorizationResponse) => {
                 isLoggedIn = authorizationResponse.isAuthorized;
             });
