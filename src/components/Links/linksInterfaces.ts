@@ -13,6 +13,6 @@ export interface ILinksReducer {
 }
 
 interface LinksBaseProps extends ILinksReducer {
-    households: IHousehold[];
+    householdsArray: IHousehold[];
     loggedInUser: IUserObject;
 }

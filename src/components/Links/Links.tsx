@@ -10,7 +10,7 @@ import MultiHouseholdMenu from './MultiHouseholdMenu';
 import NewsFeed from '../NewsFeed';
 
 export class Links extends React.Component<ILinksProps> {
-    componentWillMount() {
+    componentDidMount() {
         this.props.dispatch(getHouseholdsOfUser(this.props.loggedInUser.token, this.props.loggedInUser.userId));
         this.props.dispatch(getNewsFeed(this.props.loggedInUser.token, this.props.loggedInUser));
     }
@@ -21,7 +21,7 @@ export class Links extends React.Component<ILinksProps> {
                 <span style={{ display: 'inline-flex', width: '20rem' }}>
                     {
                         this.props.loading ? <Loading /> :
-                            this.props.households.length === 1 ?
+                            this.props.householdsArray.length === 1 ?
                                 <SingleHouseholdMenu {... this.props} />
                                 : <MultiHouseholdMenu {...this.props} />
                     }
@@ -42,7 +42,7 @@ export class Links extends React.Component<ILinksProps> {
 const mapStateToProps = (store: IStore) => {
     const props: ILinksStore = {
         loggedInUser: store.usersReducer.loggedInUser,
-        households: store.householdsReducer.households,
+        householdsArray: store.householdsReducer.householdsArray,
         newsFeedList: store.linksReducer.newsFeedList,
         loading: store.loadingReducer.loading,
     };

@@ -1,12 +1,12 @@
 import * as React from 'react';
-import { IHousehold, IHouseholdsProps } from './householdsInterfaces';
+import { IHousehold, IHouseholdsReducer } from './householdsInterfaces';
 import { Paper, List, ListItem } from 'material-ui';
 
-const HouseholdsList: React.StatelessComponent<IHouseholdsProps> = (props) => {
+const HouseholdsList: React.StatelessComponent<IHouseholdsReducer> = (props) => {
     return (
         <Paper>
             <List>
-                {props.households.map((household: IHousehold) =>
+                {props.householdsArray.map((household: IHousehold) =>
                     <ListItem primaryText={household.name} key={household.occupantId} />,
                 )}
             </List>

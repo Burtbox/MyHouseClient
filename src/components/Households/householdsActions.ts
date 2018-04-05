@@ -32,7 +32,7 @@ export function getHouseholdsOfUser(token: string, userId: string) {
 function receiveHouseholds(householdsResponse: IHousehold[]): IHouseholdsAction {
     const response: IHouseholdsAction = {
         type: HouseholdsActions.HOUSEHOLDS_OF_USER,
-        households: householdsResponse,
+        householdsArray: householdsResponse,
     };
     return response;
 }

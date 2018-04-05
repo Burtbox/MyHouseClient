@@ -3,7 +3,7 @@ import { IHouseholdsAction, IHouseholdsReducer } from './householdsInterfaces';
 
 function householdsReducer(
     state: IHouseholdsReducer = {
-        households: [],
+        householdsArray: [],
     },
     action: IHouseholdsAction,
 ): IHouseholdsReducer {
@@ -12,7 +12,7 @@ function householdsReducer(
     case HouseholdsActions.HOUSEHOLDS_OF_USER:
         nextState = {
             ...state,
-            households: action.households,
+            householdsArray: action.householdsArray,
         };
         break;
     default:

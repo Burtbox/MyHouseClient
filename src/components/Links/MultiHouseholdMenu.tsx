@@ -17,7 +17,7 @@ const MultiHouseholdMenu: React.StatelessComponent<IHouseholdsProps> = (props) =
                     initiallyOpen={true}
                     primaryTogglesNestedList={true}
                     nestedItems={
-                        props.households.map((household: IHousehold) =>
+                        props.householdsArray.map((household: IHousehold) =>
                             <ListItem
                                 key={'HouseMoneyLink' + household.occupantId}
                                 primaryText={household.name}
@@ -31,7 +31,7 @@ const MultiHouseholdMenu: React.StatelessComponent<IHouseholdsProps> = (props) =
                     initiallyOpen={true}
                     primaryTogglesNestedList={true}
                     nestedItems={
-                        props.households.map((household: IHousehold) =>
+                        props.householdsArray.map((household: IHousehold) =>
                             <ListItem
                                 key={'HouseFoodLink' + household.occupantId}
                                 primaryText={household.name}

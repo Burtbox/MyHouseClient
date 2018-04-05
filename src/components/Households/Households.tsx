@@ -7,15 +7,15 @@ import HouseholdsList from './HouseholdsList';
 import { Loading } from '../Loading';
 
 export class Households extends React.Component<IHouseholdsProps> {
-    componentWillMount() {
+    componentDidMount() {
         this.props.dispatch(getHouseholdsOfUser(this.props.loggedInUser.token, this.props.loggedInUser.userId));
     }
 
     render() {
         return (
             <div style={{ display: 'block' }}>
-                {!this.props.loading && this.props.households && this.props.households.length
-                    ? <HouseholdsList {...this.props} />
+                {!this.props.loading && this.props.householdsArray && this.props.householdsArray.length
+                    ? <HouseholdsList householdsArray={this.props.householdsArray} />
                     : <Loading />}
             </div >
         );
@@ -26,7 +26,7 @@ export class Households extends React.Component<IHouseholdsProps> {
 const mapStateToProps = (store: IStore) => {
     const props: IHouseholdsStore = {
         loggedInUser: store.usersReducer.loggedInUser,
-        households: store.householdsReducer.households,
+        householdsArray: store.householdsReducer.householdsArray,
         loading: store.loadingReducer.loading,
     };
     return props;

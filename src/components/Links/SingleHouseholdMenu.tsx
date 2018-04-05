@@ -13,12 +13,12 @@ const SingleHouseholdMenu: React.StatelessComponent<IHouseholdsProps> = (props) 
                 <MenuItem
                     primaryText="Money"
                     leftIcon={<LocalAtm />}
-                    href={gethouseMoneyLinkUrl(props.loggedInUser, props.households[0].occupantId)} 
+                    href={gethouseMoneyLinkUrl(props.loggedInUser, props.householdsArray[0].occupantId)} 
                 />
                 <MenuItem
                     primaryText="Food"
                     leftIcon={<Restaurant />}
-                    href={gethouseFoodLinkUrl(props.loggedInUser, props.households[0].occupantId)}
+                    href={gethouseFoodLinkUrl(props.loggedInUser, props.householdsArray[0].occupantId)}
                 />
             </Menu>
         </Paper>
