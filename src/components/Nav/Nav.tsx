@@ -12,7 +12,6 @@ import styles from './navStyles';
 import { INavProps, INavStore } from './navInterfaces';
 import { myHouseRoutes } from '../../enums/routesEnum';
 import { IStore } from '../../interfaces/storeInterface';
-import { handleLogOut } from '../../helpers/loginHelper';
 
 const LoggedOutMenuOptions: React.StatelessComponent = () => {
     return (
@@ -41,9 +40,9 @@ const LoggedInMenuOptions: React.StatelessComponent<INavProps> = (props) => {
           <MenuItem> Households </MenuItem>
         </Link>
 
-        <a style={styles.menuItems} onClick={() => handleLogOut()}>
+        <Link style={styles.menuItems} to={myHouseRoutes.Logout}>
           <MenuItem>Logout</MenuItem>
-        </a>
+        </Link>
       </div>
     );
 };

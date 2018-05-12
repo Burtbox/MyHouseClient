@@ -6,6 +6,7 @@ import { IMyAccountProps } from '../components/MyAccount/myAccountInterfaces';
 import { IHouseholdsProps } from '../components/Households/householdsInterfaces';
 import { ILinksProps } from '../components/Links/linksInterfaces';
 import { ILoadingProps } from '../components/Loading/loadingInterfaces';
+import { ILogoutProps } from '../components/Logout/logoutInterfaces';
 
 export interface IStore {
     usersReducer: IUsersProps;
@@ -16,4 +17,5 @@ export interface IStore {
     householdsReducer: IHouseholdsProps;
     linksReducer: ILinksProps;
     loadingReducer: ILoadingProps;
+    logoutReducer: ILogoutProps;
 }

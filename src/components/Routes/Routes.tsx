@@ -13,6 +13,7 @@ import Households from '../Households';
 import { IStore } from '../../interfaces/storeInterface';
 import { checkAuthorization } from '../Users/usersActions';
 import { IUserObject } from '../Users/usersInterfaces';
+import Logout from '../Logout';
 
 const LoggedInRoutes: React.StatelessComponent = () => {
     return (
@@ -22,6 +23,7 @@ const LoggedInRoutes: React.StatelessComponent = () => {
             <Route path={myHouseRoutes.Households} component={Households} />
             <Route path={myHouseRoutes.MyAccount} component={MyAccount} />
             <Route path={myHouseRoutes.ChangePassword} component={ChangePassword} />
+            <Route path={myHouseRoutes.Logout} component={Logout} />
             <Route exact path={myHouseRoutes.Unknown} component={NotFound404} />
         </Switch>
     );
@@ -33,6 +35,7 @@ const LoggedOutRoutes: React.StatelessComponent = () => {
             <Route exact path={myHouseRoutes.Base} component={Login} />
             <Route path={myHouseRoutes.Login} component={Login} />
             <Route path={myHouseRoutes.Register} component={Register} />
+            <Route path={myHouseRoutes.Logout} component={Logout} />
             <Route exact path={myHouseRoutes.Unknown} component={NotFound404} />
         </Switch>
     );

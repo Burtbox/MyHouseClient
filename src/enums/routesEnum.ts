@@ -8,4 +8,5 @@ export enum myHouseRoutes {
     MyAccount = '/MyAccount',
     NotFound404 = '/NotFound404',
     Register = '/Register',
+    Logout = '/Logout',
 }

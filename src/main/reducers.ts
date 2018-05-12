@@ -9,6 +9,7 @@ import householdsReducer from '../components/Households/householdsReducer';
 import linksReducer from '../components/Links/linksReducer';
 import { IStore } from '../interfaces/storeInterface';
 import loadingReducer from '../components/Loading/loadingReducer';
+import logoutReducer from '../components/Logout/logoutReducer';
 
 const combinedReducers: Reducer<IStore> = combineReducers({
     usersReducer,
@@ -19,6 +20,7 @@ const combinedReducers: Reducer<IStore> = combineReducers({
     householdsReducer,
     linksReducer,
     loadingReducer,
+    logoutReducer,
 });
 
 export default combinedReducers;

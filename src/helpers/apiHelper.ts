@@ -1,5 +1,6 @@
 import baseURL from '../appConfig';
-import { handleLogOut } from './loginHelper';
+import history from '../main/history';
+import { myHouseRoutes } from '../enums/routesEnum';
 
 class APIHelper {
     static apiCall<T>(method: string, endpoint: string, token: string, urlParams?: string, body?: object): Promise<T> {
@@ -32,7 +33,7 @@ class APIHelper {
         } else if (response.ok) {
             ret = response.json();
         } else if (response.status === 401) {
-            handleLogOut(); 
+            history.push(myHouseRoutes.Logout);
         } else {
             const error: Error = new Error(response.statusText);
             throw error;
