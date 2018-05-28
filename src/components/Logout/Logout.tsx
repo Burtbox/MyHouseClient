@@ -3,10 +3,11 @@ import { connect } from 'react-redux';
 import FlatButton from 'material-ui/FlatButton';
 import CircularProgress from 'material-ui/CircularProgress';
 import appStyles from '../../styles';
-import { ILogoutProps, ILogoutState } from './logoutInterfaces';
+import { ILogoutProps, ILogoutState, ILogoutDetails, LogoutReason } from './logoutInterfaces';
 import { logoutUser } from './logoutActions';
 import { myHouseRoutes } from '../../enums/routesEnum';
 import { IStore } from '../../interfaces/storeInterface';
+import * as queryString from 'query-string';
 
 export class Logout extends React.Component<ILogoutProps, ILogoutState> {
     constructor(props: ILogoutProps) {
@@ -20,20 +21,48 @@ export class Logout extends React.Component<ILogoutProps, ILogoutState> {
         this.handleLogout();
     }
 
+    hasLogoutDetails() {
+        let hasLogoutDetails: boolean = false;
+        if (this.props.location
+            && this.props.location.search
+            && this.props.match
+            && this.props.match.path === myHouseRoutes.Logout) {
+            hasLogoutDetails = true;
+        }
+        return hasLogoutDetails;
+    }
+
+    parseLogoutDetails(logoutDetailsString: string) {
+        const parsedLogoutDetails: ILogoutDetails = queryString.parse(logoutDetailsString);
+        return parsedLogoutDetails;
+    }
+
+    logoutMessage() {
+        const logoutDetails: ILogoutDetails = this.parseLogoutDetails(this.props.location.search);
+        let logoutMessage: string;
+        switch (logoutDetails.logoutReason) {
+        case LogoutReason.UserTriggered:
+            logoutMessage = 'Only users of shared computers need to logout';
+            break;
+        case LogoutReason.Timeout:
+            logoutMessage = 'You have been timed out and must log in again';
+            break;
+        }
+        return logoutMessage;
+    }
+
     handleLogout = () => {
         this.setState({ loading: true });
         this.props.dispatch(logoutUser()).then(this.setState({ loading: false }));
     }
 
-    // TODO: Accept args in here to tell whether timeout or deliberate logout and change the message accordingly
-    // Timeout - you must log in again as timeout
-    // Deliberate logout - Only users of shared computers need to logout
+    // TODO: refactor this into stateless components
     render() {
         return (
             <form style={appStyles.container}>
-                <h2>Only users of shared computers need to logout</h2>
+                {this.hasLogoutDetails() ? <h2>{this.logoutMessage()}</h2> : <div />}
                 <div>
-                    {this.state.loading ? (
+                    {this.state.loading && this.hasLogoutDetails() ? (
                         <CircularProgress />
                     ) : (
                             <FlatButton label="Continue" onClick={() => this.props.history.push(myHouseRoutes.Login)} />
