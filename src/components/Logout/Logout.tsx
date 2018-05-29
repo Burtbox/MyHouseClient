@@ -1,13 +1,13 @@
+import CircularProgress from 'material-ui/CircularProgress';
+import FlatButton from 'material-ui/FlatButton';
+import * as queryString from 'query-string';
 import * as React from 'react';
 import { connect } from 'react-redux';
-import FlatButton from 'material-ui/FlatButton';
-import CircularProgress from 'material-ui/CircularProgress';
-import appStyles from '../../styles';
-import { ILogoutProps, ILogoutState, ILogoutDetails, LogoutReason } from './logoutInterfaces';
-import { logoutUser } from './logoutActions';
 import { myHouseRoutes } from '../../enums/routesEnum';
 import { IStore } from '../../interfaces/storeInterface';
-import * as queryString from 'query-string';
+import appStyles from '../../styles';
+import { logoutUser } from './logoutActions';
+import { ILogoutDetails, ILogoutProps, ILogoutState, LogoutReason } from './logoutInterfaces';
 
 export class Logout extends React.Component<ILogoutProps, ILogoutState> {
     constructor(props: ILogoutProps) {
@@ -60,7 +60,7 @@ export class Logout extends React.Component<ILogoutProps, ILogoutState> {
     render() {
         return (
             <form style={appStyles.container}>
-                {this.hasLogoutDetails() ? <h2>{this.logoutMessage()}</h2> : <div />}
+                {this.hasLogoutDetails() ? <h2>{this.logoutMessage()}</h2> : <h2> See You Space Cowboy... </h2>}
                 <div>
                     {this.state.loading && this.hasLogoutDetails() ? (
                         <CircularProgress />
