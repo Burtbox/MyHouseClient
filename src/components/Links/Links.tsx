@@ -1,13 +1,13 @@
 import * as React from 'react';
-import { IStore } from '../../interfaces/storeInterface';
-import { ILinksProps, ILinksStore } from './linksInterfaces';
-import { getHouseholdsOfUser } from '../Households/householdsActions';
 import { connect } from 'react-redux';
-import { getNewsFeed } from './linksActions';
-import SingleHouseholdMenu from './SingleHouseholdMenu';
+import { IStore } from '../../interfaces/storeInterface';
+import { getHouseholdsOfUser } from '../Households/householdsActions';
 import { Loading } from '../Loading';
-import MultiHouseholdMenu from './MultiHouseholdMenu';
 import NewsFeed from '../NewsFeed';
+import MultiHouseholdMenu from './MultiHouseholdMenu';
+import SingleHouseholdMenu from './SingleHouseholdMenu';
+import { getNewsFeed } from './linksActions';
+import { ILinksProps, ILinksStore } from './linksInterfaces';
 
 export class Links extends React.Component<ILinksProps> {
     componentDidMount() {
@@ -21,7 +21,7 @@ export class Links extends React.Component<ILinksProps> {
                 <span style={{ display: 'inline-flex', width: '20rem' }}>
                     {
                         this.props.loading ? <Loading /> :
-                            this.props.householdsArray.length === 1 ?
+                            this.props.householdsArray && this.props.householdsArray.length === 1 ?
                                 <SingleHouseholdMenu {... this.props} />
                                 : <MultiHouseholdMenu {...this.props} />
                     }
@@ -29,7 +29,7 @@ export class Links extends React.Component<ILinksProps> {
                 <span style={{ display: 'inline-flex', width: '50rem' }}>
                     {
                         this.props.loading ? <Loading /> :
-                            this.props.newsFeedList.length > 0 ? <NewsFeed { ...this.props } />
+                            this.props.newsFeedList && this.props.newsFeedList.length > 0 ? <NewsFeed {...this.props} />
                                 : <div />
                     }
                 </span>
