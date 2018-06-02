@@ -20,8 +20,8 @@ export class Links extends React.Component<ILinksProps> {
             <div >
                 <span style={{ display: 'inline-flex', width: '20rem' }}>
                     {
-                        this.props.loading ? <Loading /> :
-                            this.props.householdsArray && this.props.householdsArray.length === 1 ?
+                        this.props.loading && !this.props.householdsArray ? <Loading /> :
+                            this.props.householdsArray.length === 1 ?
                                 <SingleHouseholdMenu {... this.props} />
                                 : <MultiHouseholdMenu {...this.props} />
                     }
