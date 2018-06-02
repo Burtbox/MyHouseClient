@@ -21,9 +21,11 @@ export class Links extends React.Component<ILinksProps> {
                 <span style={{ display: 'inline-flex', width: '20rem' }}>
                     {
                         this.props.loading && !this.props.householdsArray ? <Loading /> :
-                            this.props.householdsArray.length === 1 ?
-                                <SingleHouseholdMenu {... this.props} />
-                                : <MultiHouseholdMenu {...this.props} />
+                            this.props.householdsArray && this.props.householdsArray.length === 1 ?
+                                <SingleHouseholdMenu {... this.props} /> :
+                                this.props.householdsArray && this.props.householdsArray.length > 1 ?
+                                    <MultiHouseholdMenu {...this.props} />
+                                    : <Loading />
                     }
                 </span>
                 <span style={{ display: 'inline-flex', width: '50rem' }}>
