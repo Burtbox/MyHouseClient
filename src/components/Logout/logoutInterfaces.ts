@@ -1,9 +1,9 @@
+import { RouteComponentProps } from 'react-router';
 import { Action } from 'redux';
 import { IComponentProps } from '../../interfaces/componentInterfaces';
 import { IOccupant } from '../Occupants/occupantsInterfaces';
-import { RouteComponentProps } from 'react-router';
 
-export interface ILogoutProps extends IComponentProps, RouteComponentProps<string>, IOccupant {
+export interface ILogoutReducer extends IComponentProps, RouteComponentProps<string>, IOccupant {
     loggingOut: boolean;
 }
 

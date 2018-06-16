@@ -2,7 +2,7 @@ import { Action } from 'redux';
 import { IComponentProps } from '../../interfaces/componentInterfaces';
 import { IUserObject } from '../Users/usersInterfaces';
     
-export interface IMyAccountProps extends IComponentProps {
+export interface IMyAccountReducer extends IComponentProps {
     loggedInUser: IUserObject;
     editing: boolean;
     deleting: boolean;

@@ -7,10 +7,10 @@ import { myHouseRoutes } from '../../enums/routesEnum';
 import { IStore } from '../../interfaces/storeInterface';
 import appStyles from '../../styles';
 import { logoutUser } from './logoutActions';
-import { ILogoutDetails, ILogoutProps, ILogoutState, LogoutReason } from './logoutInterfaces';
+import { ILogoutDetails, ILogoutReducer, ILogoutState, LogoutReason } from './logoutInterfaces';
 
-export class Logout extends React.Component<ILogoutProps, ILogoutState> {
-    constructor(props: ILogoutProps) {
+export class Logout extends React.Component<ILogoutReducer, ILogoutState> {
+    constructor(props: ILogoutReducer) {
         super(props);
         this.state = {
             loading: false,

@@ -1,11 +1,12 @@
+import Snackbar from '@material-ui/core/Snackbar/Snackbar';
 import * as React from 'react';
 import { connect } from 'react-redux';
-import Snackbar from 'material-ui/Snackbar';
-import { removeError } from './errorMessageActions';
-import { IErrorMessageProps, IErrorMessageState } from './errorMessageInterfaces';
-import { red900 } from 'material-ui/styles/colors';
+import { IStore } from '../../interfaces/storeInterface';
+import appTheme from '../../themes';
+import { ErrorMessageActions } from './errorMessageActions';
+import { IErrorMessageProps, IErrorMessageState, IErrorMessageStore } from './errorMessageInterfaces';
 
-export class ErrorMessage extends React.Component<IErrorMessageProps, IErrorMessageState> {
+class ErrorMessage extends React.Component<IErrorMessageProps, IErrorMessageState> {
     constructor(props: IErrorMessageProps) {
         super(props);
         this.state = {
@@ -18,37 +19,33 @@ export class ErrorMessage extends React.Component<IErrorMessageProps, IErrorMess
     }
 
     buildErrors = () => {
-        const errorMessageText = this.state.errorMessageText;
-        const errorMessage: JSX.Element = (
-                <Snackbar
-                    open={errorMessageText !== null}
-                    message={errorMessageText}
-                    autoHideDuration={4000}
-                    onRequestClose={this.handleClose}
-                    bodyStyle={{ backgroundColor: red900, textAlign: 'center' }}
-                />
+        return (
+            <Snackbar
+                open={this.state.errorMessageText ? true : false}
+                message={<span id="negative-message-id">{this.state.errorMessageText}</span>}
+                autoHideDuration={4000}
+                onClose={this.handleClose}
+                style={{ backgroundColor: appTheme.palette.error.main }}
+            />
         );
-        return errorMessage;
     }
 
     handleClose = () => {
         this.setState({ errorMessageText: null });
-        this.props.dispatch(removeError());
+        this.props.dispatch(ErrorMessageActions.removeError());
     }
 
     render() {
         return (
             <div>
-                {this.state.errorMessageText !== null ? this.buildErrors() : <div/>}
+                {this.state.errorMessageText ? this.buildErrors() : <div />}
             </div>
         );
     }
 }
 
-const mapStateToProps = (store: any) => {
-    return {
-        errorMessageText: store.errorMessageReducer.errorMessageText,
-    };
+const mapStateToProps = (store: IStore): IErrorMessageStore => {
+    return { errorMessageText: store.errorMessageReducer.errorMessageText };
 };
 
 export default connect(mapStateToProps)(ErrorMessage);

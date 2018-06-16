@@ -1,12 +1,12 @@
-import * as React from 'react';
-import { IHousehold, IHouseholdsProps } from '../Households/householdsInterfaces';
+import { List, ListItem, Paper } from 'material-ui';
 import LocalAtm from 'material-ui/svg-icons/maps/local-atm';
 import Restaurant from 'material-ui/svg-icons/maps/restaurant';
+import * as React from 'react';
+import { IHousehold, IHouseholdsReducer } from '../Households/householdsInterfaces';
+import { gethouseFoodLinkUrl, gethouseMoneyLinkUrl } from './linksActions';
 import styles from './linksStyles';
-import { ListItem, List, Paper } from 'material-ui';
-import { gethouseMoneyLinkUrl, gethouseFoodLinkUrl } from './linksActions';
 
-const MultiHouseholdMenu: React.StatelessComponent<IHouseholdsProps> = (props) => {
+const MultiHouseholdMenu: React.StatelessComponent<IHouseholdsReducer> = (props) => {
     return (
         <Paper style={styles.paper}>
             <List>

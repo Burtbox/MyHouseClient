@@ -1,25 +1,29 @@
-import { errorMessageActions } from './errorMessageActions';
-import { IErrorMessageState, IErrorMessageAction } from './errorMessageInterfaces';
+import { ErrorMessageActions, errorMessageActionTypes } from './errorMessageActions';
+import { IErrorMessageReducer } from './errorMessageInterfaces';
 
 function errorMessageReducer(
-    state: IErrorMessageState = { errorMessageText: null },
-    action: IErrorMessageAction,
-) {
+    state: IErrorMessageReducer = { errorMessageText: null },
+    action: ErrorMessageActions,
+): IErrorMessageReducer {
+    let nextState: IErrorMessageReducer;
     switch (action.type) {
-    case errorMessageActions.ADD_ERROR:
-        return {
+    case errorMessageActionTypes.ADD_ERROR:
+        nextState = {
             ...state,
-            errorMessageText: action.errorMessageText,
+            errorMessageText: action.payload,
         };
-    case errorMessageActions.REMOVE_ERROR:
-        return {
+        break;
+    case errorMessageActionTypes.REMOVE_ERROR:
+        nextState = {
             ...state,
             errorMessageText: null,
         };
+        break;
     default:
-        return state;
+        nextState = state;
+        break;
     }
+    return nextState;
 }
 
-// Export Reducer
 export default errorMessageReducer;

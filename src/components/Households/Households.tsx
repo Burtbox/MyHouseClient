@@ -2,11 +2,11 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { IStore } from '../../interfaces/storeInterface';
 import { Loading } from '../Loading';
-import HouseholdsList from './HouseholdsList';
 import { getHouseholdsOfUser } from './householdsActions';
-import { IHouseholdsProps, IHouseholdsStore } from './householdsInterfaces';
+import { IHouseholdsReducer, IHouseholdsStore } from './householdsInterfaces';
+import HouseholdsList from './HouseholdsList';
 
-export class Households extends React.Component<IHouseholdsProps> {
+export class Households extends React.Component<IHouseholdsReducer> {
     componentDidMount() {
         this.props.dispatch(getHouseholdsOfUser(this.props.loggedInUser.token, this.props.loggedInUser.userId));
     }

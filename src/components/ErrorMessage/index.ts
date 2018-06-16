@@ -1,5 +1,3 @@
-import ErrorMessage, { ErrorMessage as DisconnectedErrorMessage } from './ErrorMessage';
+import ErrorMessage from './ErrorMessage';
 
 export default ErrorMessage;
-
-export { DisconnectedErrorMessage };

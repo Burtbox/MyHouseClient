@@ -1,17 +1,17 @@
+import CircularProgress from 'material-ui/CircularProgress';
+import FlatButton from 'material-ui/FlatButton';
+import TextField from 'material-ui/TextField';
 import * as React from 'react';
 import { connect } from 'react-redux';
-import TextField from 'material-ui/TextField';
-import FlatButton from 'material-ui/FlatButton';
-import CircularProgress from 'material-ui/CircularProgress';
-import appStyles from '../../styles';
-import { ILoginProps, ILoginState } from './loginInterfaces';
-import { loginUser } from './loginActions';
 import { myHouseRoutes } from '../../enums/routesEnum';
-import { IUserAuthenticationObject } from '../Users/usersInterfaces';
 import { IStore } from '../../interfaces/storeInterface';
+import appStyles from '../../styles';
+import { IUserAuthenticationObject } from '../Users/usersInterfaces';
+import { loginUser } from './loginActions';
+import { ILoginReducer, ILoginState } from './loginInterfaces';
 
-export class Login extends React.Component<ILoginProps, ILoginState> {
-    constructor(props: ILoginProps) {
+export class Login extends React.Component<ILoginReducer, ILoginState> {
+    constructor(props: ILoginReducer) {
         super(props);
         this.state = {
             user: {

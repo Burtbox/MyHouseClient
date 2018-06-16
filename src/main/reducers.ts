@@ -1,17 +1,17 @@
-import { combineReducers, Reducer } from 'redux';
-
-import usersReducer from '../components/Users/usersReducer';
+import { AnyAction, combineReducers, Reducer } from 'redux';
 import errorMessageReducer from '../components/ErrorMessage/errorMessageReducer';
-import loginReducer from '../components/Login/loginReducer';
-import registerReducer from '../components/Register/registerReducer';
-import myAccountReducer from '../components/MyAccount/myAccountReducer';
 import householdsReducer from '../components/Households/householdsReducer';
 import linksReducer from '../components/Links/linksReducer';
-import { IStore } from '../interfaces/storeInterface';
 import loadingReducer from '../components/Loading/loadingReducer';
+import loginReducer from '../components/Login/loginReducer';
 import logoutReducer from '../components/Logout/logoutReducer';
+import myAccountReducer from '../components/MyAccount/myAccountReducer';
+import registerReducer from '../components/Register/registerReducer';
+import usersReducer from '../components/Users/usersReducer';
+import { IStore } from '../interfaces/storeInterface';
 
-const combinedReducers: Reducer<IStore> = combineReducers({
+
+const combinedReducers: Reducer<IStore, AnyAction> = combineReducers({
     usersReducer,
     errorMessageReducer,
     loginReducer,

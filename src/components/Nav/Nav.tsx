@@ -1,18 +1,17 @@
-import * as React from 'react';
-import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { Toolbar, ToolbarGroup, ToolbarTitle } from 'material-ui/Toolbar';
 import IconButton from 'material-ui/IconButton';
-import Menu from 'material-ui/svg-icons/navigation/menu';
 import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
 import ActionHome from 'material-ui/svg-icons/action/home';
-import UserChip from '../UserChip';
-import styles from './navStyles';
-import { INavProps, INavStore } from './navInterfaces';
+import Menu from 'material-ui/svg-icons/navigation/menu';
+import { Toolbar, ToolbarGroup, ToolbarTitle } from 'material-ui/Toolbar';
+import * as React from 'react';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { myHouseRoutes } from '../../enums/routesEnum';
 import { IStore } from '../../interfaces/storeInterface';
-
+import UserChip from '../UserChip';
+import { INavProps, INavStore } from './navInterfaces';
+import styles from './navStyles';
 const LoggedOutMenuOptions: React.StatelessComponent = () => {
     return (
       <div>

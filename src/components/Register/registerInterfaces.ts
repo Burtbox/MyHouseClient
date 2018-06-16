@@ -2,7 +2,7 @@ import { Action } from 'redux';
 import { IComponentProps } from '../../interfaces/componentInterfaces';
 import { IUserAuthenticationObject } from '../Users/usersInterfaces';
 
-export interface IRegisterProps extends IComponentProps {
+export interface IRegisterReducer extends IComponentProps {
     registering: boolean;
 }
 

@@ -4,12 +4,12 @@ import { IStore } from '../../interfaces/storeInterface';
 import { getHouseholdsOfUser } from '../Households/householdsActions';
 import { Loading } from '../Loading';
 import NewsFeed from '../NewsFeed';
+import { getNewsFeed } from './linksActions';
+import { ILinksReducer, ILinksStore } from './linksInterfaces';
 import MultiHouseholdMenu from './MultiHouseholdMenu';
 import SingleHouseholdMenu from './SingleHouseholdMenu';
-import { getNewsFeed } from './linksActions';
-import { ILinksProps, ILinksStore } from './linksInterfaces';
 
-export class Links extends React.Component<ILinksProps> {
+export class Links extends React.Component<ILinksReducer> {
     componentDidMount() {
         this.props.dispatch(getHouseholdsOfUser(this.props.loggedInUser.token, this.props.loggedInUser.userId));
         this.props.dispatch(getNewsFeed(this.props.loggedInUser.token, this.props.loggedInUser));

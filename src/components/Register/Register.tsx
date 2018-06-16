@@ -1,17 +1,17 @@
+import CircularProgress from 'material-ui/CircularProgress';
+import FlatButton from 'material-ui/FlatButton';
+import TextField from 'material-ui/TextField';
 import * as React from 'react';
 import { connect } from 'react-redux';
-import TextField from 'material-ui/TextField';
-import FlatButton from 'material-ui/FlatButton';
-import CircularProgress from 'material-ui/CircularProgress';
-import { registerUser } from './registerActions';
-import appStyles from '../../styles';
-import { IRegisterProps, IRegisterState, IRegisterUserObject } from './registerInterfaces';
-import { addError } from '../ErrorMessage/errorMessageActions';
 import { myHouseRoutes } from '../../enums/routesEnum';
 import { IStore } from '../../interfaces/storeInterface';
+import appStyles from '../../styles';
+import { addError } from '../ErrorMessage/errorMessageActions';
+import { registerUser } from './registerActions';
+import { IRegisterReducer, IRegisterState, IRegisterUserObject } from './registerInterfaces';
 
-export class Register extends React.Component<IRegisterProps, IRegisterState> {
-    constructor(props: IRegisterProps) {
+export class Register extends React.Component<IRegisterReducer, IRegisterState> {
+    constructor(props: IRegisterReducer) {
         super(props);
         this.state = {
             registerUser: {

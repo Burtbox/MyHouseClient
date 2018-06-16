@@ -1,21 +1,20 @@
-import { loadingActions } from './loadingActions';
-import { ILoadingProps } from './loadingInterfaces';
-import { Action } from 'redux';
+import { LoadingActions, loadingActionTypes } from './loadingActions';
+import { ILoadingReducer } from './loadingInterfaces';
 
 function loadingReducer(
-    state: ILoadingProps = {
+    state: ILoadingReducer = {
         loading: 0,
     },
-    action: Action,
-): ILoadingProps {
-    let nextState: ILoadingProps;
+    action: LoadingActions,
+): ILoadingReducer {
+    let nextState: ILoadingReducer;
     switch (action.type) {
-    case loadingActions.LOADING_STARTED:
+    case loadingActionTypes.LOADING_STARTED:
         nextState = { ...state,
             loading: state.loading + 1,
         };
         break;
-    case loadingActions.LOADING_COMPLETED:
+    case loadingActionTypes.LOADING_COMPLETED:
         nextState = { ...state,
             loading: state.loading > 0 ? state.loading - 1 : 0,
         };
@@ -27,5 +26,4 @@ function loadingReducer(
     return nextState;
 }
 
-// Export Reducer
 export default loadingReducer;

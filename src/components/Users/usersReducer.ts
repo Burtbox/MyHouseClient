@@ -1,8 +1,8 @@
+import { IRecieveUserAction, IUsersReducer } from '../Users/usersInterfaces';
 import { usersActions } from './usersActions';
-import { IRecieveUserAction, IUsersProps } from '../Users/usersInterfaces';
 
 function usersReducer(
-    state: IUsersProps = {
+    state: IUsersReducer = {
         loggedInUser: undefined,
         isLoggedIn: undefined,
     },

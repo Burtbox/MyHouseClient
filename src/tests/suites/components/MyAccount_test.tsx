@@ -1,12 +1,12 @@
-import * as React from 'react';
 import { shallow } from 'enzyme';
+import * as React from 'react';
 import { DisconnectedMyAccount } from '../../../components/MyAccount';
-import { IMyAccountProps } from '../../../components/MyAccount/myAccountInterfaces';
+import { IMyAccountReducer } from '../../../components/MyAccount/myAccountInterfaces';
 import loggedInUser from '../../shared/loggedInUser';
 
 describe('My Account test suite', () => {
     test('Render my account screen', () => {
-        const props: Readonly<IMyAccountProps> = {
+        const props: Readonly<IMyAccountReducer> = {
             loggedInUser,
             history: undefined,
             dispatch: undefined,

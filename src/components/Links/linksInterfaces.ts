@@ -1,12 +1,12 @@
 import { IConnectedComponentProps } from '../../interfaces/componentInterfaces';
-import { IUserObject } from '../Users/usersInterfaces';
 import { IHousehold } from '../Households/householdsInterfaces';
-import { ILoadingProps } from '../Loading/loadingInterfaces';
+import { ILoadingReducer } from '../Loading/loadingInterfaces';
 import { INewsFeed } from '../NewsFeed/newsFeedInterfaces';
+import { IUserObject } from '../Users/usersInterfaces';
 
-export interface ILinksStore extends LinksBaseProps, ILoadingProps { }
+export interface ILinksStore extends LinksBaseProps, ILoadingReducer { }
 
-export interface ILinksProps extends IConnectedComponentProps, LinksBaseProps, ILoadingProps { }
+export interface ILinksReducer extends IConnectedComponentProps, LinksBaseProps, ILoadingReducer { }
 
 export interface ILinksReducer {
     newsFeedList: INewsFeed[];

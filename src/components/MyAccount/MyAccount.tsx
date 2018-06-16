@@ -1,17 +1,17 @@
+import Dialog from 'material-ui/Dialog';
+import FlatButton from 'material-ui/FlatButton';
+import Snackbar from 'material-ui/Snackbar';
+import TextField from 'material-ui/TextField';
 import * as React from 'react';
 import { connect } from 'react-redux';
-import TextField from 'material-ui/TextField';
-import FlatButton from 'material-ui/FlatButton';
-import Dialog from 'material-ui/Dialog';
-import Snackbar from 'material-ui/Snackbar';
-import styles from './myAccountStyles';
-import appStyles from '../../styles';
-import { IMyAccountProps, IMyAccountState } from './myAccountInterfaces';
-import { editUser, deleteUser } from './myAccountActions';
 import { myHouseRoutes } from '../../enums/routesEnum';
+import appStyles from '../../styles';
+import { deleteUser, editUser } from './myAccountActions';
+import { IMyAccountReducer, IMyAccountState } from './myAccountInterfaces';
+import styles from './myAccountStyles';
 
-export class MyAccount extends React.Component<IMyAccountProps, IMyAccountState> {
-    constructor(props: IMyAccountProps) {
+export class MyAccount extends React.Component<IMyAccountReducer, IMyAccountState> {
+    constructor(props: IMyAccountReducer) {
         super(props);
         this.state = {
             userUpdate: {
@@ -27,7 +27,7 @@ export class MyAccount extends React.Component<IMyAccountProps, IMyAccountState>
         };
     }
 
-    componentWillReceiveProps(nextProps: IMyAccountProps) {
+    componentWillReceiveProps(nextProps: IMyAccountReducer) {
         this.setState({ userEditing: nextProps.editing });
     }
 
