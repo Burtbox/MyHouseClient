@@ -1,4 +1,4 @@
-const styles: React.CSSProperties = {
+const styles: { [name: string]: React.CSSProperties } = {
     footer: {
         textAlign: 'center',
         padding: '20px',

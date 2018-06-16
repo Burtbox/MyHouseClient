@@ -1,15 +1,15 @@
 import { Action } from 'redux';
 import { IComponentProps } from '../../interfaces/componentInterfaces';
-import { IUserObject } from '../Users/usersInterfaces';
+import { IUser } from '../Users/usersInterfaces';
     
 export interface IMyAccountReducer extends IComponentProps {
-    loggedInUser: IUserObject;
+    loggedInUser: IUser;
     editing: boolean;
     deleting: boolean;
 }
 
 export interface IMyAccountState {
-    userUpdate: IUserObject;
+    userUpdate: IUser;
     userEditing: boolean;
     userEdited: boolean;
     userDeleting: boolean;

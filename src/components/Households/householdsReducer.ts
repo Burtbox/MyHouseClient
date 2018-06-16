@@ -1,18 +1,18 @@
-import { HouseholdsActions } from './householdsActions';
-import { IHouseholdsAction, IHouseholdsReducer } from './householdsInterfaces';
+import { HouseholdsActions, householdsActionTypes } from './householdsActions';
+import { IHouseholdsReducer } from './householdsInterfaces';
 
 function householdsReducer(
     state: IHouseholdsReducer = {
         householdsArray: [],
     },
-    action: IHouseholdsAction,
+    action: HouseholdsActions,
 ): IHouseholdsReducer {
     let nextState: IHouseholdsReducer;
     switch (action.type) {
-    case HouseholdsActions.HOUSEHOLDS_OF_USER:
+    case householdsActionTypes.GET_HOUSEHOLDS_OF_USER_RESPONSE:
         nextState = {
             ...state,
-            householdsArray: action.householdsArray,
+            householdsArray: action.payload,
         };
         break;
     default:

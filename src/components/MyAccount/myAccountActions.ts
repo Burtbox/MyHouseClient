@@ -1,8 +1,8 @@
-import APIHelper from '../../helpers/apiHelper';
-import { usersActions } from '../Users/usersActions';
-import { addError } from '../ErrorMessage/errorMessageActions';
-import { IUserObject, IRecieveUserAction } from '../Users/usersInterfaces';
 import { Action } from 'redux';
+import APIHelper from '../../helpers/ajaxHelper';
+import { addError } from '../ErrorMessage/errorMessageActions';
+import { usersActions } from '../Users/usersActions';
+import { IRecieveUserAction, IUser } from '../Users/usersInterfaces';
 
 export enum myAccountActions {
     EDIT_USER_STARTED = 'EDIT_USER_STARTED',
@@ -11,7 +11,7 @@ export enum myAccountActions {
     DELETE_USER_COMPLETED = 'EDIT_USER_COMPLETED',
 }
 
-export function editUser(token: string, user: IUserObject) {
+export function editUser(token: string, user: IUser) {
     const request = APIHelper.apiCall('PUT', 'Users/UpdateUserDetails', token, user.userId, user);
 
     return (dispatch: Function) => {
@@ -59,7 +59,7 @@ function editUserStarted() {
     return response;
 }
 
-function editUserSuccessful(editUserResponse: Response, user: IUserObject) {
+function editUserSuccessful(editUserResponse: Response, user: IUser) {
     const response: IRecieveUserAction = {
         type: usersActions.RECEIVE_USER,
         loggedInUser: user,

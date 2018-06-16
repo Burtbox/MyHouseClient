@@ -1,16 +1,16 @@
-import { IUserObject, IRecieveUserAction } from '../Users/usersInterfaces';
-import apiHelper from '../../helpers/apiHelper';
-import { HTTPMethod } from '../../enums/httpEnum';
 import { endpoints } from '../../enums/endpointsEnum';
-import { IOccupant } from '../Occupants/occupantsInterfaces';
+import { HTTPMethod } from '../../enums/httpEnum';
+import apiHelper from '../../helpers/ajaxHelper';
 import { AuthorizationResponse } from '../../interfaces/apiInterfaces';
+import { IOccupant } from '../Occupants/occupantsInterfaces';
+import { IRecieveUserAction, IUser } from '../Users/usersInterfaces';
 
 
 export enum usersActions {
     RECEIVE_USER = 'RECEIVE_USER',
 }
 
-export async function checkAuthorization(user: IUserObject): Promise<boolean> {
+export async function checkAuthorization(user: IUser): Promise<boolean> {
     let isLoggedIn = false;
     if (user && user.token && user.userId) {
         await apiHelper.apiCall<AuthorizationResponse>(HTTPMethod.GET, endpoints.authorization, user.token, user.userId)
@@ -34,7 +34,7 @@ export async function checkHouseholdAuthorization(occupant: IOccupant): Promise<
     return isLoggedIn;
 }
 
-export function receiveUser(user: IUserObject, isLoggedIn: boolean) {
+export function receiveUser(user: IUser, isLoggedIn: boolean) {
     const response: IRecieveUserAction = {
         isLoggedIn,
         type: usersActions.RECEIVE_USER,

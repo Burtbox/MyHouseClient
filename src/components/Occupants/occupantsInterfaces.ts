@@ -1,6 +1,6 @@
-import { IUserObject } from '../Users/usersInterfaces';
+import { IUser } from '../Users/usersInterfaces';
 
-export interface IOccupant extends IUserObject {
+export interface IOccupant extends IUser {
     occupantId: number;
 }
 

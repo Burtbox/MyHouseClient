@@ -1,5 +1,5 @@
-import { IUserObject } from '../Users/usersInterfaces';
+import { IUser } from '../Users/usersInterfaces';
     
 export interface IUserChipProps {
-    user: IUserObject;
+    user: IUser;
 }

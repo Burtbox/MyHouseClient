@@ -2,7 +2,7 @@ import { IConnectedComponentProps } from '../../interfaces/componentInterfaces';
 import { IHousehold } from '../Households/householdsInterfaces';
 import { ILoadingReducer } from '../Loading/loadingInterfaces';
 import { INewsFeed } from '../NewsFeed/newsFeedInterfaces';
-import { IUserObject } from '../Users/usersInterfaces';
+import { IUser } from '../Users/usersInterfaces';
 
 export interface ILinksStore extends LinksBaseProps, ILoadingReducer { }
 
@@ -14,5 +14,5 @@ export interface ILinksReducer {
 
 interface LinksBaseProps extends ILinksReducer {
     householdsArray: IHousehold[];
-    loggedInUser: IUserObject;
+    loggedInUser: IUser;
 }

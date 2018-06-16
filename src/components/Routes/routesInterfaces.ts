@@ -1,6 +1,6 @@
-import { IUserObject } from '../Users/usersInterfaces';
+import { IUser } from '../Users/usersInterfaces';
 
 export interface IRoutesProps {
     isLoggedIn: boolean;
-    loggedInUser: IUserObject;
+    loggedInUser: IUser;
 }

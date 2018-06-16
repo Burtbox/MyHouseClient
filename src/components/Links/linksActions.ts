@@ -1,19 +1,19 @@
-import apiHelper from '../../helpers/apiHelper';
-import { addError } from '../ErrorMessage/errorMessageActions';
-import { HTTPMethod } from '../../enums/httpEnum';
-import { endpoints } from '../../enums/endpointsEnum';
-import { IUserObject } from '../Users/usersInterfaces';
-import { houseMoneyLinkUrl, houseFoodLinkUrl } from '../../appConfig';
 import * as queryString from 'query-string';
-import { IOccupant } from '../Occupants/occupantsInterfaces';
+import { houseFoodLinkUrl, houseMoneyLinkUrl } from '../../appConfig';
+import { endpoints } from '../../enums/endpointsEnum';
+import { HTTPMethod } from '../../enums/httpEnum';
+import apiHelper from '../../helpers/ajaxHelper';
+import { addError } from '../ErrorMessage/errorMessageActions';
+import { loadingComplete, loadingStarted } from '../Loading/loadingActions';
 import { INewsFeed, INewsFeedsAction } from '../NewsFeed/newsFeedInterfaces';
-import { loadingStarted, loadingComplete } from '../Loading/loadingActions';
+import { IOccupant } from '../Occupants/occupantsInterfaces';
+import { IUser } from '../Users/usersInterfaces';
 
 export enum NewsFeedsActions {
     NEWSFEEDS_OF_USER = 'NEWSFEEDS_OF_USER',
 }
 
-export function getNewsFeed(token: string, occupant: IUserObject) {
+export function getNewsFeed(token: string, occupant: IUser) {
     const request = apiHelper.apiCall<INewsFeed[]>(HTTPMethod.GET, endpoints.newsFeeds, token, occupant.userId);
 
     return (dispatch: Function) => {
@@ -39,7 +39,7 @@ function getNewsFeedSuccessful(newsFeedsResponse: INewsFeed[]): INewsFeedsAction
     return response;
 }
 
-export function gethouseMoneyLinkUrl(user: IUserObject, occupantId: number) {
+export function gethouseMoneyLinkUrl(user: IUser, occupantId: number) {
     const urlParams: IOccupant = {
         occupantId,
         userId: user.userId,
@@ -50,7 +50,7 @@ export function gethouseMoneyLinkUrl(user: IUserObject, occupantId: number) {
     return houseMoneyLinkUrl + '?' + queryString.stringify(urlParams);
 }
 
-export function gethouseFoodLinkUrl(user: IUserObject, occupantId: number) {
+export function gethouseFoodLinkUrl(user: IUser, occupantId: number) {
     const urlParams: IOccupant = {
         occupantId,
         userId: user.userId,

@@ -1,19 +1,19 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { Switch, Route, withRouter, RouteComponentProps } from 'react-router-dom';
-import { IRoutesProps } from './routesInterfaces';
+import { Route, RouteComponentProps, Switch, withRouter } from 'react-router-dom';
 import { myHouseRoutes } from '../../enums/routesEnum';
-import Login from '../Login';
-import Register from '../Register';
-import Links from '../Links';
-import MyAccount from '../MyAccount';
-import ChangePassword from '../ChangePassword';
-import NotFound404 from '../NotFound404';
-import Households from '../Households';
 import { IStore } from '../../interfaces/storeInterface';
-import { checkAuthorization } from '../Users/usersActions';
-import { IUserObject } from '../Users/usersInterfaces';
+import ChangePassword from '../ChangePassword';
+import Households from '../Households';
+import Links from '../Links';
+import Login from '../Login';
 import Logout from '../Logout';
+import MyAccount from '../MyAccount';
+import NotFound404 from '../NotFound404';
+import Register from '../Register';
+import { checkAuthorization } from '../Users/usersActions';
+import { IUser } from '../Users/usersInterfaces';
+import { IRoutesProps } from './routesInterfaces';
 
 const LoggedInRoutes: React.StatelessComponent = () => {
     return (
@@ -48,7 +48,7 @@ export const Routes: React.StatelessComponent<RouteComponentProps<any> & IRoutes
 
 const mapStateToProps = (store: IStore) => {
     const isLoggedIn: boolean = store.usersReducer.isLoggedIn ? store.usersReducer.isLoggedIn : false;
-    const loggedInUser: IUserObject = store.usersReducer.loggedInUser ? store.usersReducer.loggedInUser : null;
+    const loggedInUser: IUser = store.usersReducer.loggedInUser ? store.usersReducer.loggedInUser : null;
     const props: IRoutesProps = {
         isLoggedIn,
         loggedInUser,

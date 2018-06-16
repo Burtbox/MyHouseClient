@@ -1,39 +1,21 @@
-import apiHelper from '../../helpers/apiHelper';
-import { addError } from '../ErrorMessage/errorMessageActions';
-import { HTTPMethod } from '../../enums/httpEnum';
-import { IHousehold, IHouseholdsAction } from './householdsInterfaces';
-import { endpoints } from '../../enums/endpointsEnum';
-import { loadingStarted, loadingComplete } from '../Loading/loadingActions';
+import { ActionsUnion, createAction } from '../../helpers/actionCreator';
+import { IUserDetails } from '../Users/usersInterfaces';
+import { IHousehold } from './householdsInterfaces';
 
-export enum HouseholdsActions {
-    GET_HOUSEHOLDS_OF_USER_STARTED = 'GET_HOUSEHOLDS_OF_USER_STARTED',
-    GET_HOUSEHOLDS_OF_USER_COMPLETED = 'GET_HOUSEHOLDS_OF_USER_STARTED',
-    HOUSEHOLDS_OF_USER = 'HOUSEHOLDS_OF_USER',
+export enum householdsActionTypes {
+    GET_HOUSEHOLDS_OF_USER_REQUEST = 'GET_HOUSEHOLDS_OF_USER_REQUEST',
+    GET_HOUSEHOLDS_OF_USER_RESPONSE = 'GET_HOUSEHOLDS_OF_USER_RESPONSE',
 }
 
-export function getHouseholdsOfUser(token: string, userId: string) {
-    const request = apiHelper.apiCall<IHousehold[]>(HTTPMethod.GET, endpoints.households, token, userId);
+const getHouseholdsOfUser = (userDetails: IUserDetails) =>
+    createAction(householdsActionTypes.GET_HOUSEHOLDS_OF_USER_REQUEST, userDetails);
 
-    return (dispatch: Function) => {
-        dispatch(loadingStarted());
-        return request
-            .then((response: IHousehold[]) => {
-                dispatch(receiveHouseholds(response));
-                dispatch(loadingComplete());
-            })
-            .catch((error: Error) => {
-                dispatch(addError(error.message));
-                dispatch(loadingComplete());
-                throw error;
-            });
-    };
-}
+const receiveHouseholdsOfUser = (householdsResponse: IHousehold[]) =>
+    createAction(householdsActionTypes.GET_HOUSEHOLDS_OF_USER_RESPONSE, householdsResponse);
 
-function receiveHouseholds(householdsResponse: IHousehold[]): IHouseholdsAction {
-    const response: IHouseholdsAction = {
-        type: HouseholdsActions.HOUSEHOLDS_OF_USER,
-        householdsArray: householdsResponse,
-    };
-    return response;
-}
+export const HouseholdsActions = {
+    getHouseholdsOfUser,
+    receiveHouseholdsOfUser,
+};
 
+export type HouseholdsActions = ActionsUnion<typeof HouseholdsActions>;

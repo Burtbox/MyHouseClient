@@ -1,8 +1,8 @@
 import { IComponentProps } from '../../interfaces/componentInterfaces';
-import { IUserObject } from '../Users/usersInterfaces';
+import { IUser } from '../Users/usersInterfaces';
     
 export interface IChangePasswordProps extends IComponentProps {
-    loggedInUser: IUserObject;
+    loggedInUser: IUser;
 }
 
 export interface IChangePasswordState {

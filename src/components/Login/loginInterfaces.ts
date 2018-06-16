@@ -1,9 +1,9 @@
 import { Action } from 'redux';
 import { IComponentProps } from '../../interfaces/componentInterfaces';
-import { IUserAuthenticationObject, IUserObject } from '../Users/usersInterfaces';
+import { IUser, IUserAuthenticationObject } from '../Users/usersInterfaces';
     
 export interface ILoginReducer extends IComponentProps {
-    user: IUserObject;
+    user: IUser;
     loggingIn: boolean;
 }
 

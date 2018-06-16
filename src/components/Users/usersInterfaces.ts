@@ -1,13 +1,13 @@
 import { Action } from 'redux';
 
-export interface IUserDetailsObject {
-    email: string;
-    displayName: string;
-}
-
-export interface IUserObject extends IUserDetailsObject {
+export interface IUserDetails {
     userId: string;
     token: string;
+}
+
+export interface IUser extends IUserDetails {
+    email: string;
+    displayName: string;
 }
 
 export interface IUserAuthenticationObject {
@@ -15,7 +15,7 @@ export interface IUserAuthenticationObject {
     password: string;
 }
 
-export interface IUserResponseObject extends IUserDetailsObject {
+export interface IUserResponseObject extends IUserDetails {
     uid: string;
     token: string;
 }
@@ -23,6 +23,6 @@ export interface IUserResponseObject extends IUserDetailsObject {
 export interface IRecieveUserAction extends Action, IUsersReducer { }
 
 export interface IUsersReducer {
-    loggedInUser: IUserObject;
+    loggedInUser: IUser;
     isLoggedIn: boolean;
 }

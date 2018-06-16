@@ -1,6 +1,6 @@
-import { IUserObject } from '../../components/Users/usersInterfaces';
+import { IUser } from '../../components/Users/usersInterfaces';
 
-const loggedInUser: IUserObject = {
+const loggedInUser: IUser = {
     userId: 'unitTestUserID',
     token: 'tooken',
     email: 'unitTestEmail',
