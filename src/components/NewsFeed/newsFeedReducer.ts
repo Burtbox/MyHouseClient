@@ -1,4 +1,4 @@
-import { NewsFeedsActions } from './linksActions';
+import { newsFeedsActionTypes } from '../NewsFeed/newsFeedActions';
 import { INewsFeedsAction } from '../NewsFeed/newsFeedInterfaces';
 import { ILinksReducer } from './linksInterfaces';
 
@@ -8,7 +8,7 @@ function linksReducer(
 ): ILinksReducer {
     let nextState: ILinksReducer;
     switch (action.type) {
-    case NewsFeedsActions.NEWSFEEDS_OF_USER:
+    case newsFeedsActionTypes.NEWSFEEDS_OF_USER:
         nextState = {
             ...state,
             newsFeedList: action.newsFeedList,

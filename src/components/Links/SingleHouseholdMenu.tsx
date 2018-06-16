@@ -3,7 +3,7 @@ import LocalAtm from 'material-ui/svg-icons/maps/local-atm';
 import Restaurant from 'material-ui/svg-icons/maps/restaurant';
 import * as React from 'react';
 import { IHouseholdsReducer } from '../Households/householdsInterfaces';
-import { gethouseFoodLinkUrl, gethouseMoneyLinkUrl } from './linksActions';
+import { gethouseFoodLinkUrl, gethouseMoneyLinkUrl } from '../NewsFeed/newsFeedActions';
 import styles from './linksStyles';
 
 const SingleHouseholdMenu: React.StatelessComponent<IHouseholdsReducer> = (props) => {

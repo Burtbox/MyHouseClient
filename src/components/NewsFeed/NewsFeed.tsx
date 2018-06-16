@@ -1,6 +1,6 @@
+import { Button, Card, CardActions, CardHeader, CardText } from '@material-ui/core';
 import * as React from 'react';
-import { Card, CardHeader, CardText, CardActions, FlatButton } from 'material-ui';
-import { INewsFeedProps, INewsFeed } from './newsFeedInterfaces';
+import { INewsFeed, INewsFeedProps } from './newsFeedInterfaces';
 
 const NewsFeed: React.StatelessComponent<INewsFeedProps> = (props) => {
     return (
@@ -24,7 +24,7 @@ const NewsFeed: React.StatelessComponent<INewsFeedProps> = (props) => {
                         {newsItem.story}
                     </CardText>
                     <CardActions>
-                        <FlatButton label="View" />
+                        <Button>View</Button>
                     </CardActions>
                 </Card>
             ))}

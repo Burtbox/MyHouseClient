@@ -4,7 +4,7 @@ import { IStore } from '../../interfaces/storeInterface';
 import { getHouseholdsOfUser } from '../Households/householdsActions';
 import { Loading } from '../Loading';
 import NewsFeed from '../NewsFeed';
-import { getNewsFeed } from './linksActions';
+import { getNewsFeed } from '../NewsFeed/newsFeedActions';
 import { ILinksReducer, ILinksStore } from './linksInterfaces';
 import MultiHouseholdMenu from './MultiHouseholdMenu';
 import SingleHouseholdMenu from './SingleHouseholdMenu';

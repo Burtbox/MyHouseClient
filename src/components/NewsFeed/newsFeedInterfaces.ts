@@ -1,5 +1,3 @@
-import { Action } from 'redux';
-
 export interface INewsFeed {
     newsFeedId: number;
     householdId: number;
@@ -8,8 +6,6 @@ export interface INewsFeed {
     story: string;
     author: string;
 }
-
-export interface INewsFeedsAction extends Action, INewsFeedProps { }
 
 export interface INewsFeedProps {
     newsFeedList: INewsFeed[];
