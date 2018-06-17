@@ -24,7 +24,7 @@ import { myHouseRoutes } from '../../enums/routesEnum';
                     }
 */
 
-const LoggedInMenuOptions: React.StatelessComponent = () => {
+const LoggedInMenu: React.StatelessComponent = () => {
     return (
         <List>
             <Tooltip id="tooltip-icon" title="Add a transaction" placement="top">
@@ -92,4 +92,4 @@ const LoggedInMenuOptions: React.StatelessComponent = () => {
     );
 };
 
-export default LoggedInMenuOptions;
+export default LoggedInMenu;

@@ -5,10 +5,10 @@ import { myHouseRoutes } from '../../enums/routesEnum';
 import { IStore } from '../../interfaces/storeInterface';
 import ChangePassword from '../ChangePassword';
 import Households from '../Households';
-import Links from '../Links';
 import Login from '../Login';
 import Logout from '../Logout';
 import MyAccount from '../MyAccount';
+import NewsFeed from '../NewsFeed';
 import NotFound404 from '../NotFound404';
 import Register from '../Register';
 import { checkAuthorization } from '../Users/usersActions';
@@ -18,8 +18,8 @@ import { IRoutesProps } from './routesInterfaces';
 const LoggedInRoutes: React.StatelessComponent = () => {
     return (
         <Switch>
-            <Route exact path={myHouseRoutes.Base} component={Links} />
-            <Route path={myHouseRoutes.Links} component={Links} />
+            <Route exact path={myHouseRoutes.Base} component={NewsFeed} />
+            <Route path={myHouseRoutes.NewsFeed} component={NewsFeed} />
             <Route path={myHouseRoutes.Households} component={Households} />
             <Route path={myHouseRoutes.MyAccount} component={MyAccount} />
             <Route path={myHouseRoutes.ChangePassword} component={ChangePassword} />

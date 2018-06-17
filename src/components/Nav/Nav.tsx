@@ -9,6 +9,8 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { IStore } from '../../interfaces/storeInterface';
+import LoggedInMenu from './LoggedInMenu';
+import LoggedInNavButtons from './LoggedInNavButtons';
 import { INavProps, INavState, INavStore } from './navInterfaces';
 
 // TODO: Add back in user chip, but with different function?
@@ -73,7 +75,7 @@ export class Nav extends React.Component<INavProps, INavState> {
                         </Link>
                     </div>
                     <Divider />
-                    <LoggedInMenuOptions {...this.props} />
+                    <LoggedInMenu {...this.props} />
                 </ SwipeableDrawer> : <div />}
             </ div>
         );

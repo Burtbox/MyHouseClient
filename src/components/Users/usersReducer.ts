@@ -1,4 +1,4 @@
-import { IRecieveUserAction, IUsersReducer } from '../Users/usersInterfaces';
+import { IUsersReducer } from '../Users/usersInterfaces';
 import { usersActions } from './usersActions';
 
 function usersReducer(
@@ -6,7 +6,7 @@ function usersReducer(
         loggedInUser: undefined,
         isLoggedIn: undefined,
     },
-    action: IRecieveUserAction,
+    action: UserAc,
 ) {
     switch (action.type) {
     case usersActions.RECEIVE_USER:
@@ -20,5 +20,4 @@ function usersReducer(
     }
 }
 
-// Export Reducer
 export default usersReducer;

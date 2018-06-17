@@ -1,7 +1,7 @@
 import { NewsFeedActions, newsFeedsActionTypes } from '../NewsFeed/newsFeedActions';
 import { INewsFeedReducer } from './newsFeedInterfaces';
 
-function linksReducer(
+function newsFeedReducer(
     state: INewsFeedReducer = { newsFeedList: [] },
     action: NewsFeedActions,
 ): INewsFeedReducer {
@@ -20,4 +20,4 @@ function linksReducer(
     return nextState;
 }
 
-export default linksReducer;
+export default newsFeedReducer;

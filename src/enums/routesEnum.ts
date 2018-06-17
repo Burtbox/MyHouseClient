@@ -4,7 +4,7 @@ export enum myHouseRoutes {
     ChangePassword = '/ChangePassword',
     Households = '/Households',
     Login = '/Login',
-    Links = '/Links',
+    NewsFeed = '/NewsFeed',
     MyAccount = '/MyAccount',
     NotFound404 = '/NotFound404',
     Register = '/Register',

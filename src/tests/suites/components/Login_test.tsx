@@ -1,18 +1,12 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 import { DisconnectedLogin } from '../../../components/Login';
-import { ILoginReducer } from '../../../components/Login/loginInterfaces';
+import { ILoginProps } from '../../../components/Login/loginInterfaces';
 
 describe('Login test suite', () => {
     // Alternative here is to wrap with provider, but that was a pain and I'm not sure of the benefit
     test('Render login screen', () => {
-        const props: Readonly<ILoginReducer> = {
-            user: {
-                userId: undefined,
-                token: undefined,
-                email: undefined,
-                displayName: undefined,
-            },
+        const props: Readonly<ILoginProps> = {
             history: undefined,
             loggingIn: false,
             dispatch: undefined,

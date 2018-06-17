@@ -1,8 +1,8 @@
 import auth from '../../helpers/firebase';
+import { ErrorMessageActions } from '../ErrorMessage/errorMessageActions';
 import { usersActions } from '../Users/usersActions';
-import { addError } from '../ErrorMessage/errorMessageActions';
-import { IUserResponseObject, IRecieveUserAction } from '../Users/usersInterfaces';
-import { IUserRegistrationObject, IRegisterUserObject, IRegisterAction } from './registerInterfaces';
+import { IRecieveUserAction, IUserResponseObject } from '../Users/usersInterfaces';
+import { IRegisterAction, IRegisterUserObject, IUserRegistrationObject } from './registerInterfaces';
 
 export enum registerActions {
     REGISTER_STARTED = 'REGISTER_STARTED',
@@ -25,7 +25,7 @@ export function registerUser(user: IRegisterUserObject) {
                     dispatch(registerAttemptComplete());
                 })
                 .catch((error: Error) => {
-                    dispatch(addError(error.message));
+                    dispatch(ErrorMessageActions.addError(error.message));
                     dispatch(registerAttemptComplete());
                     throw error;
                 });

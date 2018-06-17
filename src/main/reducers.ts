@@ -5,11 +5,10 @@ import loadingReducer from '../components/Loading/loadingReducer';
 import loginReducer from '../components/Login/loginReducer';
 import logoutReducer from '../components/Logout/logoutReducer';
 import myAccountReducer from '../components/MyAccount/myAccountReducer';
-import linksReducer from '../components/NewsFeed/newsFeedReducer';
+import newsFeedReducer from '../components/NewsFeed/newsFeedReducer';
 import registerReducer from '../components/Register/registerReducer';
 import usersReducer from '../components/Users/usersReducer';
 import { IStore } from '../interfaces/storeInterface';
-
 
 const combinedReducers: Reducer<IStore, AnyAction> = combineReducers({
     usersReducer,
@@ -18,7 +17,7 @@ const combinedReducers: Reducer<IStore, AnyAction> = combineReducers({
     registerReducer,
     myAccountReducer,
     householdsReducer,
-    linksReducer,
+    newsFeedReducer,
     loadingReducer,
     logoutReducer,
 });

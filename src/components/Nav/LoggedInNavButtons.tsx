@@ -5,19 +5,20 @@ import Add from '@material-ui/icons/Add';
 import Pageview from '@material-ui/icons/Pageview';
 import * as React from 'react';
 import { Link } from 'react-router-dom';
+import { myHouseRoutes } from '../../enums/routesEnum';
 
-const LoggedInNavItems: React.StatelessComponent = () => {
+const LoggedInNavButtons: React.StatelessComponent = () => {
     return (
         <div style={{ marginLeft: 'auto', marginRight: '0' }}>
-            <Tooltip id="tooltip-icon" title="Add Transaction">
-                <Link to={houseMoneyRoutes.AddTransaction}>
+            <Tooltip id="tooltip-icon" title="News Feed">
+                <Link to={myHouseRoutes.NewsFeed}>
                     <IconButton color="secondary">
                         <Add color="secondary" />
                     </IconButton>
                 </Link>
             </Tooltip>
-            <Tooltip id="tooltip-icon" title="View Transactions">
-                <Link to={houseMoneyRoutes.ViewTransactions}>
+            <Tooltip id="tooltip-icon" title="Households">
+                <Link to={myHouseRoutes.Households}>
                     <IconButton color="secondary">
                         <Pageview color="secondary" />
                     </IconButton>
@@ -26,3 +27,5 @@ const LoggedInNavItems: React.StatelessComponent = () => {
         </div>
     );
 };
+
+export default LoggedInNavButtons;

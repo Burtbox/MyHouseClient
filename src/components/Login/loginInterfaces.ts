@@ -1,18 +1,15 @@
-import { Action } from 'redux';
-import { IComponentProps } from '../../interfaces/componentInterfaces';
-import { IUser, IUserAuthenticationObject } from '../Users/usersInterfaces';
-    
-export interface ILoginReducer extends IComponentProps {
-    user: IUser;
-    loggingIn: boolean;
-}
+import { IComponentProps, IConnectedComponentProps } from '../../interfaces/componentInterfaces';
+import { IUserAuthenticationObject } from '../Users/usersInterfaces';
 
 export interface ILoginState {
     user: IUserAuthenticationObject;
-    error: Error;
     loading: boolean;
 }
 
-export interface ILoginAction extends Action {
-    loading: boolean;
+export interface ILoginProps extends IComponentProps, ILoginReducer { }
+
+export interface ILoginStore extends IConnectedComponentProps, ILoginReducer { }
+
+export interface ILoginReducer {
+    loggingIn: boolean;
 }

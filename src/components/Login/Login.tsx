@@ -1,43 +1,35 @@
-import CircularProgress from 'material-ui/CircularProgress';
-import FlatButton from 'material-ui/FlatButton';
-import TextField from 'material-ui/TextField';
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { myHouseRoutes } from '../../enums/routesEnum';
 import { IStore } from '../../interfaces/storeInterface';
 import appStyles from '../../styles';
+import { Loading } from '../Loading';
 import { IUserAuthenticationObject } from '../Users/usersInterfaces';
-import { loginUser } from './loginActions';
-import { ILoginReducer, ILoginState } from './loginInterfaces';
+import { loginUser } from './loginEpic'; // TODO: Remove this direct call?
+import { ILoginProps, ILoginState } from './loginInterfaces';
 
-export class Login extends React.Component<ILoginReducer, ILoginState> {
-    constructor(props: ILoginReducer) {
+export class Login extends React.Component<ILoginProps, ILoginState> {
+    constructor(props: ILoginProps) {
         super(props);
         this.state = {
             user: {
                 email: '',
                 password: '',
             },
-            error: null,
-            loading: false,
+            loading: false, // TODO: move loading to redux
         };
     }
 
     handleLogin = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        const { dispatch, history } = this.props;
         const login: IUserAuthenticationObject = {
             email: this.state.user.email,
             password: this.state.user.password,
         };
         this.setState({ loading: true });
-        dispatch(loginUser(login))
-      .then(() => {
-          history.push(myHouseRoutes.Links);
-      })
-      .catch((error: Error) => {
-          this.setState({ error, loading: false });
-      });
+        loginUser(login);
     }
 
     handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -52,57 +44,57 @@ export class Login extends React.Component<ILoginReducer, ILoginState> {
 
     render() {
         return (
-      <form style={appStyles.container} onSubmit={this.handleLogin}>
-        <h2>Welcome</h2>
-        <div>
-          <TextField
-            name="email"
-            type="text"
-            hintText="example@email.com"
-            floatingLabelText="Email Address"
-            required
-            onChange={this.handleInputChange}
-            disabled={this.state.loading}
-            maxlength="50"
-          />
-        </div>
-        <div>
-          <TextField
-            name="password"
-            type="password"
-            hintText="**********"
-            floatingLabelText="Password"
-            autoComplete="current-password"
-            required
-            onChange={this.handleInputChange}
-            disabled={this.state.loading}
-            maxlength="30"
-          />
-        </div>
-        <div>
-          {this.state.loading ? (
-            <CircularProgress />
-          ) : (
-              <FlatButton type="submit" label="Sign In" />
-            )}
-        </div>
-        <br />
-        <div>
-          <span style={{ 'vertical-align': 'middle' }}> New to My House? </span>{' '}
-          <span>
-            <FlatButton
-              secondary={true}
-              label="Sign Up"
-              onClick={() => this.props.history.push(myHouseRoutes.Register)}
-            />
-          </span>
-        </div>
-      </form>
+            <form style={appStyles.container} onSubmit={this.handleLogin}>
+                <h2>Welcome</h2>
+                <div>
+                    <TextField
+                        name="email"
+                        type="text"
+                        label="Email Address"
+                        placeholder="example@email.com"
+                        required
+                        onChange={this.handleInputChange}
+                        disabled={this.state.loading}
+                    />
+                </div>
+                <div>
+                    <TextField
+                        name="password"
+                        type="password"
+                        label="Password"
+                        placeholder="**********"
+                        autoComplete="current-password"
+                        required
+                        onChange={this.handleInputChange}
+                        disabled={this.state.loading}
+                    />
+                </div>
+                <div>
+                    {this.state.loading ? (
+                        <Loading />
+                    ) : (
+                            <Button type="submit" variant="outlined">
+                                Sign In
+                            </Button>
+                        )}
+                </div>
+                <br />
+                <div>
+                    <span style={{ verticalAlign: 'middle' }}> New to My House? </span>{' '}
+                    <span>
+                        <Button
+                            variant="flat"
+                            onClick={() => this.props.history.push(myHouseRoutes.Register)}
+                        >
+                            Sign Up
+                        </Button>
+                    </span>
+                </div>
+            </form>
         );
     }
 }
 
-// Retrieve data from store as props
 const mapStateToProps = (store: IStore) => {
     return {
         loggingIn: store.loginReducer.loggingIn,
