@@ -1,9 +1,7 @@
 import { IComponentProps } from '../../interfaces/componentInterfaces';
-import { IUser } from '../Users/usersInterfaces';
+import { ILoggedInUser } from '../Users/usersInterfaces';
 
-export interface IChangePasswordProps extends IComponentProps {
-    loggedInUser: IUser;
-}
+export interface IChangePasswordProps extends IComponentProps, ILoggedInUser { }
 
 export interface IChangePasswordState {
     passwordUpdate: {

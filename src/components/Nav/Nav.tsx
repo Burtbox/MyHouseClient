@@ -1,97 +1,85 @@
-import IconButton from 'material-ui/IconButton';
-import IconMenu from 'material-ui/IconMenu';
-import MenuItem from 'material-ui/MenuItem';
-import ActionHome from 'material-ui/svg-icons/action/home';
-import Menu from 'material-ui/svg-icons/navigation/menu';
-import { Toolbar, ToolbarGroup, ToolbarTitle } from 'material-ui/Toolbar';
+import AppBar from '@material-ui/core/AppBar/AppBar';
+import Divider from '@material-ui/core/Divider';
+import IconButton from '@material-ui/core/IconButton/IconButton';
+import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
+import Toolbar from '@material-ui/core/Toolbar/Toolbar';
+import Typography from '@material-ui/core/Typography/Typography';
+import MenuIcon from '@material-ui/icons/Menu';
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { myHouseRoutes } from '../../enums/routesEnum';
 import { IStore } from '../../interfaces/storeInterface';
-import UserChip from '../UserChip';
-import { INavProps, INavStore } from './navInterfaces';
-import styles from './navStyles';
-const LoggedOutMenuOptions: React.StatelessComponent = () => {
-    return (
-      <div>
-        <Link style={styles.menuItems} to={myHouseRoutes.Login}>
-          <MenuItem>Sign In </MenuItem>
-        </Link>
+import { INavProps, INavState, INavStore } from './navInterfaces';
 
-        <Link style={styles.menuItems} to={myHouseRoutes.Register}>
-          <MenuItem> Sign Up</MenuItem>
-        </Link>
-      </div>
-    );
-};
+// TODO: Add back in user chip, but with different function?
+export class Nav extends React.Component<INavProps, INavState> {
+    constructor(props: INavProps) {
+        super(props);
 
-const LoggedInMenuOptions: React.StatelessComponent<INavProps> = (props) => {
-    return (
-      <div>
-        <Link style={styles.menuItems} to={myHouseRoutes.MyAccount}>
-          <MenuItem>
-            <UserChip user={props.loggedInUser} />
-          </MenuItem>
-        </Link>
+        this.state = {
+            openSidebar: true,
+        };
+    }
 
-        <Link style={styles.menuItems} to={myHouseRoutes.Households}>
-          <MenuItem> Households </MenuItem>
-        </Link>
+    toggleDrawer = (event: React.MouseEvent<HTMLElement>) => {
+        this.setState({ openSidebar: !this.state.openSidebar });
+    }
 
-        <Link style={styles.menuItems} to={myHouseRoutes.Logout}>
-          <MenuItem>Logout</MenuItem>
-        </Link>
-      </div>
-    );
-};
+    render() {
+        return (
+            <div>
+                <AppBar position="static">
+                    <Toolbar>
+                        <IconButton color="secondary" aria-label="Menu" onClick={this.toggleDrawer}>
+                            <MenuIcon color="secondary" />
+                        </IconButton>
+                        <Link to="/" style={{ textDecoration: 'none' }}>
+                            <Typography variant="headline" color="secondary">
+                                My House
+                            </Typography>
+                        </Link>
+                        {this.props.isLoggedIn ? <LoggedInNavButtons /> : <div />}
+                    </Toolbar>
+                </AppBar>
+                {this.props.isLoggedIn ? <SwipeableDrawer
+                    open={this.state.openSidebar}
+                    onClose={this.toggleDrawer}
+                    onOpen={this.toggleDrawer}
+                >
+                    <div style={{
+                        minHeight: '64px',
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                    }}>
+                        <IconButton
+                            color="secondary"
+                            style={{
+                                display: 'inline-flex',
+                                marginLeft: '24px',
+                            }}
+                            aria-label="Menu"
+                            onClick={this.toggleDrawer}>
+                            <MenuIcon />
+                        </IconButton>
+                        <Link to="/" style={{
+                            display: 'inline-flex',
+                            paddingRight: '24px',
+                            textDecoration: 'none',
+                        }}>
+                            <Typography variant="headline">
+                                My House
+                            </Typography>
+                        </Link>
+                    </div>
+                    <Divider />
+                    <LoggedInMenuOptions {...this.props} />
+                </ SwipeableDrawer> : <div />}
+            </ div>
+        );
+    }
+}
 
-const LoggedInNavItems: React.StatelessComponent = () => {
-    return (
-      <ToolbarGroup>
-      </ToolbarGroup>
-    );
-};
-
-const LoggedOutNavItems: React.StatelessComponent = () => {
-    return null;
-};
-
-export const Nav: React.StatelessComponent<INavProps> = (props) => {
-    return (
-      <Toolbar>
-        <ToolbarGroup>
-          <Link to={myHouseRoutes.Base}>
-            <IconButton tooltip="Home">
-              <ActionHome />
-            </IconButton>
-          </Link>
-          <ToolbarTitle text="My House" />
-        </ToolbarGroup>
-        <ToolbarGroup>
-          {props.isLoggedIn
-            ? <LoggedInNavItems />
-            : <LoggedOutNavItems />}
-
-          <IconMenu
-            anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
-            targetOrigin={{ horizontal: 'right', vertical: 'top' }}
-            iconButtonElement={
-              <IconButton tooltip="Menu">
-                <Menu />
-              </IconButton>
-            }
-          >
-            {props.isLoggedIn
-              ? <LoggedInMenuOptions {...props} /> 
-              : <LoggedOutMenuOptions />}
-          </IconMenu>
-        </ToolbarGroup>
-      </Toolbar>
-    );
-};
-
-// Retrieve data from store as props
 const mapStateToProps = (store: IStore) => {
     const props: INavStore = {
         loggedInUser: store.usersReducer.loggedInUser,

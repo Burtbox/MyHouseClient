@@ -1,6 +1,7 @@
 import { History } from 'history';
 import { Action, Dispatch } from 'redux';
-import { IUser } from '../components/Users/usersInterfaces';
+import { ILoadingProps } from '../components/Loading/loadingInterfaces';
+import { ILoggedInUser } from '../components/Users/usersInterfaces';
 
 export interface IComponentProps {
     dispatch: Dispatch<Action>;
@@ -8,7 +9,4 @@ export interface IComponentProps {
 }
 
 // TODO: Will want to tweak this and remove  extends IComponentProps
-export interface IConnectedComponentProps extends IComponentProps {
-    loggedInUser: IUser;
-    isLoggedIn: boolean;
-}
+export interface IConnectedComponentProps extends ILoggedInUser, ILoadingProps { }

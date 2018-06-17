@@ -1,17 +1,16 @@
-import { newsFeedsActionTypes } from '../NewsFeed/newsFeedActions';
-import { INewsFeedsAction } from '../NewsFeed/newsFeedInterfaces';
-import { ILinksReducer } from './linksInterfaces';
+import { NewsFeedActions, newsFeedsActionTypes } from '../NewsFeed/newsFeedActions';
+import { INewsFeedReducer } from './newsFeedInterfaces';
 
 function linksReducer(
-    state: ILinksReducer = { newsFeedList: [] },
-    action: INewsFeedsAction,
-): ILinksReducer {
-    let nextState: ILinksReducer;
+    state: INewsFeedReducer = { newsFeedList: [] },
+    action: NewsFeedActions,
+): INewsFeedReducer {
+    let nextState: INewsFeedReducer;
     switch (action.type) {
-    case newsFeedsActionTypes.NEWSFEEDS_OF_USER:
+    case newsFeedsActionTypes.GET_NEWSFEEDS_OF_USER_RESPONSE:
         nextState = {
             ...state,
-            newsFeedList: action.newsFeedList,
+            newsFeedList: action.payload,
         };
         break;
     default:

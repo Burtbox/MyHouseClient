@@ -6,7 +6,7 @@ import appTheme from '../../themes';
 import { ErrorMessageActions } from './errorMessageActions';
 import { IErrorMessageProps, IErrorMessageState, IErrorMessageStore } from './errorMessageInterfaces';
 
-class ErrorMessage extends React.Component<IErrorMessageProps, IErrorMessageState> {
+export class ErrorMessage extends React.Component<IErrorMessageProps, IErrorMessageState> {
     constructor(props: IErrorMessageProps) {
         super(props);
         this.state = {

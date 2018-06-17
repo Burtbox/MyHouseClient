@@ -1,9 +1,8 @@
 import { Action } from 'redux';
 import { IComponentProps } from '../../interfaces/componentInterfaces';
-import { IUser } from '../Users/usersInterfaces';
-    
-export interface IMyAccountReducer extends IComponentProps {
-    loggedInUser: IUser;
+import { ILoggedInUser, IUser } from '../Users/usersInterfaces';
+
+export interface IMyAccountReducer extends IComponentProps, ILoggedInUser {
     editing: boolean;
     deleting: boolean;
 }

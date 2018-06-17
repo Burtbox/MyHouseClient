@@ -1,6 +1,3 @@
-import { IUser } from '../Users/usersInterfaces';
+import { IUsersReducer } from '../Users/usersInterfaces';
 
-export interface IRoutesProps {
-    isLoggedIn: boolean;
-    loggedInUser: IUser;
-}
+export interface IRoutesProps extends IUsersReducer { }

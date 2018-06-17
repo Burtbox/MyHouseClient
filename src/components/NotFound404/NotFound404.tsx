@@ -1,18 +1,22 @@
+import Button from '@material-ui/core/Button';
+import Paper from '@material-ui/core/Paper/Paper';
+import Typography from '@material-ui/core/Typography';
 import * as React from 'react';
-import FlatButton from 'material-ui/FlatButton';
-import { INotFound404Props } from './notFound404Interfaces';
 import { myHouseRoutes } from '../../enums/routesEnum';
+import { INotFound404Props } from './notFound404Interfaces';
 
 const NotFound404: React.StatelessComponent<INotFound404Props> = (props) => {
     return (
-      <div style={{ textAlign: 'center' }}>
-        <br />
-        <h2>It's dangerous to go alone! Take this.</h2>
-        <FlatButton
-          label="Link"
-          onClick={() => props.history.push(myHouseRoutes.Base)}
-        />
-      </div>
+        <Paper style={{ textAlign: 'center', paddingBottom: '2em' }}>
+            <br />
+            <Typography variant="headline">It's dangerous to go alone! Take this.</Typography>
+            <br />
+            <Button variant="outlined"
+                onClick={() => props.history.push(myHouseRoutes.Base)}
+            >
+                Link
+            </Button>
+        </Paper>
     );
 };
 

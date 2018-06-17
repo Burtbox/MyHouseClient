@@ -15,14 +15,19 @@ export interface IUserAuthenticationObject {
     password: string;
 }
 
-export interface IUserResponseObject extends IUserDetails {
+export interface IUserResponseObject {
     uid: string;
     token: string;
+    email: string;
+    displayName: string;
 }
 
 export interface IRecieveUserAction extends Action, IUsersReducer { }
 
-export interface IUsersReducer {
-    loggedInUser: IUser;
+export interface IUsersReducer extends ILoggedInUser {
     isLoggedIn: boolean;
+}
+
+export interface ILoggedInUser {
+    loggedInUser: IUser;
 }

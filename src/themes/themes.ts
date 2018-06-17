@@ -1,42 +1,49 @@
-import {
-  grey400,
-  grey600,
-  grey700,
-  grey900,
-  blue900,
-  blueGrey900,
-} from 'material-ui/styles/colors';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import blue from '@material-ui/core/colors/blue';
+import grey from '@material-ui/core/colors/grey';
+import red from '@material-ui/core/colors/red';
+import { createMuiTheme, Theme } from '@material-ui/core/styles';
 
-const appTheme: __MaterialUI.Styles.MuiTheme = getMuiTheme({
+const appTheme: Theme = createMuiTheme({
     palette: {
-        primary1Color: blue900,
-        primary2Color: blue900,
-        textColor: grey400,
-        borderColor: blueGrey900,
-        disabledColor: grey700,
-        pickerHeaderColor: blue900,
-        canvasColor: grey900,
-        alternateTextColor: grey400,
-        accent1Color: grey600,
+        type: 'dark',
+        primary: {
+            light: blue[700],
+            main: blue[800],
+            dark: blue[900],
+            contrastText: grey[400],
+        },
+        secondary: {
+            light: grey[200],
+            main: grey[300],
+            dark: grey[700],
+            contrastText: grey[600],
+        },
+        error: {
+            light: red[700],
+            main: red[800],
+            dark: red[900],
+            contrastText: red[400],
+        },
+        text: {
+            primary: blue[800],
+            secondary: grey[400],
+            disabled: grey[400],
+            hint: grey[400],
+        },
+        background: {
+            default: '#1b1a1a',
+            paper: grey[900],
+        },
     },
-    toolbar: {
-        color: grey900,
-        backgroundColor: blue900,
-        iconColor: grey400,
-    },
-    snackbar: {
-        backgroundColor: blue900,
-    },
-    avatar: {
-        backgroundColor: blue900,
-        color: grey400,
-    },
-    ripple: {
-        color: blueGrey900,
-    },
-    paper: {
-        backgroundColor: grey900,
+    typography: {
+        fontFamily: [
+            '-apple-system',
+            'BlinkMacSystemFont',
+            '"Segoe UI"',
+            'Roboto',
+            '"Helvetica Neue"',
+            'Arial',
+        ].join(','),
     },
 });
 
