@@ -1,22 +1,15 @@
-import CircularProgress from 'material-ui/CircularProgress';
-import FlatButton from 'material-ui/FlatButton';
+import { Button, Typography } from '@material-ui/core';
 import * as queryString from 'query-string';
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { myHouseRoutes } from '../../enums/routesEnum';
 import { IStore } from '../../interfaces/storeInterface';
 import appStyles from '../../styles';
-import { logoutUser } from './logoutActions';
-import { ILogoutDetails, ILogoutReducer, ILogoutState, LogoutReason } from './logoutInterfaces';
+import { Loading } from '../Loading';
+import { logoutUser } from './logoutEpic';
+import { ILogoutDetails, ILogoutProps, LogoutReason } from './logoutInterfaces';
 
-export class Logout extends React.Component<ILogoutReducer, ILogoutState> {
-    constructor(props: ILogoutReducer) {
-        super(props);
-        this.state = {
-            loading: false,
-        };
-    }
-
+export class Logout extends React.Component<ILogoutProps> {
     componentDidMount() {
         this.handleLogout();
     }
@@ -47,25 +40,33 @@ export class Logout extends React.Component<ILogoutReducer, ILogoutState> {
         case LogoutReason.Timeout:
             logoutMessage = 'You have been timed out and must log in again';
             break;
+        default:
+            logoutMessage = 'See You Space Cowboy...';
+            break;
         }
         return logoutMessage;
     }
 
     handleLogout = () => {
-        this.setState({ loading: true });
-        this.props.dispatch(logoutUser()).then(this.setState({ loading: false }));
+        logoutUser();
     }
 
-    // TODO: refactor this into stateless components
     render() {
         return (
             <form style={appStyles.container}>
-                {this.hasLogoutDetails() ? <h2>{this.logoutMessage()}</h2> : <h2> See You Space Cowboy... </h2>}
+                {this.hasLogoutDetails() ?
+                    <Typography variant="headline">{this.logoutMessage()}</Typography> :
+                    <div />}
                 <div>
-                    {this.state.loading && this.hasLogoutDetails() ? (
-                        <CircularProgress />
+                    {this.props.loggingOut && this.hasLogoutDetails() ? (
+                        <Loading />
                     ) : (
-                            <FlatButton label="Continue" onClick={() => this.props.history.push(myHouseRoutes.Login)} />
+                            <Button
+                                variant="outlined"
+                                onClick={() => this.props.history.push(myHouseRoutes.Login)}
+                            >
+                                Continue
+                            </Button>
                         )}
                 </div>
             </form>
@@ -73,7 +74,6 @@ export class Logout extends React.Component<ILogoutReducer, ILogoutState> {
     }
 }
 
-// Retrieve data from store as props
 const mapStateToProps = (store: IStore) => {
     return {
         loggingOut: store.logoutReducer.loggingOut,

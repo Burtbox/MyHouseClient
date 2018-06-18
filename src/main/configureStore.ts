@@ -17,7 +17,13 @@ const persistConfig: PersistConfig = {
     key: 'root',
     storage: localForage,
     stateReconciler: autoMergeLevel2,
-    blacklist: ['errorMessageReducer', 'loadingReducer'],
+    blacklist: [
+        'errorMessageReducer',
+        'loadingReducer',
+        'registerReducer',
+        'loginReducer',
+        'logoutReducer',
+    ],
 };
 
 const persistedReducer = persistReducer(persistConfig, combinedReducers);

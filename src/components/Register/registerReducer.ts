@@ -1,24 +1,22 @@
-import { registerActions } from './registerActions';
-import { IRegisterState, IRegisterAction } from './registerInterfaces';
+import { RegisterActions, registerActionTypes } from './registerActions';
+import { IRegisterReducer } from './registerInterfaces';
 
 function registerReducer(
-    state: IRegisterState = {
-        registerUser: null,
-        error: null,
-        loading: false,
+    state: IRegisterReducer = {
+        registering: null,
     },
-    action: IRegisterAction,
-  ) {
+    action: RegisterActions,
+): IRegisterReducer {
     switch (action.type) {
-    case registerActions.REGISTER_STARTED:
+    case registerActionTypes.REGISTER_STARTED:
         return {
             ...state,
-            loading: true,
+            registering: true,
         };
-    case registerActions.REGISTER_COMPLETED:
+    case registerActionTypes.REGISTER_COMPLETED:
         return {
             ...state,
-            loading: false,
+            registering: false,
         };
     default:
         return state;

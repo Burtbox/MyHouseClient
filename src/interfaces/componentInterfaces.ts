@@ -8,5 +8,4 @@ export interface IComponentProps {
     history: History;
 }
 
-// TODO: Will want to tweak this and remove  extends IComponentProps
 export interface IConnectedComponentProps extends ILoggedInUser, ILoadingProps { }

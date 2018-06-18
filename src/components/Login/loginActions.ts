@@ -1,5 +1,5 @@
 import { ActionsUnion, createAction } from '../../helpers/actionCreator';
-import { usersActions } from '../Users/usersActions';
+import { usersActionTypes } from '../Users/usersActions';
 import { IUserResponseObject } from '../Users/usersInterfaces';
 
 export enum loginActionTypes {
@@ -11,7 +11,7 @@ const loginStarted = () => createAction(loginActionTypes.LOGIN_STARTED);
 const loginCompleted = () => createAction(loginActionTypes.LOGIN_COMPLETED);
 
 const loginSuccessful = (loginResponse: IUserResponseObject, token: string) =>
-    createAction(usersActions.RECEIVE_USER, {
+    createAction(usersActionTypes.RECEIVE_USER, {
         loggedInUser: {
             token,
             email: loginResponse.email,

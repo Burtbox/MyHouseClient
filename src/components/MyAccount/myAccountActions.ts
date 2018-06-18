@@ -1,7 +1,7 @@
 import { Action } from 'redux';
 import APIHelper from '../../helpers/ajaxHelper';
 import { addError } from '../ErrorMessage/errorMessageActions';
-import { usersActions } from '../Users/usersActions';
+import { usersActionTypes } from '../Users/usersActions';
 import { IRecieveUserAction, IUser } from '../Users/usersInterfaces';
 
 export enum myAccountActions {
@@ -61,7 +61,7 @@ function editUserStarted() {
 
 function editUserSuccessful(editUserResponse: Response, user: IUser) {
     const response: IRecieveUserAction = {
-        type: usersActions.RECEIVE_USER,
+        type: usersActionTypes.RECEIVE_USER,
         loggedInUser: user,
         isLoggedIn: true,
     };
@@ -84,7 +84,7 @@ function deleteUserStarted() {
 
 function deleteUserSuccessful(deleteUserResponse: Response) {
     const response: IRecieveUserAction = {
-        type: usersActions.RECEIVE_USER,
+        type: usersActionTypes.RECEIVE_USER,
         loggedInUser: undefined,
         isLoggedIn: false,
     };

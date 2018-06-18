@@ -1,3 +1,4 @@
+import { Typography } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import * as React from 'react';
@@ -45,7 +46,7 @@ export class Login extends React.Component<ILoginProps, ILoginState> {
     render() {
         return (
             <form style={appStyles.container} onSubmit={this.handleLogin}>
-                <h2>Welcome</h2>
+                <Typography variant="headline">Welcome</Typography>
                 <div>
                     <TextField
                         name="email"

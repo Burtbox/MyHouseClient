@@ -1,17 +1,18 @@
-import CircularProgress from 'material-ui/CircularProgress';
-import FlatButton from 'material-ui/FlatButton';
-import TextField from 'material-ui/TextField';
+import { Typography } from '@material-ui/core';
+import { default as Button } from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { myHouseRoutes } from '../../enums/routesEnum';
 import { IStore } from '../../interfaces/storeInterface';
 import appStyles from '../../styles';
-import { addError } from '../ErrorMessage/errorMessageActions';
-import { registerUser } from './registerActions';
-import { IRegisterReducer, IRegisterState, IRegisterUserObject } from './registerInterfaces';
+import { ErrorMessageActions } from '../ErrorMessage/errorMessageActions';
+import { Loading } from '../Loading';
+import { registerUser } from './registerEpic';
+import { IRegisterProps, IRegisterState, IRegisterUserObject } from './registerInterfaces';
 
-export class Register extends React.Component<IRegisterReducer, IRegisterState> {
-    constructor(props: IRegisterReducer) {
+export class Register extends React.Component<IRegisterProps, IRegisterState> {
+    constructor(props: IRegisterProps) {
         super(props);
         this.state = {
             registerUser: {
@@ -20,28 +21,22 @@ export class Register extends React.Component<IRegisterReducer, IRegisterState> 
                 confirmPassword: '',
                 displayName: '',
             },
-            loading: false,
-            error: null,
         };
     }
 
     handleAddUser = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         if (this.state.registerUser.password === this.state.registerUser.confirmPassword) {
-            const { dispatch, history } = this.props;
+
             const user: IRegisterUserObject = {
                 displayName: this.state.registerUser.displayName,
                 email: this.state.registerUser.email,
                 password: this.state.registerUser.password,
                 confirmPassword: this.state.registerUser.confirmPassword,
             };
-            this.setState({ loading: true });
-            dispatch(registerUser(user))
-              .then(() => { history.push(myHouseRoutes.MyAccount); })
-              .catch((error: Error) => { this.setState({ error, loading: false }); });
+            registerUser(user);
         } else {
-            // ED! This is lazy - make this better
-            this.props.dispatch(() => addError('Your password does not match the confirmed password'));
+            this.props.dispatch(ErrorMessageActions.addError('Your password does not match the confirmed password'));
         }
     }
 
@@ -52,83 +47,81 @@ export class Register extends React.Component<IRegisterReducer, IRegisterState> 
 
         this.setState(prevState => ({
             registerUser: { ...this.state.registerUser, [name]: value },
-        })); 
+        }));
     }
 
     render() {
         return (
-          <form style={appStyles.container} onSubmit={this.handleAddUser}>
-            <h2>Create Account</h2>
-            <div>
-              <span style={{ 'vertical-align': 'middle' }}>
-              Already have a My House account?
+            <form style={appStyles.container} onSubmit={this.handleAddUser}>
+                <Typography variant="headline">Create Account</Typography>
+                <div>
+                    <span style={{ verticalAlign: 'middle' }}>
+                        Already have a My House account?
               </span> {' '}
-              <FlatButton
-                secondary={true}
-                label="Sign In"
-                onClick={() => this.props.history.push(myHouseRoutes.Login)}
-              />
-            </div>
+                    <Button
+                        variant="outlined"
+                        onClick={() => this.props.history.push(myHouseRoutes.Login)}
+                    >
+                        Sign In
+                    </Button>
+                </div>
 
-            <div>
-              <TextField
-                name="displayName"
-                hintText="My name"
-                floatingLabelText="Display Name"
-                required
-                onChange={this.handleInputChange}
-                disabled={this.state.loading}
-                maxlength="100"
-              />
-            </div>
-            <div>
-              <TextField
-                name="email"
-                hintText="example@email.com"
-                floatingLabelText="Email Address"
-                required
-                onChange={this.handleInputChange}
-                disabled={this.state.loading}
-                maxlength="50"
-              />
-            </div>
-            <div>
-              <TextField
-                name="password"
-                type="password"
-                hintText="**********"
-                floatingLabelText="Password"
-                required
-                onChange={this.handleInputChange}
-                disabled={this.state.loading}
-                maxlength="30"
-              />
-            </div>
-            <div>
-              <TextField
-                name="confirmPassword"
-                type="password"
-                hintText="**********"
-                floatingLabelText="Confirm Password"
-                required
-                onChange={this.handleInputChange}
-                disabled={this.state.loading}
-                maxlength="30"
-              />
-            </div>
-            <div>
-              {this.state.loading ? (
-                <CircularProgress />
-              ) : (
-                <FlatButton type="submit" label="Sign Up" />
-              )}
-            </div>
-          </form>
+                <div>
+                    <TextField
+                        name="displayName"
+                        placeholder="My name"
+                        label="Display Name"
+                        required
+                        onChange={this.handleInputChange}
+                        disabled={this.props.registering}
+                    />
+                </div>
+                <div>
+                    <TextField
+                        name="email"
+                        placeholder="example@email.com"
+                        label="Email Address"
+                        required
+                        onChange={this.handleInputChange}
+                        disabled={this.props.registering}
+                    />
+                </div>
+                <div>
+                    <TextField
+                        name="password"
+                        type="password"
+                        placeholder="**********"
+                        label="Password"
+                        required
+                        onChange={this.handleInputChange}
+                        disabled={this.props.registering}
+                    />
+                </div>
+                <div>
+                    <TextField
+                        name="confirmPassword"
+                        type="password"
+                        placeholder="**********"
+                        label="Confirm Password"
+                        required
+                        onChange={this.handleInputChange}
+                        disabled={this.props.registering}
+                    />
+                </div>
+                <div>
+                    {this.props.registering ? (
+                        <Loading />
+                    ) : (
+                            <Button type="submit" >
+                                Sign Up
+                            </Button>
+                        )}
+                </div>
+            </form>
         );
     }
 }
 
-// Retrieve data from store as props
 const mapStateToProps = (store: IStore) => {
     return {
         registering: store.registerReducer.registering,

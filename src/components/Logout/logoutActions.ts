@@ -1,41 +1,16 @@
-import auth from '../../helpers/firebase';
-import {  addError } from '../ErrorMessage/errorMessageActions';
-import receiveUser from '../Users/usersActions';
-import { Action } from 'redux';
+import { ActionsUnion, createAction } from '../../helpers/actionCreator';
 
-export enum logoutActions {
+export enum logoutActionTypes {
     LOGOUT_STARTED = 'LOGOUT_STARTED',
     LOGOUT_COMPLETED = 'LOGOUT_COMPLETED',
 }
 
-export function logoutUser() {
-    const request = auth.signOut();
+const logoutStarted = () => createAction(logoutActionTypes.LOGOUT_STARTED);
+const logoutComplete = () => createAction(logoutActionTypes.LOGOUT_COMPLETED);
 
-    return (dispatch: Function) => {
-        dispatch(logoutStarted());
-        return request
-            .then(() => {
-                dispatch(receiveUser(undefined, false));
-                dispatch(logoutAttemptComplete());
-            })
-            .catch((error: Error) => {
-                dispatch(addError(error.message));
-                dispatch(logoutAttemptComplete());
-                throw error;
-            });
-    };
-}
+export const LogoutActions = {
+    logoutStarted,
+    logoutComplete,
+};
 
-function logoutStarted() {
-    const response: Action = {
-        type: logoutActions.LOGOUT_STARTED,
-    };
-    return response;
-}
-
-function logoutAttemptComplete() {
-    const response: Action = {
-        type: logoutActions.LOGOUT_COMPLETED,
-    };
-    return response;
-}
+export type LogoutActions = ActionsUnion<typeof LogoutActions>;

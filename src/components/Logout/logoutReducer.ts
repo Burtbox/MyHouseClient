@@ -1,22 +1,22 @@
-import { logoutActions } from './logoutActions';
-import { ILogoutState, ILogoutAction } from './logoutInterfaces';
+import { LogoutActions, logoutActionTypes } from './logoutActions';
+import { ILogoutReducer } from './logoutInterfaces';
 
 function loginReducer(
-  state: ILogoutState = {
-      loading: false,
-  },
-  action: ILogoutAction,
-) {
+    state: ILogoutReducer = {
+        loggingOut: null,
+    },
+    action: LogoutActions,
+): ILogoutReducer {
     switch (action.type) {
-    case logoutActions.LOGOUT_STARTED:
+    case logoutActionTypes.LOGOUT_STARTED:
         return {
             ...state,
-            loading: true,
+            loggingOut: true,
         };
-    case logoutActions.LOGOUT_COMPLETED:
+    case logoutActionTypes.LOGOUT_COMPLETED:
         return {
             ...state,
-            loading: false,
+            loggingOut: false,
         };
     default:
         return state;

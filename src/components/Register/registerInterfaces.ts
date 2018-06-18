@@ -1,10 +1,7 @@
-import { Action } from 'redux';
 import { IComponentProps } from '../../interfaces/componentInterfaces';
 import { IUserAuthenticationObject } from '../Users/usersInterfaces';
 
-export interface IRegisterReducer extends IComponentProps {
-    registering: boolean;
-}
+export interface IRegisterProps extends IRegisterReducer, IComponentProps { }
 
 export interface IRegisterState {
     registerUser: {
@@ -13,8 +10,6 @@ export interface IRegisterState {
         confirmPassword: string,
         displayName: string,
     };
-    loading: boolean;
-    error: Error;
 }
 
 export interface IUserRegistrationObject extends IUserAuthenticationObject {
@@ -26,6 +21,6 @@ export interface IRegisterUserObject extends IUserAuthenticationObject {
     confirmPassword: string;
 }
 
-export interface IRegisterAction extends Action {
-    loading: boolean;
+export interface IRegisterReducer {
+    registering: boolean;
 }

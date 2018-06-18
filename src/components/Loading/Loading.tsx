@@ -5,9 +5,10 @@ import styles from '../../styles';
 const Loading: React.StatelessComponent = () => {
     return (
         <div>
-            <CircularProgress size={80} thickness={5} style={styles.loading}/>
+            <CircularProgress size={40} thickness={2} style={styles.loading}/>
         </div>
     );
 };
 
 export { Loading };
+

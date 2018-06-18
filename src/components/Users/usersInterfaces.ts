@@ -1,4 +1,3 @@
-import { Action } from 'redux';
 
 export interface IUserDetails {
     userId: string;
@@ -21,8 +20,6 @@ export interface IUserResponseObject {
     email: string;
     displayName: string;
 }
-
-export interface IRecieveUserAction extends Action, IUsersReducer { }
 
 export interface IUsersReducer extends ILoggedInUser {
     isLoggedIn: boolean;

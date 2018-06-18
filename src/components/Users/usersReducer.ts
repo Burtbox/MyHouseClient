@@ -1,19 +1,19 @@
 import { IUsersReducer } from '../Users/usersInterfaces';
-import { usersActions } from './usersActions';
+import { UsersActions, usersActionTypes } from './usersActions';
 
 function usersReducer(
     state: IUsersReducer = {
         loggedInUser: undefined,
         isLoggedIn: undefined,
     },
-    action: UserAc,
+    action: UsersActions,
 ) {
     switch (action.type) {
-    case usersActions.RECEIVE_USER:
+    case usersActionTypes.RECEIVE_USER:
         return {
             ...state,
-            loggedInUser: action.loggedInUser,
-            isLoggedIn: action.isLoggedIn,
+            loggedInUser: action.payload.loggedInUser,
+            isLoggedIn: action.payload.isLoggedIn,
         };
     default:
         return state;
