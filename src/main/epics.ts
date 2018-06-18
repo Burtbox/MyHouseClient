@@ -1,10 +1,10 @@
 import { combineEpics } from 'redux-observable';
-import householdsEpic from '../components/Households/householdsEpic';
-import occupantsEpic from '../components/Occupants/occupantsEpic';
+import getHouseholdsOfUserRequestEpic from '../components/Households/householdsEpic';
+import newsFeedRequestEpic from '../components/NewsFeed/newsFeedEpic';
 
 const combinedEpics = combineEpics(
-    householdsEpic,
-    occupantsEpic,
+    getHouseholdsOfUserRequestEpic,
+    newsFeedRequestEpic,
 );
 
 export default combinedEpics;

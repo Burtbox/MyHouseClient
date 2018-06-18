@@ -3,7 +3,7 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { IStore } from '../../interfaces/storeInterface';
 import { HouseholdsActions } from '../Households/householdsActions';
-import { Loading } from '../Loading';
+import Loading from '../Loading';
 import { NewsFeedActions } from './newsFeedActions';
 import { INewsFeed, INewsFeedProps, INewsFeedStore } from './newsFeedInterfaces';
 

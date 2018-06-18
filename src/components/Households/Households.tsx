@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { IStore } from '../../interfaces/storeInterface';
-import { Loading } from '../Loading';
+import Loading from '../Loading';
 import { IUserDetails } from '../Users/usersInterfaces';
 import { HouseholdsActions } from './householdsActions';
 import { IHouseholdsProps, IHouseholdsStore } from './householdsInterfaces';

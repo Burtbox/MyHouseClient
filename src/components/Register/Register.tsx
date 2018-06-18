@@ -7,7 +7,7 @@ import { myHouseRoutes } from '../../enums/routesEnum';
 import { IStore } from '../../interfaces/storeInterface';
 import appStyles from '../../styles';
 import { ErrorMessageActions } from '../ErrorMessage/errorMessageActions';
-import { Loading } from '../Loading';
+import Loading from '../Loading';
 import { registerUser } from './registerEpic';
 import { IRegisterProps, IRegisterState, IRegisterUserObject } from './registerInterfaces';
 

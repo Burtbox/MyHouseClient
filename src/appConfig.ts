@@ -5,7 +5,6 @@ const baseURL: string = 'http://localhost:5000/api/';
 export const houseMoneyLinkUrl: string = 'http://localhost:3001/Occupants/';
 export const houseFoodLinkUrl: string = 'http://localhost:3002/Occupants/';
 
-
 // Integration Test Settings
 /*
 const baseURL: string = 'http://82.25.191.210/MyHouseTestAPI/api/';

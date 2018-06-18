@@ -10,5 +10,4 @@ const Loading: React.StatelessComponent = () => {
     );
 };
 
-export { Loading };
-
+export default Loading;

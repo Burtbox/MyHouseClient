@@ -3,15 +3,13 @@ import { connect } from 'react-redux';
 import { Route, RouteComponentProps, Switch, withRouter } from 'react-router-dom';
 import { myHouseRoutes } from '../../enums/routesEnum';
 import { IStore } from '../../interfaces/storeInterface';
-import ChangePassword from '../ChangePassword';
 import Households from '../Households';
 import Login from '../Login';
 import Logout from '../Logout';
-import MyAccount from '../MyAccount';
 import NewsFeed from '../NewsFeed';
 import NotFound404 from '../NotFound404';
 import Register from '../Register';
-import { checkAuthorization } from '../Users/usersActions';
+import { checkAuthorization } from '../Users/usersEpic';
 import { IUser } from '../Users/usersInterfaces';
 import { IRoutesProps } from './routesInterfaces';
 
@@ -21,8 +19,6 @@ const LoggedInRoutes: React.StatelessComponent = () => {
             <Route exact path={myHouseRoutes.Base} component={NewsFeed} />
             <Route path={myHouseRoutes.NewsFeed} component={NewsFeed} />
             <Route path={myHouseRoutes.Households} component={Households} />
-            <Route path={myHouseRoutes.MyAccount} component={MyAccount} />
-            <Route path={myHouseRoutes.ChangePassword} component={ChangePassword} />
             <Route path={myHouseRoutes.Logout} component={Logout} />
             <Route exact path={myHouseRoutes.Unknown} component={NotFound404} />
         </Switch>

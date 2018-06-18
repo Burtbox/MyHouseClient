@@ -12,7 +12,7 @@ import { IUserDetails } from '../Users/usersInterfaces';
 import { NewsFeedActions, newsFeedsActionTypes } from './newsFeedActions';
 import { INewsFeed } from './newsFeedInterfaces';
 
-const getHouseholdsOfUserRequestEpic = (action$: Observable<Action>) => {
+const newsFeedRequestEpic = (action$: Observable<Action>) => {
     return action$.pipe(
         ofType<ActionWithPayload<newsFeedsActionTypes.GET_NEWSFEEDS_OF_USER_REQUEST, IUserDetails>>(
             newsFeedsActionTypes.GET_NEWSFEEDS_OF_USER_REQUEST),
@@ -34,4 +34,4 @@ const getHouseholdsOfUserRequestEpic = (action$: Observable<Action>) => {
     );
 };
 
-export default getHouseholdsOfUserRequestEpic;
+export default newsFeedRequestEpic;

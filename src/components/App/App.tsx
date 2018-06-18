@@ -8,7 +8,7 @@ import { persistor, store } from '../../main/configureStore';
 import history from '../../main/history';
 import appTheme from '../../themes';
 import ErrorMessage from '../ErrorMessage';
-import { Loading } from '../Loading';
+import Loading from '../Loading';
 import Nav from '../Nav';
 import Routes from '../Routes';
 

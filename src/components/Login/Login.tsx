@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { myHouseRoutes } from '../../enums/routesEnum';
 import { IStore } from '../../interfaces/storeInterface';
 import appStyles from '../../styles';
-import { Loading } from '../Loading';
+import Loading from '../Loading';
 import { IUserAuthenticationObject } from '../Users/usersInterfaces';
 import { loginUser } from './loginEpic'; // TODO: Remove this direct call?
 import { ILoginProps, ILoginState } from './loginInterfaces';

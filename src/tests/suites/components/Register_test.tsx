@@ -1,11 +1,11 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 import { DisconnectedRegister } from '../../../components/Register';
-import { IRegisterReducer } from '../../../components/Register/registerInterfaces';
+import { IRegisterProps } from '../../../components/Register/registerInterfaces';
 
 describe('Register test suite', () => {
     test('Render register screen', () => {
-        const props: Readonly<IRegisterReducer> = {
+        const props: Readonly<IRegisterProps> = {
             history: undefined,
             registering: false,
             dispatch: undefined,

@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { myHouseRoutes } from '../../enums/routesEnum';
 import { IStore } from '../../interfaces/storeInterface';
 import appStyles from '../../styles';
-import { Loading } from '../Loading';
+import Loading from '../Loading';
 import { logoutUser } from './logoutEpic';
 import { ILogoutDetails, ILogoutProps, LogoutReason } from './logoutInterfaces';
 
