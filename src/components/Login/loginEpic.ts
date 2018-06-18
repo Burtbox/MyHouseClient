@@ -8,7 +8,6 @@ import { LoadingActions } from '../Loading/loadingActions';
 import { IUserAuthenticationObject, IUserResponseObject } from '../Users/usersInterfaces';
 import { LoginActions } from './loginActions';
 
-// TODO: Make into observable
 export function loginUser(dispatch: Dispatch<Action>, login: IUserAuthenticationObject) {
     const request = auth.signInWithEmailAndPassword(login.email, login.password);
 
