@@ -9,27 +9,25 @@ import { IUserAuthenticationObject, IUserResponseObject } from '../Users/usersIn
 import { LoginActions } from './loginActions';
 
 // TODO: Make into observable
-export function loginUser(login: IUserAuthenticationObject) {
+export function loginUser(dispatch: Dispatch<Action>, login: IUserAuthenticationObject) {
     const request = auth.signInWithEmailAndPassword(login.email, login.password);
 
-    return (dispatch: Dispatch<Action>) => {
-        dispatch(LoadingActions.loadingStarted());
-        return request
-            .then((response: IUserResponseObject) => {
-                auth.currentUser.getToken(true).then((idToken: string) => {
-                    dispatch(LoginActions.loginSuccessful(response, idToken));
-                    dispatch(LoadingActions.loadingComplete());
-                    history.push(myHouseRoutes.NewsFeed);
-                }).catch((error: Error) => {
-                    dispatch(ErrorMessageActions.addError(error.message));
-                    dispatch(LoadingActions.loadingComplete());
-                    throw error;
-                });
-            })
-            .catch((error: Error) => {
+    dispatch(LoadingActions.loadingStarted());
+    return request
+        .then((response: IUserResponseObject) => {
+            auth.currentUser.getToken(true).then((idToken: string) => {
+                dispatch(LoginActions.loginSuccessful(response, idToken));
+                dispatch(LoadingActions.loadingComplete());
+                history.push(myHouseRoutes.NewsFeed);
+            }).catch((error: Error) => {
                 dispatch(ErrorMessageActions.addError(error.message));
                 dispatch(LoadingActions.loadingComplete());
                 throw error;
             });
-    };
+        })
+        .catch((error: Error) => {
+            dispatch(ErrorMessageActions.addError(error.message));
+            dispatch(LoadingActions.loadingComplete());
+            throw error;
+        });
 }

@@ -19,7 +19,6 @@ export class Login extends React.Component<ILoginProps, ILoginState> {
                 email: '',
                 password: '',
             },
-            loading: false, // TODO: move loading to redux
         };
     }
 
@@ -29,8 +28,7 @@ export class Login extends React.Component<ILoginProps, ILoginState> {
             email: this.state.user.email,
             password: this.state.user.password,
         };
-        this.setState({ loading: true });
-        loginUser(login);
+        loginUser(this.props.dispatch, login);
     }
 
     handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -55,7 +53,7 @@ export class Login extends React.Component<ILoginProps, ILoginState> {
                         placeholder="example@email.com"
                         required
                         onChange={this.handleInputChange}
-                        disabled={this.state.loading}
+                        disabled={this.props.loggingIn}
                         margin="normal"
                     />
                 </div>
@@ -68,12 +66,12 @@ export class Login extends React.Component<ILoginProps, ILoginState> {
                         autoComplete="current-password"
                         required
                         onChange={this.handleInputChange}
-                        disabled={this.state.loading}
+                        disabled={this.props.loggingIn}
                         margin="normal"
                     />
                 </div>
                 <div>
-                    {this.state.loading ? (
+                    {this.props.loggingIn ? (
                         <Loading />
                     ) : (
                             <Button type="submit" variant="outlined">
