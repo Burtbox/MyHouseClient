@@ -74,6 +74,7 @@ export class Register extends React.Component<IRegisterProps, IRegisterState> {
                         required
                         onChange={this.handleInputChange}
                         disabled={this.props.registering}
+                        margin="normal"
                     />
                 </div>
                 <div>
@@ -84,6 +85,7 @@ export class Register extends React.Component<IRegisterProps, IRegisterState> {
                         required
                         onChange={this.handleInputChange}
                         disabled={this.props.registering}
+                        margin="normal"
                     />
                 </div>
                 <div>
@@ -95,6 +97,7 @@ export class Register extends React.Component<IRegisterProps, IRegisterState> {
                         required
                         onChange={this.handleInputChange}
                         disabled={this.props.registering}
+                        margin="normal"
                     />
                 </div>
                 <div>
@@ -106,6 +109,7 @@ export class Register extends React.Component<IRegisterProps, IRegisterState> {
                         required
                         onChange={this.handleInputChange}
                         disabled={this.props.registering}
+                        margin="normal"
                     />
                 </div>
                 <div>

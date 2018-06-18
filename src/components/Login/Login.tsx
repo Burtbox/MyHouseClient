@@ -56,6 +56,7 @@ export class Login extends React.Component<ILoginProps, ILoginState> {
                         required
                         onChange={this.handleInputChange}
                         disabled={this.state.loading}
+                        margin="normal"
                     />
                 </div>
                 <div>
@@ -68,6 +69,7 @@ export class Login extends React.Component<ILoginProps, ILoginState> {
                         required
                         onChange={this.handleInputChange}
                         disabled={this.state.loading}
+                        margin="normal"
                     />
                 </div>
                 <div>
