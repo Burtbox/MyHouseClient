@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { IStore } from '../../interfaces/storeInterface';
+import appStyles from '../../styles';
 import Loading from '../Loading';
 import { IUserDetails } from '../Users/usersInterfaces';
 import { HouseholdsActions } from './householdsActions';
@@ -15,11 +16,13 @@ export class Households extends React.Component<IHouseholdsProps> {
 
     render() {
         return (
-            <div style={{ display: 'inline-flex' }}>
-                {!this.props.loading && this.props.householdsArray && this.props.householdsArray.length > 0
-                    ? <HouseholdsList householdsArray={this.props.householdsArray} />
-                    : <Loading />}
-            </div >
+            <form style={appStyles.container}>
+                <div style={{ display: 'inline-flex' }}>
+                    {!this.props.loading && this.props.householdsArray && this.props.householdsArray.length > 0
+                        ? <HouseholdsList householdsArray={this.props.householdsArray} />
+                        : <Loading />}
+                </div >
+            </form>
         );
     }
 }

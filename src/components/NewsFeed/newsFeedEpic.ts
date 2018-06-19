@@ -17,13 +17,13 @@ const newsFeedRequestEpic = (action$: Observable<Action>) => {
         ofType<ActionWithPayload<newsFeedsActionTypes.GET_NEWSFEEDS_OF_USER_REQUEST, IUserDetails>>(
             newsFeedsActionTypes.GET_NEWSFEEDS_OF_USER_REQUEST),
         switchMap((params) => {
-            const addTransactionAjaxParams: AjaxCallParams = {
+            const ajaxParams: AjaxCallParams = {
                 token: params.payload.token,
                 method: HTTPMethod.GET,
-                endpoint: endpoints.households,
+                endpoint: endpoints.newsFeeds,
                 urlParams: params.payload.userId,
             };
-            return ajaxObservable<INewsFeed[]>(addTransactionAjaxParams).pipe(
+            return ajaxObservable<INewsFeed[]>(ajaxParams).pipe(
                 mergeMap(response => of(
                     NewsFeedActions.receiveNewsFeed(response),
                     LoadingActions.loadingComplete(),

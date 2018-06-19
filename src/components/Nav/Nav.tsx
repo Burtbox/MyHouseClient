@@ -21,7 +21,7 @@ export class Nav extends React.Component<INavProps, INavState> {
         super(props);
 
         this.state = {
-            openSidebar: false,
+            openSidebar: true,
         };
     }
 
@@ -46,6 +46,7 @@ export class Nav extends React.Component<INavProps, INavState> {
                     </Toolbar>
                 </AppBar>
                 <SwipeableDrawer
+                    variant="persistent"
                     open={this.state.openSidebar}
                     onClose={this.toggleDrawer}
                     onOpen={this.toggleDrawer}

@@ -1,8 +1,10 @@
+import { Divider } from '@material-ui/core';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Tooltip from '@material-ui/core/Tooltip/Tooltip';
+import ExitToApp from '@material-ui/icons/ExitToApp';
 import SpeakerNotes from '@material-ui/icons/SpeakerNotes';
 import Storage from '@material-ui/icons/Storage';
 import * as React from 'react';
@@ -44,6 +46,18 @@ const LoggedInMenu: React.StatelessComponent = () => {
                             <Storage color="secondary" />
                         </ListItemIcon>
                         <ListItemText primary="Households" />
+                    </ListItem>
+                </Link>
+            </Tooltip>
+            <Divider />
+            <Tooltip id="tooltip-icon" title="See you again soon" placement="top">
+                <Link to={myHouseRoutes.Logout}
+                >
+                    <ListItem button>
+                        <ListItemIcon>
+                            <ExitToApp color="secondary" />
+                        </ListItemIcon>
+                        <ListItemText primary="Logout" />
                     </ListItem>
                 </Link>
             </Tooltip>

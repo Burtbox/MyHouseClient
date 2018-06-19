@@ -1,5 +1,4 @@
 import { IComponentProps, IConnectedComponentProps } from '../../interfaces/componentInterfaces';
-import { IHouseholdsReducer } from '../Households/householdsInterfaces';
 
 export interface INewsFeed {
     newsFeedId: number;
@@ -8,6 +7,7 @@ export interface INewsFeed {
     subHeadline: string;
     story: string;
     author: string;
+    // TODO: Add date to this!
 }
 
 export interface INewsFeedProps extends INewsFeedStore, IComponentProps { }
@@ -16,4 +16,4 @@ export interface INewsFeedReducer {
     newsFeedList: INewsFeed[];
 }
 
-export interface INewsFeedStore extends IConnectedComponentProps, IHouseholdsReducer, INewsFeedReducer { }
+export interface INewsFeedStore extends IConnectedComponentProps, INewsFeedReducer { }
