@@ -14,22 +14,17 @@ const MultiHouseholdMenu: React.StatelessComponent<IHouseholdsProps> = (props) =
                 <ListItemIcon>
                     <LocalAtm />
                 </ListItemIcon>
-                <ListItemText>
-                    Money
-                </ListItemText>
+                <ListItemText primary="Money" />
                 <Collapse in={true} timeout="auto" unmountOnExit>
                     <List component="div" disablePadding>
-                        {
-                            props.householdsArray.map((household: IHousehold) =>
-                                <ListItem
-                                    key={'HouseMoneyLink' + household.occupantId}
-                                    href={gethouseMoneyLinkUrl(props.loggedInUser, household.occupantId)}
-                                >
-                                    <ListItemText>
-                                        {household.name}
-                                    </ListItemText>
-                                </ListItem>,
-                            )}
+                        {props.householdsArray.map((household: IHousehold) =>
+                            <ListItem
+                                key={'HouseMoneyLink' + household.occupantId}
+                                href={gethouseMoneyLinkUrl(props.loggedInUser, household.occupantId)}
+                            >
+                                <ListItemText primary={household.name} />
+                            </ListItem>,
+                        )}
                     </List>
                 </Collapse>
             </ListItem>
@@ -39,22 +34,17 @@ const MultiHouseholdMenu: React.StatelessComponent<IHouseholdsProps> = (props) =
                 <ListItemIcon>
                     <Restaurant />
                 </ListItemIcon>
-                <ListItemText>
-                    Food
-                </ListItemText>
+                <ListItemText primary="Food" />
                 <Collapse in={true} timeout="auto" unmountOnExit>
                     <List component="div" disablePadding>
-                        {
-                            props.householdsArray.map((household: IHousehold) =>
-                                <ListItem
-                                    key={'HouseFoodLink' + household.occupantId}
-                                    href={gethouseFoodLinkUrl(props.loggedInUser, household.occupantId)}
-                                >
-                                    <ListItemText>
-                                        {household.name}
-                                    </ListItemText>
-                                </ListItem>,
-                            )} />
+                        {props.householdsArray.map((household: IHousehold) =>
+                            <ListItem
+                                key={'HouseFoodLink' + household.occupantId}
+                                href={gethouseFoodLinkUrl(props.loggedInUser, household.occupantId)}
+                            >
+                                <ListItemText primary={household.name} />
+                            </ListItem>,
+                        )} />
                     </List>
                 </Collapse>
             </ListItem>

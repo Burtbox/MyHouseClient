@@ -14,9 +14,7 @@ const SingleHouseholdMenu: React.StatelessComponent<IHouseholdsProps> = (props) 
                 <ListItemIcon>
                     <LocalAtm />
                 </ListItemIcon>
-                <ListItemText>
-                    Money
-                </ListItemText>
+                <ListItemText primary="Money" />
             </ListItem>
             <ListItem
                 href={gethouseFoodLinkUrl(props.loggedInUser, props.householdsArray[0].occupantId)}
@@ -24,9 +22,7 @@ const SingleHouseholdMenu: React.StatelessComponent<IHouseholdsProps> = (props) 
                 <ListItemIcon>
                     <Restaurant />
                 </ListItemIcon>
-                <ListItemText>
-                    Food
-                </ListItemText>
+                <ListItemText primary="Food" />
             </ListItem>
         </List>
     );
