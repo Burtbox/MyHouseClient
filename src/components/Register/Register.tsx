@@ -54,18 +54,19 @@ export class Register extends React.Component<IRegisterProps, IRegisterState> {
         return (
             <form style={appStyles.container} onSubmit={this.handleAddUser}>
                 <Typography variant="headline">Create Account</Typography>
-                <div>
-                    <span style={{ verticalAlign: 'middle' }}>
+                <div style={{ textAlign: 'center' }}>
+                    <Typography variant="subheading">
                         Already have a My House account?
-              </span> {' '}
+                    </Typography>
                     <Button
                         variant="outlined"
+                        color="secondary"
+                        size="small"
                         onClick={() => this.props.history.push(myHouseRoutes.Login)}
                     >
                         Sign In
                     </Button>
                 </div>
-
                 <div>
                     <TextField
                         name="displayName"
@@ -116,7 +117,7 @@ export class Register extends React.Component<IRegisterProps, IRegisterState> {
                     {this.props.registering ? (
                         <Loading />
                     ) : (
-                            <Button type="submit" >
+                            <Button variant="outlined" type="submit" >
                                 Sign Up
                             </Button>
                         )}

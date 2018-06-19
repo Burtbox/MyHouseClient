@@ -79,17 +79,16 @@ export class Login extends React.Component<ILoginProps, ILoginState> {
                             </Button>
                         )}
                 </div>
-                <br />
-                <div>
-                    <span style={{ verticalAlign: 'middle' }}> New to My House? </span>{' '}
-                    <span>
-                        <Button
-                            variant="flat"
-                            onClick={() => this.props.history.push(myHouseRoutes.Register)}
-                        >
-                            Sign Up
-                        </Button>
-                    </span>
+                <div style={{ textAlign: 'center', marginTop: '3em' }}>
+                    <Typography variant="subheading"> New to My House? </Typography>
+                    <Button
+                        variant="outlined"
+                        color="secondary"
+                        size="small"
+                        onClick={() => this.props.history.push(myHouseRoutes.Register)}
+                    >
+                        Sign Up
+                    </Button>
                 </div>
             </form>
         );

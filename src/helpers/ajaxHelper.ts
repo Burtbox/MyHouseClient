@@ -4,10 +4,9 @@ import { catchError, map } from 'rxjs/operators';
 import baseURL from '../appConfig';
 import { ErrorMessageActions } from '../components/ErrorMessage/errorMessageActions';
 import { LoadingActions } from '../components/Loading/loadingActions';
-import { myHouseRoutes } from '../enums/routesEnum';
+import { logoutUser } from '../components/Logout/logoutEpic';
 import { AjaxCallParams } from '../interfaces/apiInterfaces';
 import { store } from '../main/configureStore';
-import history from '../main/history';
 
 // TODO: Refactor these two if keeping both! Need to decide!
 export default function ajaxObservable<R>(ajaxCallParams: AjaxCallParams): Observable<R> {
@@ -78,6 +77,6 @@ export function ajaxPromise<T>(ajaxCallParams: AjaxCallParams): Promise<T> {
 
 export function checkStatus(ajaxResponseStatusCode: number) {
     if (ajaxResponseStatusCode === 401) {
-        history.push(myHouseRoutes.Logout);
+        logoutUser();
     }
 }

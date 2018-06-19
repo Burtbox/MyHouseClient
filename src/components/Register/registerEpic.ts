@@ -22,7 +22,7 @@ export function registerUser(user: IRegisterUserObject) {
                 .then((authenticated: IUserResponseObject) => {
                     dispatch(RegisterActions.registerSuccessful(authenticated));
                     dispatch(RegisterActions.registerComplete());
-                    history.push(myHouseRoutes.MyAccount);
+                    history.push(myHouseRoutes.Households);
                 })
                 .catch((error: Error) => {
                     dispatch(ErrorMessageActions.addError(error.message));

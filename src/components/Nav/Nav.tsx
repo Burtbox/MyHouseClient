@@ -11,15 +11,17 @@ import { Link } from 'react-router-dom';
 import { IStore } from '../../interfaces/storeInterface';
 import LoggedInMenu from './LoggedInMenu';
 import LoggedInNavButtons from './LoggedInNavButtons';
+import LoggedOutMenu from './LoggedOutMenu';
 import { INavProps, INavState, INavStore } from './navInterfaces';
 
 // TODO: Add back in user chip, but with different function?
+// TODO: Convert to fixed sidebar that always shows? or maybe just an inline one
 export class Nav extends React.Component<INavProps, INavState> {
     constructor(props: INavProps) {
         super(props);
 
         this.state = {
-            openSidebar: true,
+            openSidebar: false,
         };
     }
 
@@ -43,7 +45,7 @@ export class Nav extends React.Component<INavProps, INavState> {
                         {this.props.isLoggedIn ? <LoggedInNavButtons /> : <div />}
                     </Toolbar>
                 </AppBar>
-                {this.props.isLoggedIn ? <SwipeableDrawer
+                <SwipeableDrawer
                     open={this.state.openSidebar}
                     onClose={this.toggleDrawer}
                     onOpen={this.toggleDrawer}
@@ -75,8 +77,8 @@ export class Nav extends React.Component<INavProps, INavState> {
                         </Link>
                     </div>
                     <Divider />
-                    <LoggedInMenu {...this.props} />
-                </ SwipeableDrawer> : <div />}
+                    {this.props.isLoggedIn ?  <LoggedInMenu {...this.props} /> : <LoggedOutMenu />}
+                </ SwipeableDrawer>
             </ div>
         );
     }

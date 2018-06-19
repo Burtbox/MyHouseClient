@@ -3,7 +3,7 @@ import { ILogoutReducer } from './logoutInterfaces';
 
 function loginReducer(
     state: ILogoutReducer = {
-        loggingOut: null,
+        loggingOut: false,
     },
     action: LogoutActions,
 ): ILogoutReducer {

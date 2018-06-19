@@ -1,8 +1,8 @@
 
 import IconButton from '@material-ui/core/IconButton/IconButton';
 import Tooltip from '@material-ui/core/Tooltip/Tooltip';
-import Add from '@material-ui/icons/Add';
-import Pageview from '@material-ui/icons/Pageview';
+import SpeakerNotes from '@material-ui/icons/SpeakerNotes';
+import Storage from '@material-ui/icons/Storage';
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 import { myHouseRoutes } from '../../enums/routesEnum';
@@ -13,14 +13,14 @@ const LoggedInNavButtons: React.StatelessComponent = () => {
             <Tooltip id="tooltip-icon" title="News Feed">
                 <Link to={myHouseRoutes.NewsFeed}>
                     <IconButton color="secondary">
-                        <Add color="secondary" />
+                        <SpeakerNotes color="secondary" />
                     </IconButton>
                 </Link>
             </Tooltip>
             <Tooltip id="tooltip-icon" title="Households">
                 <Link to={myHouseRoutes.Households}>
                     <IconButton color="secondary">
-                        <Pageview color="secondary" />
+                        <Storage color="secondary" />
                     </IconButton>
                 </Link>
             </Tooltip>
