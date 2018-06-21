@@ -54,7 +54,6 @@ export class Nav extends React.Component<INavProps, INavState> {
                     <div style={{
                         minHeight: '64px',
                         display: 'flex',
-                        justifyContent: 'center',
                         alignItems: 'center',
                     }}>
                         <IconButton
@@ -89,6 +88,8 @@ const mapStateToProps = (store: IStore) => {
     const props: INavStore = {
         loggedInUser: store.usersReducer.loggedInUser,
         isLoggedIn: store.usersReducer.isLoggedIn,
+        householdsArray: store.householdsReducer.householdsArray,
+        loading: store.loadingReducer.loading,
     };
     return props;
 };

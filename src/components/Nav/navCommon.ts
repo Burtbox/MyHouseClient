@@ -3,7 +3,7 @@ import { houseFoodLinkUrl, houseMoneyLinkUrl } from '../../appConfig';
 import { IOccupant } from '../Occupants/occupantsInterfaces';
 import { IUser } from '../Users/usersInterfaces';
 
-export function gethouseMoneyLinkUrl(user: IUser, occupantId: number) {
+export function getHouseMoneyLinkUrl(user: IUser, occupantId: number) {
     const urlParams: IOccupant = {
         occupantId,
         userId: user.userId,
@@ -14,7 +14,7 @@ export function gethouseMoneyLinkUrl(user: IUser, occupantId: number) {
     return houseMoneyLinkUrl + '?' + queryString.stringify(urlParams);
 }
 
-export function gethouseFoodLinkUrl(user: IUser, occupantId: number) {
+export function getHouseFoodLinkUrl(user: IUser, occupantId: number) {
     const urlParams: IOccupant = {
         occupantId,
         userId: user.userId,

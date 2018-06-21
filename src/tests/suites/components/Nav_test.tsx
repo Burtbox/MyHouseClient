@@ -1,5 +1,5 @@
-import * as React from 'react';
 import { shallow } from 'enzyme';
+import * as React from 'react';
 import { DisconnectedNav } from '../../../components/Nav';
 import { INavProps } from '../../../components/Nav/navInterfaces';
 
@@ -14,6 +14,8 @@ describe('Nav test suite', () => {
                 email: 'logged@out.com',
             },
             isLoggedIn: false,
+            householdsArray: [],
+            loading: 0,
         };
         const NavScreen = shallow(
             <DisconnectedNav {...props} />,
@@ -31,6 +33,8 @@ describe('Nav test suite', () => {
                 email: 'logged@in.com',
             },
             isLoggedIn: true,
+            householdsArray: [],
+            loading: 0,
         };
         const NavScreen = shallow(
             <DisconnectedNav {...props} />,

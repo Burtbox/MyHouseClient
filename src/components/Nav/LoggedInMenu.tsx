@@ -10,21 +10,22 @@ import Storage from '@material-ui/icons/Storage';
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 import { myHouseRoutes } from '../../enums/routesEnum';
+import Loading from '../Loading';
+import MultiHouseholdMenu from './MultiHouseholdMenu';
+import { INavProps } from './navInterfaces';
+import SingleHouseholdMenu from './SingleHouseholdMenu';
 
-/* TODO: Put this stuff in
-{
-                        this.props.loading && !this.props.householdsArray ? <Loading /> :
-                            this.props.householdsArray && this.props.householdsArray.length === 1 ?
-                                <SingleHouseholdMenu {... this.props} /> :
-                                this.props.householdsArray && this.props.householdsArray.length > 1 ?
-                                    <MultiHouseholdMenu {...this.props} />
-                                    : <Loading />
-                    }
-*/
-
-const LoggedInMenu: React.StatelessComponent = () => {
+const LoggedInMenu: React.StatelessComponent<INavProps> = (props) => {
     return (
         <List>
+            {
+                props.loading && !props.householdsArray ? <Loading /> :
+                    props.householdsArray && props.householdsArray.length === 1 ?
+                        <SingleHouseholdMenu {...props} /> :
+                        props.householdsArray && props.householdsArray.length > 1 ?
+                            <MultiHouseholdMenu {...props} />
+                            : <Loading />
+            }
             <Tooltip id="tooltip-icon" title="Updates from myHouse" placement="top">
                 <Link to={myHouseRoutes.NewsFeed}
                     style={{ textDecoration: 'none' }}
