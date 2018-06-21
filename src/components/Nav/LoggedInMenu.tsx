@@ -23,8 +23,7 @@ const LoggedInMenu: React.StatelessComponent<INavProps> = (props) => {
                     props.householdsArray && props.householdsArray.length === 1 ?
                         <SingleHouseholdMenu {...props} /> :
                         props.householdsArray && props.householdsArray.length > 1 ?
-                            <MultiHouseholdMenu {...props} />
-                            : <Loading />
+                            <MultiHouseholdMenu {...props} /> : <Loading />
             }
             <Tooltip id="tooltip-icon" title="Updates from myHouse" placement="top">
                 <Link to={myHouseRoutes.NewsFeed}
