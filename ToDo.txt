@@ -1,7 +1,3 @@
-Create a single sign on login and sign up page that redirects you to another react app
-
-figure out redirects and return urls
-
 Look into ETag to replace no-cache!
 
 sort out user objects! All over the place atm
@@ -29,6 +25,8 @@ Switch to redux loading through action and grab from props (remove loading flags
 
 Refactor unit tests - can test each refactored stateless component separately for better unit tests! 
 
-ED! Change auth to base off occupantId and use that in other apps ! 
-
 Create household button and workflow for that! 
+
+BUGS:
+Login / Logout flow not working (logout method failing)
+When no households (is this possible - figure out register flow) menu needs to prompt!
