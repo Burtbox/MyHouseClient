@@ -77,6 +77,6 @@ export function ajaxPromise<T>(ajaxCallParams: AjaxCallParams): Promise<T> {
 
 export function checkStatus(ajaxResponseStatusCode: number) {
     if (ajaxResponseStatusCode === 401) {
-        logoutUser();
+        logoutUser(store.dispatch);
     }
 }

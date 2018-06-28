@@ -11,6 +11,8 @@ import * as React from 'react';
 import { Link } from 'react-router-dom';
 import { myHouseRoutes } from '../../enums/routesEnum';
 import Loading from '../Loading';
+import { LogoutReason } from '../Logout/logoutInterfaces';
+import { getLogoutUrlWithDetails } from '../Users/usersCommon';
 import MultiHouseholdMenu from './MultiHouseholdMenu';
 import { INavProps } from './navInterfaces';
 import SingleHouseholdMenu from './SingleHouseholdMenu';
@@ -50,8 +52,8 @@ const LoggedInMenu: React.StatelessComponent<INavProps> = (props) => {
                 </Link>
             </Tooltip>
             <Divider />
-            <Tooltip id="tooltip-icon" title="See you again soon" placement="top">
-                <Link to={myHouseRoutes.Logout}
+            <Tooltip id="tooltip-icon" title="Only users of shared computers need to logout" placement="top">
+                <Link to={getLogoutUrlWithDetails(LogoutReason.UserTriggered)}
                 >
                     <ListItem button>
                         <ListItemIcon>

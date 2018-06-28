@@ -47,8 +47,8 @@ export class Logout extends React.Component<ILogoutProps> {
         return logoutMessage;
     }
 
-    handleLogout = () => {
-        logoutUser();
+    handleLogout() {
+        logoutUser(this.props.dispatch);
     }
 
     render() {
