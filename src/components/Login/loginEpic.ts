@@ -9,10 +9,8 @@ import { IUserAuthenticationObject, IUserResponseObject } from '../Users/usersIn
 import { LoginActions } from './loginActions';
 
 export function loginUser(dispatch: Dispatch<Action>, login: IUserAuthenticationObject) {
-    const request = auth.signInWithEmailAndPassword(login.email, login.password);
-
     dispatch(LoadingActions.loadingStarted());
-    return request
+    auth.signInWithEmailAndPassword(login.email, login.password)
         .then((response: IUserResponseObject) => {
             auth.currentUser.getToken(true).then((idToken: string) => {
                 dispatch(LoginActions.loginSuccessful(response, idToken));
