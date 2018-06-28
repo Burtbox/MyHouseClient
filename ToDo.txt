@@ -28,5 +28,4 @@ Refactor unit tests - can test each refactored stateless component separately fo
 Create household button and workflow for that! 
 
 BUGS:
-Login / Logout flow not working (logout method failing)
 When no households (is this possible - figure out register flow) menu needs to prompt!
