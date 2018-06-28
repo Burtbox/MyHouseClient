@@ -53,9 +53,9 @@ export class Register extends React.Component<IRegisterProps, IRegisterState> {
     render() {
         return (
             <form style={appStyles.container} onSubmit={this.handleAddUser}>
-                <Typography variant="headline">Create Account</Typography>
+                <Typography variant="headline" gutterBottom={true}>Create Account</Typography>
                 <div style={{ textAlign: 'center' }}>
-                    <Typography variant="subheading">
+                    <Typography variant="subheading" gutterBottom={true}>
                         Already have a My House account?
                     </Typography>
                     <Button

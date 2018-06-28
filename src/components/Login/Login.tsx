@@ -44,7 +44,7 @@ export class Login extends React.Component<ILoginProps, ILoginState> {
     render() {
         return (
             <form style={appStyles.container} onSubmit={this.handleLogin}>
-                <Typography variant="headline">Welcome</Typography>
+                <Typography variant="headline" gutterBottom={true}>Welcome</Typography>
                 <div>
                     <TextField
                         name="email"
@@ -80,7 +80,7 @@ export class Login extends React.Component<ILoginProps, ILoginState> {
                         )}
                 </div>
                 <div style={{ textAlign: 'center', marginTop: '3em' }}>
-                    <Typography variant="subheading"> New to My House? </Typography>
+                    <Typography variant="subheading" gutterBottom={true}> New to My House? </Typography>
                     <Button
                         variant="outlined"
                         color="secondary"

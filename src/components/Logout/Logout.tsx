@@ -55,7 +55,7 @@ export class Logout extends React.Component<ILogoutProps> {
         return (
             <form style={appStyles.container}>
                 {this.hasLogoutDetails() ?
-                    <Typography variant="headline">{this.logoutMessage()}</Typography> :
+                    <Typography variant="headline" gutterBottom={true}>{this.logoutMessage()}</Typography> :
                     <div />}
                 <div>
                     {this.props.loggingOut && this.hasLogoutDetails() ? (
