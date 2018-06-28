@@ -1,6 +1,6 @@
 import { History } from 'history';
 import { Action, Dispatch } from 'redux';
-import { ILoadingProps } from '../components/Loading/loadingInterfaces';
+import { ILoadingStore } from '../components/Loading/loadingInterfaces';
 import { ILoggedInUser } from '../components/Users/usersInterfaces';
 
 export interface IComponentProps {
@@ -8,4 +8,4 @@ export interface IComponentProps {
     history: History;
 }
 
-export interface IConnectedComponentProps extends ILoggedInUser, ILoadingProps { }
+export interface IConnectedComponentProps extends ILoggedInUser, ILoadingStore { }

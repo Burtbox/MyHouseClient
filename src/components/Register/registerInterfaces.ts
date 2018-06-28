@@ -1,7 +1,8 @@
 import { IComponentProps } from '../../interfaces/componentInterfaces';
+import { IFormStyles } from '../../styles/styles';
 import { IUserAuthenticationObject } from '../Users/usersInterfaces';
 
-export interface IRegisterProps extends IRegisterReducer, IComponentProps { }
+export interface IRegisterProps extends IRegisterReducer, IComponentProps, IFormStyles { }
 
 export interface IRegisterState {
     registerUser: {

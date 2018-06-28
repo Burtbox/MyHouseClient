@@ -1,5 +1,5 @@
-import * as React from 'react';
 import { shallow } from 'enzyme';
+import * as React from 'react';
 import UserChip from '../../../components/UserChip';
 import { IUserChipProps } from '../../../components/UserChip/userChipInterfaces';
 
@@ -11,6 +11,9 @@ describe('User Chip test suite', () => {
                 token: 'tooken',
                 email: 'unitTestEmail',
                 displayName: 'unitTestDisplayName',
+            },
+            classes: {
+                chip: 'chip',
             },
         };
         const UserChipScreen = shallow(

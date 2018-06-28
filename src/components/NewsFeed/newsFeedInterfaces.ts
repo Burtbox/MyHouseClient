@@ -1,4 +1,5 @@
 import { IComponentProps, IConnectedComponentProps } from '../../interfaces/componentInterfaces';
+import { IFormStyles } from '../../styles/styles';
 
 export interface INewsFeed {
     newsFeedId: number;
@@ -10,7 +11,7 @@ export interface INewsFeed {
     // TODO: Add date to this!
 }
 
-export interface INewsFeedProps extends INewsFeedStore, IComponentProps { }
+export interface INewsFeedProps extends INewsFeedStore, IComponentProps, IFormStyles { }
 
 export interface INewsFeedReducer {
     newsFeedList: INewsFeed[];

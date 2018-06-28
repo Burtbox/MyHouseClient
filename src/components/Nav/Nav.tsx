@@ -1,6 +1,7 @@
 import AppBar from '@material-ui/core/AppBar/AppBar';
 import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton/IconButton';
+import { withStyles } from '@material-ui/core/styles';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import Toolbar from '@material-ui/core/Toolbar/Toolbar';
 import Typography from '@material-ui/core/Typography/Typography';
@@ -8,11 +9,13 @@ import MenuIcon from '@material-ui/icons/Menu';
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { compose } from 'redux';
 import { IStore } from '../../interfaces/storeInterface';
 import LoggedInMenu from './LoggedInMenu';
 import LoggedInNavButtons from './LoggedInNavButtons';
 import LoggedOutMenu from './LoggedOutMenu';
 import { INavProps, INavState, INavStore } from './navInterfaces';
+import navStyles from './navStyles';
 
 // TODO: Add back in user chip, but with different function?
 // TODO: Convert to fixed sidebar that always shows? or maybe just an inline one
@@ -30,10 +33,11 @@ export class Nav extends React.Component<INavProps, INavState> {
     }
 
     render() {
+        const { classes } = this.props;
         return (
-            <div>
-                <AppBar position="static">
-                    <Toolbar>
+            <div className={classes.root}>
+                <AppBar position="absolute" className={classes.appBar} >
+                    <Toolbar className={classes.toolbar}>
                         <IconButton color="secondary" aria-label="Menu" onClick={this.toggleDrawer}>
                             <MenuIcon color="secondary" />
                         </IconButton>
@@ -50,6 +54,8 @@ export class Nav extends React.Component<INavProps, INavState> {
                     open={this.state.openSidebar}
                     onClose={this.toggleDrawer}
                     onOpen={this.toggleDrawer}
+                    classes={{ paper: classes.drawerPaper }}
+                    anchor="left"
                 >
                     <div style={{
                         minHeight: '64px',
@@ -77,7 +83,7 @@ export class Nav extends React.Component<INavProps, INavState> {
                         </Link>
                     </div>
                     <Divider />
-                    {this.props.isLoggedIn ?  <LoggedInMenu {...this.props} /> : <LoggedOutMenu />}
+                    {this.props.isLoggedIn ? <LoggedInMenu {...this.props} /> : <LoggedOutMenu />}
                 </ SwipeableDrawer>
             </ div>
         );
@@ -94,4 +100,4 @@ const mapStateToProps = (store: IStore) => {
     return props;
 };
 
-export default connect(mapStateToProps)(Nav);
+export default compose(withStyles(navStyles), connect(mapStateToProps))(Nav);

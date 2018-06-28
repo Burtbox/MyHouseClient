@@ -1,7 +1,9 @@
+import { withStyles } from '@material-ui/core/styles';
 import * as React from 'react';
 import { connect } from 'react-redux';
+import { compose } from 'redux';
 import { IStore } from '../../interfaces/storeInterface';
-import appStyles from '../../styles';
+import formStyles from '../../styles/styles';
 import Loading from '../Loading';
 import { IUserDetails } from '../Users/usersInterfaces';
 import { HouseholdsActions } from './householdsActions';
@@ -16,7 +18,7 @@ export class Households extends React.Component<IHouseholdsProps> {
 
     render() {
         return (
-            <form style={appStyles.container}>
+            <form className={this.props.classes.container}>
                 <div style={{ display: 'inline-flex' }}>
                     {!this.props.loading && this.props.householdsArray && this.props.householdsArray.length > 0
                         ? <HouseholdsList householdsArray={this.props.householdsArray} />
@@ -36,4 +38,4 @@ const mapStateToProps = (store: IStore) => {
     return props;
 };
 
-export default connect(mapStateToProps)(Households);
+export default compose(withStyles(formStyles), connect(mapStateToProps))(Households);

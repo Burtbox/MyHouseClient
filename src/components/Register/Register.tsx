@@ -1,11 +1,12 @@
-import { Typography } from '@material-ui/core';
+import { Typography, withStyles } from '@material-ui/core';
 import { default as Button } from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import * as React from 'react';
 import { connect } from 'react-redux';
+import { compose } from 'redux';
 import { myHouseRoutes } from '../../enums/routesEnum';
 import { IStore } from '../../interfaces/storeInterface';
-import appStyles from '../../styles';
+import formStyles from '../../styles/styles';
 import { ErrorMessageActions } from '../ErrorMessage/errorMessageActions';
 import Loading from '../Loading';
 import { registerUser } from './registerEpic';
@@ -52,7 +53,7 @@ export class Register extends React.Component<IRegisterProps, IRegisterState> {
 
     render() {
         return (
-            <form style={appStyles.container} onSubmit={this.handleAddUser}>
+            <form className={this.props.classes.container} onSubmit={this.handleAddUser}>
                 <Typography variant="headline" gutterBottom={true}>Create Account</Typography>
                 <div style={{ textAlign: 'center' }}>
                     <Typography variant="subheading" gutterBottom={true}>
@@ -133,4 +134,4 @@ const mapStateToProps = (store: IStore) => {
     };
 };
 
-export default connect(mapStateToProps)(Register);
+export default compose(withStyles(formStyles), connect(mapStateToProps))(Register);

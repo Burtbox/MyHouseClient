@@ -17,13 +17,12 @@ const App: React.StatelessComponent = () => {
         <Provider store={store}>
             <PersistGate loading={<Loading />} persistor={persistor}>
                 <ConnectedRouter history={history}>
-                    <CssBaseline >
-                        <MuiThemeProvider theme={appTheme}>
-                                <Nav />
-                                <Routes />
-                                <ErrorMessage />
-                        </MuiThemeProvider>
-                    </CssBaseline >
+                    <MuiThemeProvider theme={appTheme}>
+                        <CssBaseline />
+                        <Nav />
+                        <Routes />
+                        <ErrorMessage />
+                    </MuiThemeProvider>
                 </ConnectedRouter>
             </PersistGate>
         </Provider>

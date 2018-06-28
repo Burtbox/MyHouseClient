@@ -1,8 +1,10 @@
 import { Card, CardContent, CardHeader, List, ListItem } from '@material-ui/core';
+import withStyles from '@material-ui/core/styles/withStyles';
 import * as React from 'react';
 import { connect } from 'react-redux';
+import { compose } from 'redux';
 import { IStore } from '../../interfaces/storeInterface';
-import appStyles from '../../styles';
+import formStyles from '../../styles/styles';
 import Loading from '../Loading';
 import { NewsFeedActions } from './newsFeedActions';
 import { INewsFeed, INewsFeedProps, INewsFeedStore } from './newsFeedInterfaces';
@@ -14,14 +16,16 @@ export class NewsFeed extends React.Component<INewsFeedProps> {
 
     render() {
         return (
-            <form style={appStyles.container}>
+            <form className={this.props.classes.container}>
                 <div style={{
-                    width: '66%',
-                    display: 'inline-table',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    flexGrow: 1,
+                    width: `calc(100% - ${240}px)`, // TODO: Unhardcode this
                 }}>
                     {this.props.loading ? <Loading /> :
                         this.props.newsFeedList && this.props.newsFeedList.length > 0 ?
-                            <List style={{ textAlign: 'center', display: 'inherit' }}>
+                            <List style={{ textAlign: 'center' }}>
                                 {this.props.newsFeedList.map((newsItem: INewsFeed) => (
                                     <ListItem>
                                         <Card style={{ width: '100%' }}>
@@ -53,4 +57,4 @@ const mapStateToProps = (store: IStore) => {
     return props;
 };
 
-export default connect(mapStateToProps)(NewsFeed);
+export default compose(withStyles(formStyles), connect(mapStateToProps))(NewsFeed);

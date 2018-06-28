@@ -1,4 +1,5 @@
 import { IComponentProps, IConnectedComponentProps } from '../../interfaces/componentInterfaces';
+import { IFormStyles } from '../../styles/styles';
 import { ILoadingReducer } from '../Loading/loadingInterfaces';
 import { ILoggedInUser } from '../Users/usersInterfaces';
 
@@ -7,7 +8,7 @@ export interface IHousehold {
     name: string;
 }
 
-export interface IHouseholdsProps extends IComponentProps, IConnectedComponentProps, IHouseholdsStore { }
+export interface IHouseholdsProps extends IComponentProps, IConnectedComponentProps, IHouseholdsStore, IFormStyles { }
 
 export interface IHouseholdsStore extends IHouseholdsReducer, ILoadingReducer, ILoggedInUser { }
 

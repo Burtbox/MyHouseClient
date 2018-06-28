@@ -10,6 +10,7 @@ describe('Login test suite', () => {
             history: undefined,
             loggingIn: false,
             dispatch: undefined,
+            classes: undefined,
         };
         const loginScreen = shallow(
             <DisconnectedLogin {...props} />,

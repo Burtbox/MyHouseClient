@@ -1,10 +1,11 @@
-import { Button, Typography } from '@material-ui/core';
+import { Button, Typography, withStyles } from '@material-ui/core';
 import * as queryString from 'query-string';
 import * as React from 'react';
 import { connect } from 'react-redux';
+import { compose } from 'redux';
 import { myHouseRoutes } from '../../enums/routesEnum';
 import { IStore } from '../../interfaces/storeInterface';
-import appStyles from '../../styles';
+import formStyles from '../../styles/styles';
 import Loading from '../Loading';
 import { logoutUser } from './logoutEpic';
 import { ILogoutDetails, ILogoutProps, LogoutReason } from './logoutInterfaces';
@@ -53,7 +54,7 @@ export class Logout extends React.Component<ILogoutProps> {
 
     render() {
         return (
-            <form style={appStyles.container}>
+            <form className={this.props.classes.container}>
                 {this.hasLogoutDetails() ?
                     <Typography variant="headline" gutterBottom={true}>{this.logoutMessage()}</Typography> :
                     <div />}
@@ -80,4 +81,4 @@ const mapStateToProps = (store: IStore) => {
     };
 };
 
-export default connect(mapStateToProps)(Logout);
+export default compose(withStyles(formStyles), connect(mapStateToProps))(Logout);

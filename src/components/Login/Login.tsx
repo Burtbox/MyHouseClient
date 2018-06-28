@@ -1,11 +1,12 @@
-import { Typography } from '@material-ui/core';
+import { Typography, withStyles } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import * as React from 'react';
 import { connect } from 'react-redux';
+import { compose } from 'redux';
 import { myHouseRoutes } from '../../enums/routesEnum';
 import { IStore } from '../../interfaces/storeInterface';
-import appStyles from '../../styles';
+import formStyles from '../../styles/styles';
 import Loading from '../Loading';
 import { IUserAuthenticationObject } from '../Users/usersInterfaces';
 import { loginUser } from './loginEpic'; // TODO: Remove this direct call?
@@ -43,7 +44,7 @@ export class Login extends React.Component<ILoginProps, ILoginState> {
 
     render() {
         return (
-            <form style={appStyles.container} onSubmit={this.handleLogin}>
+            <form className={this.props.classes.container} onSubmit={this.handleLogin}>
                 <Typography variant="headline" gutterBottom={true}>Welcome</Typography>
                 <div>
                     <TextField
@@ -101,4 +102,4 @@ const mapStateToProps = (store: IStore) => {
     };
 };
 
-export default connect(mapStateToProps)(Login);
+export default compose(withStyles(formStyles), connect(mapStateToProps))(Login);

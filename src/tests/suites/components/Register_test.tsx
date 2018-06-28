@@ -9,6 +9,7 @@ describe('Register test suite', () => {
             history: undefined,
             registering: false,
             dispatch: undefined,
+            classes: undefined,
         };
         const registerScreen = shallow(
             <DisconnectedRegister {...props} />,
