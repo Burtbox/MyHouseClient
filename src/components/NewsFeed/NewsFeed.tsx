@@ -21,7 +21,6 @@ export class NewsFeed extends React.Component<INewsFeedProps> {
                     display: 'flex',
                     flexDirection: 'column',
                     flexGrow: 1,
-                    width: `calc(100% - ${240}px)`, // TODO: Unhardcode this
                 }}>
                     {this.props.loading ? <Loading /> :
                         this.props.newsFeedList && this.props.newsFeedList.length > 0 ?
