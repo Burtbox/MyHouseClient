@@ -26,7 +26,7 @@ export class NewsFeed extends React.Component<INewsFeedProps> {
                         this.props.newsFeedList && this.props.newsFeedList.length > 0 ?
                             <List style={{ textAlign: 'center' }}>
                                 {this.props.newsFeedList.map((newsItem: INewsFeed) => (
-                                    <ListItem>
+                                    <ListItem key={'NewsFeedItem_' + newsItem.newsFeedId}>
                                         <Card style={{ width: '100%' }}>
                                             <CardHeader
                                                 title={newsItem.headline}
