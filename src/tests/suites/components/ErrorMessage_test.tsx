@@ -8,6 +8,7 @@ describe('ErrorMessage test suite', () => {
         const props: IErrorMessageProps = {
             dispatch: undefined,
             errorMessageText: 'unit test error',
+            classes: undefined,
         };
         const ErrorMessageScreen = shallow(
             <DisconnectedErrorMessage {...props} />,

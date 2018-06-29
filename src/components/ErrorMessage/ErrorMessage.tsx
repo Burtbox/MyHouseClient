@@ -1,10 +1,13 @@
 import Snackbar from '@material-ui/core/Snackbar/Snackbar';
+import { withStyles } from '@material-ui/core/styles';
 import * as React from 'react';
 import { connect } from 'react-redux';
+import { compose } from 'redux';
 import { IStore } from '../../interfaces/storeInterface';
 import appTheme from '../../themes';
 import { ErrorMessageActions } from './errorMessageActions';
 import { IErrorMessageProps, IErrorMessageState, IErrorMessageStore } from './errorMessageInterfaces';
+import errorMessageStyles from './errorMessageStyles';
 
 export class ErrorMessage extends React.Component<IErrorMessageProps, IErrorMessageState> {
     constructor(props: IErrorMessageProps) {
@@ -48,4 +51,4 @@ const mapStateToProps = (store: IStore): IErrorMessageStore => {
     return { errorMessageText: store.errorMessageReducer.errorMessageText };
 };
 
-export default connect(mapStateToProps)(ErrorMessage);
+export default compose(withStyles(errorMessageStyles), connect(mapStateToProps))(ErrorMessage);
