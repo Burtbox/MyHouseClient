@@ -28,7 +28,7 @@ const LoggedInMenu: React.StatelessComponent<INavProps> = (props) => {
                         props.householdsArray && props.householdsArray.length > 1 ?
                             <MultiHouseholdMenu {...props} /> :
                             <Tooltip id="tooltip-icon" title="Create a household" placement="top">
-                                <Link to={myHouseRoutes.Households}
+                                <Link to={myHouseRoutes.AddHousehold}
                                     style={{ textDecoration: 'none' }}
                                 >
                                     <ListItem>
