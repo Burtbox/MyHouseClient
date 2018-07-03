@@ -40,10 +40,10 @@ export class AddHousehold extends React.Component<IAddHouseholdProps, IAddHouseh
     render() {
         return (
             <form className={this.props.classes.container} onSubmit={this.handleAddHousehold}>
-                <Typography variant="headline" gutterBottom={true}>New Household</Typography>
+                <Typography variant="headline" gutterBottom={true}>Add Household</Typography>
                 <div style={{ textAlign: 'center' }}>
                     <Typography variant="subheading" gutterBottom={true}>
-                        A household is a collection of people you want to use the app with
+                        A collection of people you want to use the app with
                     </Typography>
                 </div>
                 <div>
