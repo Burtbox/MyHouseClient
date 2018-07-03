@@ -68,6 +68,7 @@ const LoggedInMenu: React.StatelessComponent<INavProps> = (props) => {
             <Divider />
             <Tooltip id="tooltip-icon" title="Only users of shared computers need to logout" placement="top">
                 <Link to={getLogoutUrlWithDetails(LogoutReason.UserTriggered)}
+                    style={{ textDecoration: 'none' }}
                 >
                     <ListItem button>
                         <ListItemIcon>
