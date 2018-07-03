@@ -25,7 +25,7 @@ Switch to redux loading through action and grab from props (remove loading flags
 
 Refactor unit tests - can test each refactored stateless component separately for better unit tests! 
 
-Create household button and workflow for that! 
+Create household button and workflow for that!
 
 BUGS:
 When no households (is this possible - figure out register flow) menu needs to prompt!

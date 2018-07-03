@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Route, RouteComponentProps, Switch, withRouter } from 'react-router-dom';
 import { myHouseRoutes } from '../../enums/routesEnum';
 import { IStore } from '../../interfaces/storeInterface';
+import { AddHousehold } from '../AddHousehold/AddHousehold';
 import Households from '../Households';
 import Login from '../Login';
 import Logout from '../Logout';
@@ -19,6 +20,7 @@ const LoggedInRoutes: React.StatelessComponent = () => {
             <Route exact path={myHouseRoutes.Base} component={NewsFeed} />
             <Route path={myHouseRoutes.NewsFeed} component={NewsFeed} />
             <Route path={myHouseRoutes.Households} component={Households} />
+            <Route path={myHouseRoutes.AddHousehold} component={AddHousehold} />
             <Route path={myHouseRoutes.Logout} component={Logout} />
             <Route exact path={myHouseRoutes.Unknown} component={NotFound404} />
         </Switch>

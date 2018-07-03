@@ -4,6 +4,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Tooltip from '@material-ui/core/Tooltip/Tooltip';
+import Add from '@material-ui/icons/Add';
 import ExitToApp from '@material-ui/icons/ExitToApp';
 import SpeakerNotes from '@material-ui/icons/SpeakerNotes';
 import Storage from '@material-ui/icons/Storage';
@@ -25,7 +26,19 @@ const LoggedInMenu: React.StatelessComponent<INavProps> = (props) => {
                     props.householdsArray && props.householdsArray.length === 1 ?
                         <SingleHouseholdMenu {...props} /> :
                         props.householdsArray && props.householdsArray.length > 1 ?
-                            <MultiHouseholdMenu {...props} /> : <Loading />
+                            <MultiHouseholdMenu {...props} /> :
+                            <Tooltip id="tooltip-icon" title="Create a household" placement="top">
+                                <Link to={myHouseRoutes.Households}
+                                    style={{ textDecoration: 'none' }}
+                                >
+                                    <ListItem>
+                                        <ListItemIcon>
+                                            <Add color="secondary" />
+                                        </ListItemIcon>
+                                        <ListItemText primary="New Household" />
+                                    </ListItem>
+                                </Link>
+                            </ Tooltip>
             }
             <Tooltip id="tooltip-icon" title="Updates from myHouse" placement="top">
                 <Link to={myHouseRoutes.NewsFeed}

@@ -1,4 +1,5 @@
 import { AnyAction, combineReducers, Reducer } from 'redux';
+import addHouseholdReducer from '../components/AddHousehold/addHouseholdReducer';
 import errorMessageReducer from '../components/ErrorMessage/errorMessageReducer';
 import householdsReducer from '../components/Households/householdsReducer';
 import loadingReducer from '../components/Loading/loadingReducer';
@@ -15,6 +16,7 @@ const combinedReducers: Reducer<IStore, AnyAction> = combineReducers({
     loginReducer,
     registerReducer,
     householdsReducer,
+    addHouseholdReducer,
     newsFeedReducer,
     loadingReducer,
     logoutReducer,

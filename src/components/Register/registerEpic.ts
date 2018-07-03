@@ -24,7 +24,7 @@ export function registerUser(dispatch: Dispatch<Action>, user: IRegisterUserObje
                     uid: auth.currentUser.uid,
                 }));
                 dispatch(RegisterActions.registerComplete());
-                history.push(myHouseRoutes.Households);
+                history.push(myHouseRoutes.AddHousehold);
             });
         })
             .catch((error: Error) => {

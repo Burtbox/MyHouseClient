@@ -9,6 +9,6 @@ export interface AjaxCallParams {
     endpoint: endpoints;
     method: HTTPMethod;
     token: string;
-    urlParams: string;
+    urlParams?: string;
     body?: Object;
 }
