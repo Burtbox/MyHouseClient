@@ -26,6 +26,12 @@ export class AddHousehold extends React.Component<IAddHouseholdProps, IAddHouseh
         };
     }
 
+    componentWillReceiveProps(nextProps: IAddHouseholdProps) {
+        if (nextProps.addingHousehold) {
+            this.setState({ addingHousehold: nextProps.addingHousehold });
+        }
+    }
+
     handleAddHousehold = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         this.props.dispatch(HouseholdsActions.addHousehold({ token: this.props.loggedInUser.token, household: this.state.household }));
@@ -71,6 +77,7 @@ export class AddHousehold extends React.Component<IAddHouseholdProps, IAddHouseh
                         placeholder="Our House"
                         label="Household Name"
                         required
+                        value={this.state.household.name}
                         onChange={this.handleInputChange}
                         disabled={this.props.loading > 0}
                         margin="normal"
@@ -110,6 +117,7 @@ const mapStateToProps = (store: IStore) => {
     return {
         loading: store.loadingReducer.loading,
         loggedInUser: store.usersReducer.loggedInUser,
+        householdAdded: store.householdsReducer.householdAdded,
     };
 };
 

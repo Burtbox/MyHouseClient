@@ -8,6 +8,7 @@ export enum householdsActionTypes {
     GET_HOUSEHOLDS_OF_USER_RESPONSE = 'GET_HOUSEHOLDS_OF_USER_RESPONSE',
     ADD_HOUSEHOLD_REQUEST = 'ADD_HOUSEHOLD_REQUEST',
     ADD_HOUSEHOLD_RESPONSE = 'ADD_HOUSEHOLD_RESPONSE',
+    ADD_HOUSEHOLD_REQUEST_COMPLETE = 'ADD_HOUSEHOLD_REQUEST_COMPLETE',
 }
 
 const getHouseholdsOfUser = (userDetails: IUserDetails) =>
@@ -22,11 +23,15 @@ const addHousehold = (household: IAddHouseholdRequest) =>
 const receiveHousehold = (addHouseholdResponse: IHousehold) =>
     createAction(householdsActionTypes.ADD_HOUSEHOLD_RESPONSE, addHouseholdResponse);
 
+const addHouseholdComplete = () =>
+    createAction(householdsActionTypes.ADD_HOUSEHOLD_REQUEST_COMPLETE);
+
 export const HouseholdsActions = {
     getHouseholdsOfUser,
     receiveHouseholdsOfUser,
     addHousehold,
     receiveHousehold,
+    addHouseholdComplete,
 };
 
 export type HouseholdsActions = ActionsUnion<typeof HouseholdsActions>;

@@ -26,6 +26,7 @@ const getHouseholdsOfUserRequestEpic = (action$: Observable<Action>) => {
             return ajaxObservable<IHousehold[]>(addTransactionAjaxParams).pipe(
                 mergeMap(response => of(
                     HouseholdsActions.receiveHouseholdsOfUser(response),
+                    HouseholdsActions.addHouseholdComplete(),
                     LoadingActions.loadingComplete(),
                 )),
             );

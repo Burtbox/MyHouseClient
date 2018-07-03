@@ -4,6 +4,7 @@ import { IHouseholdsReducer } from './householdsInterfaces';
 function householdsReducer(
     state: IHouseholdsReducer = {
         householdsArray: [],
+        householdAdded: false,
     },
     action: HouseholdsActions,
 ): IHouseholdsReducer {
@@ -18,7 +19,14 @@ function householdsReducer(
     case householdsActionTypes.ADD_HOUSEHOLD_RESPONSE:
         nextState = {
             ...state,
+            householdAdded: true,
             householdsArray: [...state.householdsArray, action.payload],
+        };
+        break;
+    case householdsActionTypes.ADD_HOUSEHOLD_REQUEST_COMPLETE:
+        nextState = {
+            ...state,
+            householdAdded: false,
         };
         break;
     default:

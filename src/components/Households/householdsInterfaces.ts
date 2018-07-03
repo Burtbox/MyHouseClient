@@ -14,4 +14,5 @@ export interface IHouseholdsStore extends IHouseholdsReducer, ILoadingReducer, I
 
 export interface IHouseholdsReducer {
     householdsArray: IHousehold[];
+    householdAdded?: boolean;
 }
