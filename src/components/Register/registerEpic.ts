@@ -3,32 +3,34 @@ import { myHouseRoutes } from '../../enums/routesEnum';
 import auth from '../../helpers/firebase';
 import history from '../../main/history';
 import { ErrorMessageActions } from '../ErrorMessage/errorMessageActions';
-import { IUserResponseObject } from '../Users/usersInterfaces';
 import { RegisterActions } from './registerActions';
-import { IRegisterUserObject, IUserRegistrationObject } from './registerInterfaces';
+import { IRegisterUserObject } from './registerInterfaces';
 
-// TODO: Make into observable
-export function registerUser(user: IRegisterUserObject) {
-    const request = auth.createUserWithEmailAndPassword(
+export function registerUser(dispatch: Dispatch<Action>, user: IRegisterUserObject) {
+    dispatch(RegisterActions.registerStarted());
+    auth.createUserWithEmailAndPassword(
         user.email,
         user.password,
-    );
-
-    return (dispatch: Dispatch<Action>) => {
-        dispatch(RegisterActions.registerStarted());
-        return request.then((register: IUserRegistrationObject) => {
-            return register
-                .updateProfile({ displayName: user.displayName })
-                .then((authenticated: IUserResponseObject) => {
-                    dispatch(RegisterActions.registerSuccessful(authenticated));
-                    dispatch(RegisterActions.registerComplete());
-                    history.push(myHouseRoutes.Households);
-                })
-                .catch((error: Error) => {
-                    dispatch(ErrorMessageActions.addError(error.message));
-                    dispatch(RegisterActions.registerComplete());
-                    throw error;
-                });
-        });
-    };
+    ).then(() => {
+        auth.currentUser.updateProfile({
+            displayName: user.displayName,
+            photoURL: '',
+        }).then(() => {
+            auth.currentUser.getToken().then((token: string) => {
+                dispatch(RegisterActions.registerSuccessful({
+                    token,
+                    displayName: auth.currentUser.displayName,
+                    email: auth.currentUser.email,
+                    uid: auth.currentUser.uid,
+                }));
+                dispatch(RegisterActions.registerComplete());
+                history.push(myHouseRoutes.Households);
+            });
+        })
+            .catch((error: Error) => {
+                dispatch(ErrorMessageActions.addError(error.message));
+                dispatch(RegisterActions.registerComplete());
+                throw error;
+            });
+    });
 }

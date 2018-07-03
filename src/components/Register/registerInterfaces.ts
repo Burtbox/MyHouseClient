@@ -13,10 +13,6 @@ export interface IRegisterState {
     };
 }
 
-export interface IUserRegistrationObject extends IUserAuthenticationObject {
-    updateProfile: Function;
-}
-
 export interface IRegisterUserObject extends IUserAuthenticationObject {
     displayName: string;
     confirmPassword: string;

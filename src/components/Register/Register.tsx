@@ -35,7 +35,7 @@ export class Register extends React.Component<IRegisterProps, IRegisterState> {
                 password: this.state.registerUser.password,
                 confirmPassword: this.state.registerUser.confirmPassword,
             };
-            registerUser(user);
+            registerUser(this.props.dispatch, user);
         } else {
             this.props.dispatch(ErrorMessageActions.addError('Your password does not match the confirmed password'));
         }

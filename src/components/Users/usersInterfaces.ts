@@ -1,4 +1,3 @@
-
 export interface IUserDetails {
     userId: string;
     token: string;
@@ -15,10 +14,10 @@ export interface IUserAuthenticationObject {
 }
 
 export interface IUserResponseObject {
-    uid: string;
     token: string;
-    email: string;
     displayName: string;
+    email: string;
+    uid: string;
 }
 
 export interface IUsersReducer extends ILoggedInUser {
