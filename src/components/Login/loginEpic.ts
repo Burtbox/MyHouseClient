@@ -12,7 +12,7 @@ export function loginUser(dispatch: Dispatch<Action>, login: IUserAuthentication
     dispatch(LoadingActions.loadingStarted());
     auth.signInWithEmailAndPassword(login.email, login.password)
         .then((response: IUserResponseObject) => {
-            auth.currentUser.getToken(true).then((idToken: string) => {
+            auth.currentUser.getIdToken(true).then((idToken: string) => {
                 dispatch(LoginActions.loginSuccessful(response, idToken));
                 dispatch(LoadingActions.loadingComplete());
                 history.push(myHouseRoutes.NewsFeed);

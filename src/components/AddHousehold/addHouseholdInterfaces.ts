@@ -4,7 +4,7 @@ import { ILoadingReducer } from '../Loading/loadingInterfaces';
 import { ILoggedInUser } from '../Users/usersInterfaces';
 
 export interface IAddHouseholdProps extends IComponentProps, IConnectedComponentProps, IAddHouseholdStore, IFormStyles {
-    addingHousehold: boolean;
+    householdAdded: boolean;
 }
 
 export interface IAddHouseholdStore extends ILoadingReducer, ILoggedInUser { }

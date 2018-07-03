@@ -16,7 +16,7 @@ export function registerUser(dispatch: Dispatch<Action>, user: IRegisterUserObje
             displayName: user.displayName,
             photoURL: '',
         }).then(() => {
-            auth.currentUser.getToken().then((token: string) => {
+            auth.currentUser.getIdToken(true).then((token: string) => {
                 dispatch(RegisterActions.registerSuccessful({
                     token,
                     displayName: auth.currentUser.displayName,

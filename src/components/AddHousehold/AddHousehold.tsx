@@ -27,15 +27,13 @@ export class AddHousehold extends React.Component<IAddHouseholdProps, IAddHouseh
     }
 
     componentWillReceiveProps(nextProps: IAddHouseholdProps) {
-        if (nextProps.addingHousehold) {
-            this.setState({ addingHousehold: nextProps.addingHousehold });
-        }
+        this.setState({ householdAdded: nextProps.householdAdded });
     }
 
     handleAddHousehold = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         this.props.dispatch(HouseholdsActions.addHousehold({ token: this.props.loggedInUser.token, household: this.state.household }));
-        this.setState({ household: { ...this.state.household, name: '' } });
+        this.setState({ household: { ...this.state.household, name: '' }, addingHousehold: true });
     }
 
     handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -55,7 +53,9 @@ export class AddHousehold extends React.Component<IAddHouseholdProps, IAddHouseh
 
         this.setState({
             householdAdded: false,
+            addingHousehold: false,
         });
+        this.props.dispatch(HouseholdsActions.addHouseholdComplete());
     }
 
     handleViewHouseholdClick = () => {
@@ -87,7 +87,7 @@ export class AddHousehold extends React.Component<IAddHouseholdProps, IAddHouseh
                     {this.props.loading ? (
                         <Loading />
                     ) : (
-                            <Button variant="outlined" type="submit" >
+                            <Button variant="outlined" type="submit" disabled={this.state.addingHousehold} >
                                 Add
                             </Button>
                         )}
