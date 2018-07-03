@@ -15,16 +15,17 @@ export class AddHousehold extends React.Component<IAddHouseholdProps, IAddHouseh
         super(props);
         this.state = {
             household: {
-                enteredBy: 0,
-                householdName: '',
-                creatorDisplayName: '',
+                enteredBy: props.loggedInUser.userId,
+                name: '',
+                creatorDisplayName: props.loggedInUser.displayName,
             },
         };
     }
 
     handleAddHousehold = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        this.props.dispatch(AddHouseholdActions.addHousehold(this.state.household));
+        this.props.dispatch(AddHouseholdActions.addHousehold({ token: this.props.loggedInUser.token, household: this.state.household }));
+        this.setState({ household: { ...this.state.household, name: '' } });
     }
 
     handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -48,7 +49,7 @@ export class AddHousehold extends React.Component<IAddHouseholdProps, IAddHouseh
                 </div>
                 <div>
                     <TextField
-                        name="householdName"
+                        name="name"
                         placeholder="Our House"
                         label="Household Name"
                         required

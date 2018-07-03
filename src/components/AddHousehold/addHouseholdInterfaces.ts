@@ -13,11 +13,16 @@ export interface IAddHouseholdReducer {
 }
 
 export interface IAddHouseholdState {
-    household: IAddHouseholdRequest;
+    household: IAddHouseholdDetails;
+}
+
+export interface IAddHouseholdDetails {
+    enteredBy: string;
+    name: string;
+    creatorDisplayName: string;
 }
 
 export interface IAddHouseholdRequest {
-    enteredBy: number;
-    householdName: string;
-    creatorDisplayName: string;
+    token: string;
+    household: IAddHouseholdDetails;
 }
