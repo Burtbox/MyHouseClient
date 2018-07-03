@@ -4,11 +4,9 @@ import { Observable, of } from 'rxjs';
 import { mergeMap, switchMap } from 'rxjs/operators';
 import { endpoints } from '../../enums/endpointsEnum';
 import { HTTPMethod } from '../../enums/httpEnum';
-import { myHouseRoutes } from '../../enums/routesEnum';
 import { ActionWithPayload } from '../../helpers/actionCreator';
 import ajaxObservable from '../../helpers/ajaxHelper';
 import { AjaxCallParams } from '../../interfaces/apiInterfaces';
-import history from '../../main/history';
 import { HouseholdsActions, householdsActionTypes } from '../Households/householdsActions';
 import { IHousehold } from '../Households/householdsInterfaces';
 import { LoadingActions } from '../Loading/loadingActions';
@@ -29,7 +27,6 @@ const addHouseholdRequestEpic = (action$: Observable<Action>) => {
                 mergeMap(response => of(
                     HouseholdsActions.receiveHousehold(response),
                     LoadingActions.loadingComplete(),
-                    history.push(myHouseRoutes.Households),
                 )),
             );
         },

@@ -1,13 +1,15 @@
-import { Typography, withStyles } from '@material-ui/core';
+import { Snackbar, Typography, withStyles } from '@material-ui/core';
 import { default as Button } from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
+import { myHouseRoutes } from '../../enums/routesEnum';
 import { IStore } from '../../interfaces/storeInterface';
 import formStyles from '../../styles/styles';
 import { HouseholdsActions } from '../Households/householdsActions';
 import Loading from '../Loading';
+import MessageSnackbarContent from '../MessageSnackbarContent';
 import { IAddHouseholdProps, IAddHouseholdState } from './addHouseholdInterfaces';
 
 export class AddHousehold extends React.Component<IAddHouseholdProps, IAddHouseholdState> {
@@ -19,6 +21,8 @@ export class AddHousehold extends React.Component<IAddHouseholdProps, IAddHouseh
                 name: '',
                 creatorDisplayName: props.loggedInUser.displayName,
             },
+            addingHousehold: false,
+            householdAdded: false,
         };
     }
 
@@ -36,6 +40,20 @@ export class AddHousehold extends React.Component<IAddHouseholdProps, IAddHouseh
         this.setState(prevState => ({
             household: { ...this.state.household, [name]: value },
         }));
+    }
+
+    handleHouseholdAddedClose = (event: React.MouseEvent<HTMLElement>, reason: string) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+
+        this.setState({
+            householdAdded: false,
+        });
+    }
+
+    handleViewHouseholdClick = () => {
+        this.props.history.push(myHouseRoutes.Households);
     }
 
     render() {
@@ -67,6 +85,22 @@ export class AddHousehold extends React.Component<IAddHouseholdProps, IAddHouseh
                             </Button>
                         )}
                 </div>
+                <Snackbar
+                    open={this.state.householdAdded}
+                    autoHideDuration={4000}
+                    onClose={this.handleHouseholdAddedClose}
+                >
+                    <MessageSnackbarContent
+                        onClose={this.handleHouseholdAddedClose}
+                        variant="success"
+                        message="Household added"
+                        additionalActions={
+                            <Button key="view" size="small" onClick={this.handleViewHouseholdClick}>
+                                View
+                            </Button>
+                        }
+                    />
+                </Snackbar>
             </form>
         );
     }

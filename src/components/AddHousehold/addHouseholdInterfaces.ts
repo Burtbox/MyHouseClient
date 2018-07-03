@@ -9,6 +9,8 @@ export interface IAddHouseholdStore extends ILoadingReducer, ILoggedInUser { }
 
 export interface IAddHouseholdState {
     household: IAddHouseholdDetails;
+    addingHousehold: boolean;
+    householdAdded: boolean;
 }
 
 export interface IAddHouseholdDetails {

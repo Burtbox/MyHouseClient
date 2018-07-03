@@ -10,6 +10,7 @@
   "dependencies": {
     "@material-ui/core": "^1.2.1",
     "@material-ui/icons": "^1.1.0",
+    "classnames": "^2.2.6",
     "connected-react-router": "^4.3.0",
     "firebase": "^4.6.2",
     "history": "^4.7.2",
@@ -42,6 +43,7 @@
     "deploy": "npm run build && cd ./build && rename index.html 200.html && surge -p ./ -d myhouse.surge.sh"
   },
   "devDependencies": {
+    "@types/classnames": "^2.2.4",
     "@types/enzyme": "^3.1.8",
     "@types/enzyme-adapter-react-16": "^1.0.1",
     "@types/jest": "^21.1.10",
