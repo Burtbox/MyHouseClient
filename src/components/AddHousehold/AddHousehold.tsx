@@ -6,8 +6,8 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { IStore } from '../../interfaces/storeInterface';
 import formStyles from '../../styles/styles';
+import { HouseholdsActions } from '../Households/householdsActions';
 import Loading from '../Loading';
-import { AddHouseholdActions } from './addHouseholdActions';
 import { IAddHouseholdProps, IAddHouseholdState } from './addHouseholdInterfaces';
 
 export class AddHousehold extends React.Component<IAddHouseholdProps, IAddHouseholdState> {
@@ -24,7 +24,7 @@ export class AddHousehold extends React.Component<IAddHouseholdProps, IAddHouseh
 
     handleAddHousehold = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        this.props.dispatch(AddHouseholdActions.addHousehold({ token: this.props.loggedInUser.token, household: this.state.household }));
+        this.props.dispatch(HouseholdsActions.addHousehold({ token: this.props.loggedInUser.token, household: this.state.household }));
         this.setState({ household: { ...this.state.household, name: '' } });
     }
 
@@ -75,7 +75,6 @@ export class AddHousehold extends React.Component<IAddHouseholdProps, IAddHouseh
 const mapStateToProps = (store: IStore) => {
     return {
         loading: store.loadingReducer.loading,
-        household: store.addHouseholdReducer.household,
         loggedInUser: store.usersReducer.loggedInUser,
     };
 };

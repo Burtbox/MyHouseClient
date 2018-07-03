@@ -9,15 +9,15 @@ import { ActionWithPayload } from '../../helpers/actionCreator';
 import ajaxObservable from '../../helpers/ajaxHelper';
 import { AjaxCallParams } from '../../interfaces/apiInterfaces';
 import history from '../../main/history';
+import { HouseholdsActions, householdsActionTypes } from '../Households/householdsActions';
 import { IHousehold } from '../Households/householdsInterfaces';
 import { LoadingActions } from '../Loading/loadingActions';
-import { AddHouseholdActions, addHouseholdActionTypes } from './addHouseholdActions';
 import { IAddHouseholdRequest } from './addHouseholdInterfaces';
 
 const addHouseholdRequestEpic = (action$: Observable<Action>) => {
     return action$.pipe(
-        ofType<ActionWithPayload<addHouseholdActionTypes.ADD_HOUSEHOLD_REQUEST, IAddHouseholdRequest>>(
-            addHouseholdActionTypes.ADD_HOUSEHOLD_REQUEST),
+        ofType<ActionWithPayload<householdsActionTypes.ADD_HOUSEHOLD_REQUEST, IAddHouseholdRequest>>(
+            householdsActionTypes.ADD_HOUSEHOLD_REQUEST),
         switchMap((params) => {
             const ajaxParams: AjaxCallParams = {
                 token: params.payload.token,
@@ -27,11 +27,9 @@ const addHouseholdRequestEpic = (action$: Observable<Action>) => {
             };
             return ajaxObservable<IHousehold>(ajaxParams).pipe(
                 mergeMap(response => of(
-                    AddHouseholdActions.receiveHousehold(response),
+                    HouseholdsActions.receiveHousehold(response),
                     LoadingActions.loadingComplete(),
                     history.push(myHouseRoutes.Households),
-                    // TODO: Get nav to update after this! Needs to be same reducer maybe and pop it in on the way past?
-                    // Or could just run action here!
                 )),
             );
         },

@@ -1,4 +1,3 @@
-import { IAddHouseholdReducer } from '../components/AddHousehold/addHouseholdInterfaces';
 import { IErrorMessageReducer } from '../components/ErrorMessage/errorMessageInterfaces';
 import { IHouseholdsReducer } from '../components/Households/householdsInterfaces';
 import { ILoadingReducer } from '../components/Loading/loadingInterfaces';
@@ -14,7 +13,6 @@ export interface IStore {
     loginReducer: ILoginReducer;
     registerReducer: IRegisterReducer;
     householdsReducer: IHouseholdsReducer;
-    addHouseholdReducer: IAddHouseholdReducer;
     newsFeedReducer: INewsFeedReducer;
     loadingReducer: ILoadingReducer;
     logoutReducer: ILogoutReducer;

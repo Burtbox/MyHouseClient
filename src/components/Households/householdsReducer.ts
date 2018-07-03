@@ -15,6 +15,12 @@ function householdsReducer(
             householdsArray: action.payload,
         };
         break;
+    case householdsActionTypes.ADD_HOUSEHOLD_RESPONSE:
+        nextState = {
+            ...state,
+            householdsArray: [...state.householdsArray, action.payload],
+        };
+        break;
     default:
         nextState = state;
         break;
