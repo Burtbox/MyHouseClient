@@ -27,18 +27,7 @@ const LoggedInMenu: React.StatelessComponent<INavProps> = (props) => {
                         <SingleHouseholdMenu {...props} /> :
                         props.householdsArray && props.householdsArray.length > 1 ?
                             <MultiHouseholdMenu {...props} /> :
-                            <Tooltip id="tooltip-icon" title="Create a household" placement="top">
-                                <Link to={myHouseRoutes.AddHousehold}
-                                    style={{ textDecoration: 'none' }}
-                                >
-                                    <ListItem>
-                                        <ListItemIcon>
-                                            <Add color="secondary" />
-                                        </ListItemIcon>
-                                        <ListItemText primary="New Household" />
-                                    </ListItem>
-                                </Link>
-                            </ Tooltip>
+                            <div />
             }
             <Tooltip id="tooltip-icon" title="Updates from myHouse" placement="top">
                 <Link to={myHouseRoutes.NewsFeed}
@@ -64,6 +53,18 @@ const LoggedInMenu: React.StatelessComponent<INavProps> = (props) => {
                     </ListItem>
                 </Link>
             </Tooltip>
+            <Tooltip id="tooltip-icon" title="Create a household" placement="top">
+                <Link to={myHouseRoutes.AddHousehold}
+                    style={{ textDecoration: 'none' }}
+                >
+                    <ListItem>
+                        <ListItemIcon>
+                            <Add color="secondary" />
+                        </ListItemIcon>
+                        <ListItemText primary="Add Household" />
+                    </ListItem>
+                </Link>
+            </ Tooltip>
             <Divider />
             <Tooltip id="tooltip-icon" title="Only users of shared computers need to logout" placement="top">
                 <Link to={getLogoutUrlWithDetails(LogoutReason.UserTriggered)}

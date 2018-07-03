@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Route, RouteComponentProps, Switch, withRouter } from 'react-router-dom';
 import { myHouseRoutes } from '../../enums/routesEnum';
 import { IStore } from '../../interfaces/storeInterface';
-import { AddHousehold } from '../AddHousehold/AddHousehold';
+import AddHousehold from '../AddHousehold';
 import Households from '../Households';
 import Login from '../Login';
 import Logout from '../Logout';
