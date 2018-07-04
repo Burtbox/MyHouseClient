@@ -4,7 +4,10 @@
     "outDir": "build/dist",
     "module": "esnext",
     "target": "es5",
-    "lib": ["es6", "dom"],
+    "lib": [
+      "es6",
+      "dom"
+    ],
     "sourceMap": true,
     "allowJs": false,
     "jsx": "react",
@@ -16,8 +19,18 @@
     "noImplicitAny": true,
     "strictNullChecks": false,
     "suppressImplicitAnyIndexErrors": true,
-    "noUnusedLocals": true
+    "noUnusedLocals": true,
+    "paths": {
+      "*": [
+        "./typings/*",
+        "*"
+      ]
+    }
   },
+  "include": [
+    "typings/**/*",
+    "src/**/*"
+  ],
   "exclude": [
     "node_modules",
     "build",
@@ -26,5 +39,5 @@
     "webpack",
     "jest",
     "src/setupTests.ts"
-  ]
+  ],
 }

@@ -2,9 +2,11 @@ import { Typography, withStyles } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import * as React from 'react';
+import { StyledFirebaseAuth } from 'react-firebaseui';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { myHouseRoutes } from '../../enums/routesEnum';
+import auth, { firebaseUiConfig } from '../../helpers/firebase';
 import { IStore } from '../../interfaces/storeInterface';
 import formStyles from '../../styles/styles';
 import Loading from '../Loading';
@@ -71,6 +73,7 @@ export class Login extends React.Component<ILoginProps, ILoginState> {
                         margin="normal"
                     />
                 </div>
+                <StyledFirebaseAuth uiConfig={firebaseUiConfig} firebaseAuth={auth} />
                 <div>
                     {this.props.loggingIn ? (
                         <Loading />
