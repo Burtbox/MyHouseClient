@@ -73,27 +73,34 @@ export class Login extends React.Component<ILoginProps, ILoginState> {
                         margin="normal"
                     />
                 </div>
-                <StyledFirebaseAuth uiConfig={firebaseUiConfig} firebaseAuth={auth} />
                 <div>
                     {this.props.loggingIn ? (
                         <Loading />
                     ) : (
-                            <Button type="submit" variant="outlined">
-                                Sign In
+                            <div>
+                                <div>
+                                    <Button type="submit" variant="outlined">
+                                        Sign In
+                                </Button>
+                                </div>
+                                <div>
+                                    <StyledFirebaseAuth uiConfig={firebaseUiConfig} firebaseAuth={auth} />
+                                </div>
+                                <div style={{ textAlign: 'center', marginTop: '1em' }}>
+                                    <Typography variant="subheading" gutterBottom={true}> New to My House? </Typography>
+                                    <Button
+                                        variant="outlined"
+                                        color="secondary"
+                                        size="small"
+                                        onClick={() => this.props.history.push(myHouseRoutes.Register)}
+                                    >
+                                        Sign Up
                             </Button>
+                                </div>
+                            </div>
                         )}
                 </div>
-                <div style={{ textAlign: 'center', marginTop: '3em' }}>
-                    <Typography variant="subheading" gutterBottom={true}> New to My House? </Typography>
-                    <Button
-                        variant="outlined"
-                        color="secondary"
-                        size="small"
-                        onClick={() => this.props.history.push(myHouseRoutes.Register)}
-                    >
-                        Sign Up
-                    </Button>
-                </div>
+
             </form>
         );
     }
