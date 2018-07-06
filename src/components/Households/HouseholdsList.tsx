@@ -13,9 +13,9 @@ import * as React from 'react';
 import { IHousehold, IHouseholdsListProps } from './householdsInterfaces';
 import householdListStyles from './householdsListStyles';
 
-// const inviteToHousehold = () => {
-//     // TODO: code
-// };
+const inviteToHousehold = () => {
+    // TODO: code
+};
 
 const HouseholdsList: React.StatelessComponent<IHouseholdsListProps> = (props: IHouseholdsListProps) => {
     const { classes } = props;
@@ -44,16 +44,15 @@ const HouseholdsList: React.StatelessComponent<IHouseholdsListProps> = (props: I
                                 label="Email Address"
                                 placeholder="example@email.com"
                                 required
-                                // onChange={this.handleInputChange} // TODO: make stateful and implement!
-                                // disabled={this.props.sending}
+                            // onChange={this.handleInputChange} // TODO: make stateful and implement!
+                            // disabled={this.props.sending}
                             />
                         </div>
                         <div className={classes.column} />
                     </ExpansionPanelDetails>
                     <Divider />
                     <ExpansionPanelActions>
-                        <Button size="small">Cancel</Button>
-                        <Button size="small" variant="outlined">Send</Button>
+                        <Button size="small" variant="outlined" onClick={inviteToHousehold}>Send</Button>
                     </ExpansionPanelActions>
                 </ExpansionPanel>,
             )}
