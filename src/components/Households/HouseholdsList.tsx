@@ -1,8 +1,6 @@
 import { TextField } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
-import Divider from '@material-ui/core/Divider';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
-import ExpansionPanelActions from '@material-ui/core/ExpansionPanelActions';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import { withStyles } from '@material-ui/core/styles';
@@ -45,12 +43,10 @@ const HouseholdsList: React.StatelessComponent<IHouseholdsListProps> = (props: I
                             // disabled={this.props.sending}
                             />
                         </div>
-                        <div className={classes.column} />
+                        <div className={classes.column}>
+                            <Button size="small" variant="outlined" onClick={inviteToHousehold}>Send</Button>
+                        </div>
                     </ExpansionPanelDetails>
-                    <Divider />
-                    <ExpansionPanelActions>
-                        <Button size="small" variant="outlined" onClick={inviteToHousehold}>Send</Button>
-                    </ExpansionPanelActions>
                 </ExpansionPanel>,
             )}
         </div>
