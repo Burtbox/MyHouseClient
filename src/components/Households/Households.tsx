@@ -25,7 +25,7 @@ export class Households extends React.Component<IHouseholdsProps> {
                         ? <HouseholdsList householdsArray={this.props.householdsArray} />
                         : this.props.householdsArray.length === 0
                             ? <Typography variant="subheading">
-                                You don't have any households <p />
+                                You currently don't have any households <p />
                                 Click Add Household to create a new household and invite people <p />
                                 Or ask for an invite to an existing household
                             </Typography>
