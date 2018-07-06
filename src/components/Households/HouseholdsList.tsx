@@ -1,19 +1,64 @@
-import { List, ListItem, ListItemText, Paper } from '@material-ui/core';
+import { TextField } from '@material-ui/core';
+import Button from '@material-ui/core/Button';
+import Divider from '@material-ui/core/Divider';
+import ExpansionPanel from '@material-ui/core/ExpansionPanel';
+import ExpansionPanelActions from '@material-ui/core/ExpansionPanelActions';
+import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
+import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
+import { withStyles } from '@material-ui/core/styles';
+import Typography from '@material-ui/core/Typography';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import * as classNames from 'classnames';
 import * as React from 'react';
-import { IHousehold, IHouseholdsReducer } from './householdsInterfaces';
+import { IHousehold, IHouseholdsListProps } from './householdsInterfaces';
+import householdListStyles from './householdsListStyles';
 
-const HouseholdsList: React.StatelessComponent<IHouseholdsReducer> = (props) => {
+// const inviteToHousehold = () => {
+//     // TODO: code
+// };
+
+const HouseholdsList: React.StatelessComponent<IHouseholdsListProps> = (props: IHouseholdsListProps) => {
+    const { classes } = props;
     return (
-        <Paper>
-            <List>
-                {props.householdsArray.map((household: IHousehold) =>
-                    <ListItem key={household.occupantId}>
-                        <ListItemText primary={household.name} />
-                    </ListItem>,
-                )}
-            </List>
-        </Paper>
+        <div className={classes.root}>
+            {props.householdsArray.map((household: IHousehold) =>
+                <ExpansionPanel key={household.occupantId}>
+                    <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+                        <div className={classes.column}>
+                            <Typography className={classes.heading}>{household.name}</Typography>
+                        </div>
+                        <div className={classes.column}>
+                            <Typography className={classes.secondaryHeading}>Invite occupants</Typography>
+                        </div>
+                    </ExpansionPanelSummary>
+                    <ExpansionPanelDetails className={classes.details}>
+                        <div className={classes.column}>
+                            <Typography variant="caption">
+                                Invite others to join via email
+                            </Typography>
+                        </div>
+                        <div className={classNames(classes.column, classes.helper)}>
+                            <TextField
+                                name="email"
+                                type="text"
+                                label="Email Address"
+                                placeholder="example@email.com"
+                                required
+                                // onChange={this.handleInputChange} // TODO: make stateful and implement!
+                                // disabled={this.props.sending}
+                            />
+                        </div>
+                        <div className={classes.column} />
+                    </ExpansionPanelDetails>
+                    <Divider />
+                    <ExpansionPanelActions>
+                        <Button size="small">Cancel</Button>
+                        <Button size="small" variant="outlined">Send</Button>
+                    </ExpansionPanelActions>
+                </ExpansionPanel>,
+            )}
+        </div>
     );
 };
 
-export default HouseholdsList;
+export default withStyles(householdListStyles)(HouseholdsList);
