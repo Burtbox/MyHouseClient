@@ -27,6 +27,8 @@ export class Login extends React.Component<ILoginProps, ILoginState> {
         };
     }
 
+    // TODO: Figure out the unregister bit - don't think that's working
+    // TODO: Add user to db if not exists and is signing in with google! - just call register epic here!
     unregisterAuthObserver = () => {
         auth.onAuthStateChanged((user) => {
             this.props.dispatch(LoadingActions.loadingStarted());
