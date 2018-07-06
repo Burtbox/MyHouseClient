@@ -27,14 +27,11 @@ const HouseholdsList: React.StatelessComponent<IHouseholdsListProps> = (props: I
                         <div className={classes.column}>
                             <Typography className={classes.heading}>{household.name}</Typography>
                         </div>
-                        <div className={classes.column}>
-                            <Typography className={classes.secondaryHeading}>Invite occupants</Typography>
-                        </div>
                     </ExpansionPanelSummary>
                     <ExpansionPanelDetails className={classes.details}>
                         <div className={classes.column}>
-                            <Typography variant="caption">
-                                Invite others to join via email
+                            <Typography variant="subheading">
+                                Invite
                             </Typography>
                         </div>
                         <div className={classNames(classes.column, classes.helper)}>
