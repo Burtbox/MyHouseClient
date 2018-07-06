@@ -43,7 +43,7 @@ export class Nav extends React.Component<INavProps, INavState> {
                         </IconButton>
                         <Link to="/" style={{ textDecoration: 'none' }}>
                             <Typography variant="headline" color="secondary">
-                                My House
+                                myHouse
                             </Typography>
                         </Link>
                         {this.props.isLoggedIn ? <LoggedInNavButtons /> : <div />}
@@ -78,7 +78,7 @@ export class Nav extends React.Component<INavProps, INavState> {
                             textDecoration: 'none',
                         }}>
                             <Typography variant="headline">
-                                My House
+                                myHouse
                             </Typography>
                         </Link>
                     </div>
