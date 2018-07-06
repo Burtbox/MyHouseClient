@@ -27,11 +27,6 @@ const HouseholdsList: React.StatelessComponent<IHouseholdsListProps> = (props: I
                         </div>
                     </ExpansionPanelSummary>
                     <ExpansionPanelDetails className={classes.details}>
-                        <div className={classes.column}>
-                            <Typography variant="subheading">
-                                Invite
-                            </Typography>
-                        </div>
                         <div className={classNames(classes.column, classes.helper)}>
                             <TextField
                                 name="email"
@@ -44,7 +39,7 @@ const HouseholdsList: React.StatelessComponent<IHouseholdsListProps> = (props: I
                             />
                         </div>
                         <div className={classes.column}>
-                            <Button size="small" variant="outlined" onClick={inviteToHousehold}>Send</Button>
+                            <Button size="small" variant="outlined" onClick={inviteToHousehold}>Invite</Button>
                         </div>
                     </ExpansionPanelDetails>
                 </ExpansionPanel>,
