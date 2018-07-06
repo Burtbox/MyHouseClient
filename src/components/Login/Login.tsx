@@ -10,7 +10,9 @@ import auth, { firebaseUiConfig } from '../../helpers/firebase';
 import { IStore } from '../../interfaces/storeInterface';
 import formStyles from '../../styles/styles';
 import Loading from '../Loading';
+import { LoadingActions } from '../Loading/loadingActions';
 import { IUserAuthenticationObject } from '../Users/usersInterfaces';
+import { LoginActions } from './loginActions';
 import { loginUser } from './loginEpic'; // TODO: Remove this direct call?
 import { ILoginProps, ILoginState } from './loginInterfaces';
 
@@ -23,6 +25,23 @@ export class Login extends React.Component<ILoginProps, ILoginState> {
                 password: '',
             },
         };
+    }
+
+    unregisterAuthObserver = () => {
+        auth.onAuthStateChanged((user) => {
+            this.props.dispatch(LoadingActions.loadingStarted());
+            user.getIdToken()
+                .then((idToken: string) => {
+                    this.props.dispatch(LoginActions.loginSuccessful({
+                        token: idToken,
+                        userId: user.uid,
+                        email: user.email,
+                        displayName: user.displayName,
+                    }));
+                    this.props.dispatch(LoadingActions.loadingComplete());
+                    this.props.history.push(myHouseRoutes.NewsFeed);
+                });
+        });
     }
 
     handleLogin = (event: React.FormEvent<HTMLFormElement>) => {
@@ -42,6 +61,11 @@ export class Login extends React.Component<ILoginProps, ILoginState> {
         this.setState(prevState => ({
             user: { ...this.state.user, [name]: value },
         }));
+    }
+
+    // Make sure we un-register Firebase observers when the component unmounts.
+    componentWillUnmount() {
+        this.unregisterAuthObserver();
     }
 
     render() {

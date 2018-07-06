@@ -1,9 +1,13 @@
 declare module 'react-firebaseui' {
     import * as firebase from "firebase";
     export interface uiConfig {
-        signInFlow: 'popup' | 'redirect';
-        signInSuccessUrl: string;
+        signInFlow?: 'popup' | 'redirect';
+        signInSuccessUrl?: string;
         signInOptions: string[];
+        callbacks?: Object;
+        tosUrl: string;
+        queryParameterForWidgetMode?: 'mode'
+        queryParameterForSignInSuccessUrl?: 'signInSuccessUrl'
     }
     export interface StyledFirebaseAuthProps {
         uiConfig: uiConfig;

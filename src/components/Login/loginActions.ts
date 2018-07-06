@@ -10,14 +10,9 @@ export enum loginActionTypes {
 const loginStarted = () => createAction(loginActionTypes.LOGIN_STARTED);
 const loginCompleted = () => createAction(loginActionTypes.LOGIN_COMPLETED);
 
-const loginSuccessful = (loginResponse: IUserResponseObject, token: string) =>
+const loginSuccessful = (loginResponse: IUserResponseObject) =>
     createAction(usersActionTypes.RECEIVE_USER, {
-        loggedInUser: {
-            token,
-            email: loginResponse.email,
-            displayName: loginResponse.displayName,
-            userId: loginResponse.uid,
-        },
+        loggedInUser: loginResponse,
         isLoggedIn: true,
     });
 

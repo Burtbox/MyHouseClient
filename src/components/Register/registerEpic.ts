@@ -21,7 +21,7 @@ export function registerUser(dispatch: Dispatch<Action>, user: IRegisterUserObje
                     token,
                     displayName: auth.currentUser.displayName,
                     email: auth.currentUser.email,
-                    uid: auth.currentUser.uid,
+                    userId: auth.currentUser.uid,
                 }));
                 dispatch(RegisterActions.registerComplete());
                 history.push(myHouseRoutes.AddHousehold);

@@ -17,7 +17,7 @@ export interface IUserResponseObject {
     token: string;
     displayName: string;
     email: string;
-    uid: string;
+    userId: string;
 }
 
 export interface IUsersReducer extends ILoggedInUser {

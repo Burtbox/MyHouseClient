@@ -1,6 +1,5 @@
 import * as firebase from 'firebase';
 import { uiConfig } from 'react-firebaseui';
-import { myHouseRoutes } from '../enums/routesEnum';
 
 const config = {
     apiKey: 'AIzaSyA27cRAIaX6NqiLQ4_AHNB91MlHajiTplA', // TODO: Store as not plain text!
@@ -23,13 +22,13 @@ export const isAuthenticated = () => {
 
 // Configure FirebaseUI.
 export const firebaseUiConfig: uiConfig = {
-    // Popup signin flow rather than redirect flow.
-    signInFlow: 'popup',
-    // Redirect to /signedIn after sign in is successful. Alternatively you can provide a callbacks.signInSuccess function.
-    signInSuccessUrl: myHouseRoutes.NewsFeed,
-    // We will display Google and Facebook as auth providers.
+    signInFlow: 'redirect',
     signInOptions: [
         firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-        firebase.auth.FacebookAuthProvider.PROVIDER_ID,
     ],
+    callbacks: {
+        // Avoid redirects after sign-in.
+        signInSuccessWithAuthResult: () => false,
+    },
+    tosUrl: 'http://www.google.com',
 };
