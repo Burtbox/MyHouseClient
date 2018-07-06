@@ -25,7 +25,7 @@ Switch to redux loading through action and grab from props (remove loading flags
 
 Refactor unit tests - can test each refactored stateless component separately for better unit tests! 
 
-Create household button and workflow for that! - Just need to build the invite to household functionality!
+Need to build the invite to household functionality! (see nodeJs app)
 
 BUGS:
-When no households (is this possible - figure out register flow) menu needs to prompt!
+make nav sidebar and form content responsive (if sidebar hidden expand form div!)
