@@ -31,18 +31,20 @@ export class Login extends React.Component<ILoginProps, ILoginState> {
     // TODO: Add user to db if not exists and is signing in with google! - just call register epic here!
     unregisterAuthObserver = () => {
         auth.onAuthStateChanged((user) => {
-            this.props.dispatch(LoadingActions.loadingStarted());
-            user.getIdToken()
-                .then((idToken: string) => {
-                    this.props.dispatch(LoginActions.loginSuccessful({
-                        token: idToken,
-                        userId: user.uid,
-                        email: user.email,
-                        displayName: user.displayName,
-                    }));
-                    this.props.dispatch(LoadingActions.loadingComplete());
-                    this.props.history.push(myHouseRoutes.NewsFeed);
-                });
+            if (user) {
+                this.props.dispatch(LoadingActions.loadingStarted());
+                user.getIdToken()
+                    .then((idToken: string) => {
+                        this.props.dispatch(LoginActions.loginSuccessful({
+                            token: idToken,
+                            userId: user.uid,
+                            email: user.email,
+                            displayName: user.displayName,
+                        }));
+                        this.props.dispatch(LoadingActions.loadingComplete());
+                        this.props.history.push(myHouseRoutes.NewsFeed);
+                    });
+            }
         });
     }
 
@@ -104,12 +106,12 @@ export class Login extends React.Component<ILoginProps, ILoginState> {
                         <Loading />
                     ) : (
                             <div>
-                                <div>
+                                <div style={{ textAlign: 'center', marginTop: '1em' }}>
                                     <Button type="submit" variant="outlined">
                                         Sign In
-                                </Button>
+                                    </Button>
                                 </div>
-                                <div>
+                                <div style={{ textAlign: 'center', marginTop: '1em' }}>
                                     <StyledFirebaseAuth uiConfig={firebaseUiConfig} firebaseAuth={auth} />
                                 </div>
                                 <div style={{ textAlign: 'center', marginTop: '1em' }}>
@@ -121,7 +123,7 @@ export class Login extends React.Component<ILoginProps, ILoginState> {
                                         onClick={() => this.props.history.push(myHouseRoutes.Register)}
                                     >
                                         Sign Up
-                            </Button>
+                                    </Button>
                                 </div>
                             </div>
                         )}

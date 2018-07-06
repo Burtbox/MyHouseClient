@@ -57,7 +57,7 @@ export class Register extends React.Component<IRegisterProps, IRegisterState> {
                 <Typography variant="headline" gutterBottom={true}>Create Account</Typography>
                 <div style={{ textAlign: 'center' }}>
                     <Typography variant="subheading" gutterBottom={true}>
-                        Already have a My House account?
+                        Already have a myHouse or Google account?
                     </Typography>
                     <Button
                         variant="outlined"
@@ -114,7 +114,7 @@ export class Register extends React.Component<IRegisterProps, IRegisterState> {
                         margin="normal"
                     />
                 </div>
-                <div>
+                <div style={{ textAlign: 'center', marginTop: '1em' }}>
                     {this.props.registering ? (
                         <Loading />
                     ) : (
