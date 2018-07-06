@@ -18,7 +18,6 @@ import { INavProps, INavState, INavStore } from './navInterfaces';
 import navStyles from './navStyles';
 
 // TODO: Add back in user chip, but with different function?
-// TODO: Convert to fixed sidebar that always shows? or maybe just an inline one
 export class Nav extends React.Component<INavProps, INavState> {
     constructor(props: INavProps) {
         super(props);
