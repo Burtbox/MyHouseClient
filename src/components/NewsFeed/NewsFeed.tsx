@@ -1,4 +1,4 @@
-import { Card, CardContent, CardHeader, List, ListItem } from '@material-ui/core';
+import { Card, CardContent, CardHeader, List, ListItem, Typography } from '@material-ui/core';
 import withStyles from '@material-ui/core/styles/withStyles';
 import * as React from 'react';
 import { connect } from 'react-redux';
@@ -30,10 +30,15 @@ export class NewsFeed extends React.Component<INewsFeedProps> {
                                         <Card style={{ width: '100%' }}>
                                             <CardHeader
                                                 title={newsItem.headline}
-                                                subheader={newsItem.author}
+                                                subheader={'Author: ' + newsItem.author}
                                             />
                                             <CardContent >
-                                                {newsItem.story}
+                                                <Typography gutterBottom variant="subheading" component="h2">
+                                                    {newsItem.subHeadline}
+                                                </Typography>
+                                                <Typography component="p">
+                                                    {newsItem.story}
+                                                </Typography>
                                             </CardContent>
                                         </Card>
                                     </ListItem>
