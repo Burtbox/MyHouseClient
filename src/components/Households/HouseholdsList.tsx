@@ -24,6 +24,8 @@ const HouseholdsList: React.StatelessComponent<IHouseholdsListProps> = (props) =
                         classes={classes}
                         loggedInUser={props.loggedInUser}
                         loading={props.loading}
+                        dispatch={props.dispatch}
+                        history={props.history}
                     />
                 </ExpansionPanel>,
             )}

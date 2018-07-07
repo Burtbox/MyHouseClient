@@ -12,7 +12,7 @@ export class HouseholdsInvite extends React.Component<IHouseholdsInviteProps, IH
         this.state = {
             inviteDetails: {
                 email: '',
-                occupantId: 0,
+                occupantId: this.props.household.occupantId,
             },
             inviting: false,
         };
@@ -29,7 +29,10 @@ export class HouseholdsInvite extends React.Component<IHouseholdsInviteProps, IH
     }
 
     inviteToHousehold = () => {
-        HouseholdsActions.inviteToHousehold(this.state.inviteDetails, this.props.loggedInUser.token);
+        this.props.dispatch(HouseholdsActions.inviteToHousehold({
+            inviteDetails: this.state.inviteDetails,
+            token: this.props.loggedInUser.token,
+        }));
     }
 
     render() {
@@ -47,7 +50,7 @@ export class HouseholdsInvite extends React.Component<IHouseholdsInviteProps, IH
                         disabled={this.state.inviting}
                     />
                 </div>
-                <div className={classes.column}/>
+                <div className={classes.column} />
                 <div className={classes.column}>
                     <Button size="small" variant="outlined" onClick={this.inviteToHousehold}>Invite</Button>
                 </div>

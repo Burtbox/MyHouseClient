@@ -1,7 +1,7 @@
 import { ActionsUnion, createAction } from '../../helpers/actionCreator';
 import { IAddHouseholdRequest } from '../AddHousehold/addHouseholdInterfaces';
 import { IUserDetails } from '../Users/usersInterfaces';
-import { IHousehold, IInviteToHousehold } from './householdsInterfaces';
+import { IHousehold, IInviteToHouseholdRequest } from './householdsInterfaces';
 
 export enum householdsActionTypes {
     GET_HOUSEHOLDS_OF_USER_REQUEST = 'GET_HOUSEHOLDS_OF_USER_REQUEST',
@@ -28,8 +28,8 @@ const receiveHousehold = (addHouseholdResponse: IHousehold) =>
 const addHouseholdComplete = () =>
     createAction(householdsActionTypes.ADD_HOUSEHOLD_REQUEST_COMPLETE);
 
-const inviteToHousehold = (invitiation: IInviteToHousehold, token: string) =>
-    createAction(householdsActionTypes.INVITE_TO_HOUSEHOLD_REQUEST, { invitiation, token });
+const inviteToHousehold = (invitiation: IInviteToHouseholdRequest) =>
+    createAction(householdsActionTypes.INVITE_TO_HOUSEHOLD_REQUEST, invitiation);
 
 const inviteToHouseholdComplete = () =>
     createAction(householdsActionTypes.INVITE_TO_HOUSEHOLD_REQUEST_COMPLETE);

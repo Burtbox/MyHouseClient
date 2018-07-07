@@ -26,6 +26,8 @@ export class Households extends React.Component<IHouseholdsProps> {
                             householdsArray={this.props.householdsArray}
                             loading={this.props.loading}
                             loggedInUser={this.props.loggedInUser}
+                            dispatch={this.props.dispatch}
+                            history={this.props.history}
                         />
                         : this.props.householdsArray.length === 0
                             ? <Typography variant="subheading">

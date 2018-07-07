@@ -18,9 +18,9 @@ export interface IHouseholdsReducer {
     householdAdded?: boolean;
 }
 
-export interface IHouseholdsListProps extends IHouseholdsReducer, IHouseholdListSyles, IConnectedComponentProps { }
+export interface IHouseholdsListProps extends IHouseholdsReducer, IHouseholdListSyles, IConnectedComponentProps, IComponentProps { }
 
-export interface IHouseholdsInviteProps extends IHouseholdListSyles, IHouseholdsInviteStore {
+export interface IHouseholdsInviteProps extends IHouseholdListSyles, IHouseholdsInviteStore, IComponentProps {
     household: IHousehold;
 }
 
