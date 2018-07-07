@@ -18,4 +18,25 @@ export interface IHouseholdsReducer {
     householdAdded?: boolean;
 }
 
-export interface IHouseholdsListProps extends IHouseholdsReducer, IHouseholdListSyles { }
+export interface IHouseholdsListProps extends IHouseholdsReducer, IHouseholdListSyles, IConnectedComponentProps { }
+
+export interface IHouseholdsInviteProps extends IHouseholdListSyles, IHouseholdsInviteStore {
+    household: IHousehold;
+}
+
+export interface IHouseholdsInviteState {
+    inviteDetails: IInviteToHousehold;
+    inviting: boolean;
+}
+
+export interface IInviteToHousehold {
+    email: string;
+    occupantId: number;
+}
+
+export interface IInviteToHouseholdRequest {
+    token: string;
+    inviteDetails: IInviteToHousehold;
+}
+
+export interface IHouseholdsInviteStore extends IConnectedComponentProps { }

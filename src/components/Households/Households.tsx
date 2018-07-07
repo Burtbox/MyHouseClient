@@ -22,7 +22,11 @@ export class Households extends React.Component<IHouseholdsProps> {
             <form className={this.props.classes.container}>
                 <div style={{ display: 'inline-flex', width: '100%', padding: '2em' }}>
                     {!this.props.loading && this.props.householdsArray && this.props.householdsArray.length > 0
-                        ? <HouseholdsList householdsArray={this.props.householdsArray} />
+                        ? <HouseholdsList
+                            householdsArray={this.props.householdsArray}
+                            loading={this.props.loading}
+                            loggedInUser={this.props.loggedInUser}
+                        />
                         : this.props.householdsArray.length === 0
                             ? <Typography variant="subheading">
                                 You currently don't have any households <p />
