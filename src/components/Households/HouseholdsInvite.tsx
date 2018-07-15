@@ -12,7 +12,8 @@ export class HouseholdsInvite extends React.Component<IHouseholdsInviteProps, IH
         this.state = {
             inviteDetails: {
                 email: '',
-                occupantId: this.props.household.occupantId,
+                invitedByOccupantId: this.props.household.occupantId,
+                invitedByUserId: this.props.loggedInUser.userId,
             },
             inviting: false,
         };

@@ -31,7 +31,8 @@ export interface IHouseholdsInviteState {
 
 export interface IInviteToHousehold {
     email: string;
-    occupantId: number;
+    invitedByUserId: string;
+    invitedByOccupantId: number;
 }
 
 export interface IInviteToHouseholdRequest {
