@@ -11,6 +11,8 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { compose } from 'redux';
 import { IStore } from '../../interfaces/storeInterface';
+import { HouseholdsActions } from '../Households/householdsActions';
+import { IUserDetails } from '../Users/usersInterfaces';
 import LoggedInMenu from './LoggedInMenu';
 import LoggedInNavButtons from './LoggedInNavButtons';
 import LoggedOutMenu from './LoggedOutMenu';
@@ -25,6 +27,11 @@ export class Nav extends React.Component<INavProps, INavState> {
         this.state = {
             openSidebar: true,
         };
+    }
+
+    componentDidMount() {
+        const userDetails: IUserDetails = this.props.loggedInUser;
+        this.props.dispatch(HouseholdsActions.getHouseholdsOfUser(userDetails));
     }
 
     toggleDrawer = (event: React.MouseEvent<HTMLElement>) => {

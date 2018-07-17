@@ -10,6 +10,8 @@ import householdListStyles from './householdsListStyles';
 
 const HouseholdsList: React.StatelessComponent<IHouseholdsListProps> = (props) => {
     const { classes } = props;
+    // TODO: Add in whether an invite is pending and accept/reject functionality!
+    // All households got should not be included anywhere else until accepted!
     return (
         <div className={classes.root}>
             {props.householdsArray.map((household: IHousehold) =>
