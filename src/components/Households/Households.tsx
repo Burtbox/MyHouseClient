@@ -5,15 +5,19 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { IStore } from '../../interfaces/storeInterface';
 import formStyles from '../../styles/styles';
+import { IGetHouseholdsRequest } from '../AddHousehold/addHouseholdInterfaces';
 import Loading from '../Loading';
-import { IUserDetails } from '../Users/usersInterfaces';
 import { HouseholdsActions } from './householdsActions';
 import { IHouseholdsProps, IHouseholdsStore } from './householdsInterfaces';
 import HouseholdsList from './HouseholdsList';
 
 export class Households extends React.Component<IHouseholdsProps> {
     componentDidMount() {
-        const userDetails: IUserDetails = this.props.loggedInUser;
+        const userDetails: IGetHouseholdsRequest = {
+            token: this.props.loggedInUser.token,
+            userId: this.props.loggedInUser.userId,
+            includeUnaccpeted: true,
+        };
         this.props.dispatch(HouseholdsActions.getHouseholdsOfUser(userDetails));
     }
 

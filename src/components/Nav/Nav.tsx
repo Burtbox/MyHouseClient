@@ -30,8 +30,10 @@ export class Nav extends React.Component<INavProps, INavState> {
     }
 
     componentDidMount() {
-        const userDetails: IUserDetails = this.props.loggedInUser;
-        this.props.dispatch(HouseholdsActions.getHouseholdsOfUser(userDetails));
+        if (this.props.isLoggedIn) {
+            const userDetails: IUserDetails = this.props.loggedInUser;
+            this.props.dispatch(HouseholdsActions.getHouseholdsOfUser(userDetails));
+        }
     }
 
     toggleDrawer = (event: React.MouseEvent<HTMLElement>) => {
