@@ -20,13 +20,13 @@ const getHouseholdsOfUserRequestEpic = (action$: Observable<Action>) => {
         switchMap((params) => {
             const urlParams = queryString.stringify({
                 userId: params.payload.userId,
-                includeUnaccpeted: params.payload.includeUnaccpeted,
+                includeInvites: params.payload.includeInvites,
             });
             const addTransactionAjaxParams: AjaxCallParams = {
                 urlParams,
                 token: params.payload.token,
                 method: HTTPMethod.GET,
-                endpoint: endpoints.householdOfUser,
+                endpoint: endpoints.households,
             };
             return ajaxObservable<IHousehold[]>(addTransactionAjaxParams).pipe(
                 mergeMap(response => of(

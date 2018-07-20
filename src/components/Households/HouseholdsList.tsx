@@ -21,14 +21,23 @@ const HouseholdsList: React.StatelessComponent<IHouseholdsListProps> = (props) =
                             <Typography className={classes.heading}>{household.name}</Typography>
                         </div>
                     </ExpansionPanelSummary>
-                    <HouseholdsInvite
-                        household={household}
-                        classes={classes}
-                        loggedInUser={props.loggedInUser}
-                        loading={props.loading}
-                        dispatch={props.dispatch}
-                        history={props.history}
-                    />
+                    {household.inviteAccepted
+                        ? <HouseholdsInvite
+                            household={household}
+                            classes={classes}
+                            loggedInUser={props.loggedInUser}
+                            loading={props.loading}
+                            dispatch={props.dispatch}
+                            history={props.history}
+                        />
+                        : <HouseholdsAcceptInvite
+                            household={household}
+                            classes={classes}
+                            loggedInUser={props.loggedInUser}
+                            loading={props.loading}
+                            dispatch={props.dispatch}
+                            history={props.history}
+                        />}
                 </ExpansionPanel>,
             )}
         </div>

@@ -19,7 +19,7 @@ const inviteToHouseholdRequestEpic = (action$: Observable<Action>) => {
             const ajaxParams: AjaxCallParams = {
                 token: params.payload.token,
                 method: HTTPMethod.POST,
-                endpoint: endpoints.occupantInvite,
+                endpoint: endpoints.occupants,
                 body: params.payload.inviteDetails,
             };
             return ajaxObservable<number>(ajaxParams).pipe(

@@ -102,7 +102,7 @@ const mapStateToProps = (store: IStore) => {
     const props: INavStore = {
         loggedInUser: store.usersReducer.loggedInUser,
         isLoggedIn: store.usersReducer.isLoggedIn,
-        householdsArray: store.householdsReducer.householdsArray,
+        householdsArray: store.householdsReducer.householdsArray.filter(x => x.inviteAccepted === true),
         loading: store.loadingReducer.loading,
     };
     return props;

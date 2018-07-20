@@ -7,6 +7,7 @@ import { IHouseholdListSyles } from './householdsListStyles';
 export interface IHousehold {
     occupantId: number;
     name: string;
+    inviteAccepted: boolean;
 }
 
 export interface IHouseholdsProps extends IComponentProps, IConnectedComponentProps, IHouseholdsStore, IFormStyles { }

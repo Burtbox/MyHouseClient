@@ -27,5 +27,5 @@ export interface IAddHouseholdRequest {
 }
 
 export interface IGetHouseholdsRequest  extends IUserDetails {
-    includeUnaccpeted?: boolean;
+    includeInvites?: boolean;
 }

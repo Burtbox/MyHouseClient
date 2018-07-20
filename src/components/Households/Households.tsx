@@ -16,7 +16,7 @@ export class Households extends React.Component<IHouseholdsProps> {
         const userDetails: IGetHouseholdsRequest = {
             token: this.props.loggedInUser.token,
             userId: this.props.loggedInUser.userId,
-            includeUnaccpeted: true,
+            includeInvites: true,
         };
         this.props.dispatch(HouseholdsActions.getHouseholdsOfUser(userDetails));
     }

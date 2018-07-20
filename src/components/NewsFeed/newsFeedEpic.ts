@@ -1,3 +1,4 @@
+import * as queryString from 'query-string';
 import { Action } from 'redux';
 import { ofType } from 'redux-observable';
 import { Observable, of } from 'rxjs';
@@ -17,11 +18,12 @@ const newsFeedRequestEpic = (action$: Observable<Action>) => {
         ofType<ActionWithPayload<newsFeedsActionTypes.GET_NEWSFEEDS_OF_USER_REQUEST, IUserDetails>>(
             newsFeedsActionTypes.GET_NEWSFEEDS_OF_USER_REQUEST),
         switchMap((params) => {
+            const urlParams = queryString.stringify({ userId: params.payload.userId });
             const ajaxParams: AjaxCallParams = {
+                urlParams,
                 token: params.payload.token,
                 method: HTTPMethod.GET,
                 endpoint: endpoints.newsFeeds,
-                urlParams: params.payload.userId,
             };
             return ajaxObservable<INewsFeed[]>(ajaxParams).pipe(
                 mergeMap(response => of(
