@@ -1,5 +1,5 @@
 import { ActionsUnion, createAction } from '../../helpers/actionCreator';
-import { IUser } from '../Users/usersInterfaces';
+import { IUser } from './usersInterfaces';
 
 export enum usersActionTypes {
     RECEIVE_USER = 'RECEIVE_USER',

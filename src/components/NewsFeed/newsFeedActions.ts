@@ -1,6 +1,6 @@
 import { ActionsUnion, createAction } from '../../helpers/actionCreator';
-import { INewsFeed } from '../NewsFeed/newsFeedInterfaces';
 import { IUserDetails } from '../Users/usersInterfaces';
+import { INewsFeed } from './newsFeedInterfaces';
 
 export enum newsFeedsActionTypes {
     GET_NEWSFEEDS_OF_USER_REQUEST = 'GET_NEWSFEEDS_OF_USER_REQUEST',

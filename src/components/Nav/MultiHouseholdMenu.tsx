@@ -4,7 +4,7 @@ import ExpandMore from '@material-ui/icons/ExpandMore';
 import LocalAtm from '@material-ui/icons/LocalAtm';
 import * as React from 'react';
 import { IHousehold } from '../Households/householdsInterfaces';
-import { getHouseMoneyLinkUrl } from '../Nav/navCommon';
+import { getHouseMoneyLinkUrl } from './navCommon';
 import { IHouseholdMenuState, INavProps } from './navInterfaces';
 
 class MultiHouseholdMenu extends React.Component<INavProps, IHouseholdMenuState> {

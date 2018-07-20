@@ -3,7 +3,7 @@ import { HTTPMethod } from '../../enums/httpEnum';
 import { ajaxPromise } from '../../helpers/ajaxHelper';
 import { AjaxCallParams, AuthorizationResponse } from '../../interfaces/apiInterfaces';
 import { IOccupant } from '../Occupants/occupantsInterfaces';
-import { IUser } from '../Users/usersInterfaces';
+import { IUser } from './usersInterfaces';
 
 export async function checkAuthorization(user: IUser): Promise<boolean> {
     let isLoggedIn = false;

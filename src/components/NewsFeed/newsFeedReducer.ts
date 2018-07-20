@@ -1,4 +1,4 @@
-import { NewsFeedActions, newsFeedsActionTypes } from '../NewsFeed/newsFeedActions';
+import { NewsFeedActions, newsFeedsActionTypes } from './newsFeedActions';
 import { INewsFeedReducer } from './newsFeedInterfaces';
 
 function newsFeedReducer(

@@ -1,5 +1,5 @@
-import { IUsersReducer } from '../Users/usersInterfaces';
 import { UsersActions, usersActionTypes } from './usersActions';
+import { IUsersReducer } from './usersInterfaces';
 
 function usersReducer(
     state: IUsersReducer = {
