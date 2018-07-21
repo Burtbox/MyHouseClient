@@ -11,15 +11,18 @@ import householdListStyles from './householdsListStyles';
 
 const HouseholdsList: React.StatelessComponent<IHouseholdsListProps> = (props) => {
     const { classes } = props;
-    // TODO: Add in whether an invite is pending and accept/reject functionality!
-    // All households got should not be included anywhere else until accepted!
+    // TODO: Add reject functionality!
     return (
         <div className={classes.root}>
             {props.householdsArray.map((household: IHousehold) =>
                 <ExpansionPanel key={household.occupantId}>
                     <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
                         <div className={classes.column}>
-                            <Typography className={classes.heading}>{household.name}</Typography>
+                            <Typography
+                                className={classes.heading}
+                                color={household.inviteAccepted ? 'primary' : 'secondary'}>
+                                {household.name}
+                            </Typography>
                         </div>
                     </ExpansionPanelSummary>
                     {household.inviteAccepted

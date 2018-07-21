@@ -1,4 +1,4 @@
-import { withStyles } from '@material-ui/core';
+import { ExpansionPanelDetails, withStyles } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import * as React from 'react';
 import { HouseholdsActions } from './householdsActions';
@@ -27,9 +27,13 @@ export class HouseholdsInvite extends React.Component<IHouseholdsAcceptInvitePro
     render() {
         const { classes } = this.props;
         return (
-            <div className={classes.column}>
-                <Button size="small" variant="outlined" onClick={this.inviteToHousehold} disabled={this.state.accepting}>Accept</Button>
-            </div>
+            <ExpansionPanelDetails className={classes.details}>
+                <div className={classes.column} />
+                <div className={classes.column} />
+                <div className={classes.column}>
+                    <Button size="small" variant="outlined" onClick={this.inviteToHousehold} disabled={this.state.accepting}>Accept</Button>
+                </div>
+            </ExpansionPanelDetails>
         );
     }
 }
