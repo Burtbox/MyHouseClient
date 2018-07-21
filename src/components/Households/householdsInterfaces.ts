@@ -5,10 +5,13 @@ import { IOccupantUpdate } from '../Occupants/occupantsInterfaces';
 import { ILoggedInUser } from '../Users/usersInterfaces';
 import { IHouseholdListSyles } from './householdsListStyles';
 
-export interface IHousehold {
-    occupantId: number;
+export interface IHousehold extends IHouseholdAccept {
     name: string;
+}
+
+export interface IHouseholdAccept {
     inviteAccepted: boolean;
+    occupantId: number;
 }
 
 export interface IHouseholdsProps extends IComponentProps, IConnectedComponentProps, IHouseholdsStore, IFormStyles { }
