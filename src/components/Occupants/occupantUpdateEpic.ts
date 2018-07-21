@@ -8,23 +8,23 @@ import { ActionWithPayload } from '../../helpers/actionCreator';
 import ajaxObservable from '../../helpers/ajaxHelper';
 import { AjaxCallParams } from '../../interfaces/apiInterfaces';
 import { LoadingActions } from '../Loading/loadingActions';
-import { HouseholdsActions, householdsActionTypes } from './householdsActions';
-import { IAcceptInviteToHouseholdRequest } from './householdsInterfaces';
+import { OccupantsActions, occupantsActionTypes } from './occupantsActions';
+import { IOccupantUpdateRequest } from './occupantsInterfaces';
 
-const acceptInviteToHouseholdRequestEpic = (action$: Observable<Action>) => {
+const occupantUpdateRequestEpic = (action$: Observable<Action>) => {
     return action$.pipe(
-        ofType<ActionWithPayload<householdsActionTypes.ACCEPT_INVITE_TO_HOUSEHOLD_REQUEST, IAcceptInviteToHouseholdRequest>>(
-            householdsActionTypes.ACCEPT_INVITE_TO_HOUSEHOLD_REQUEST),
+        ofType<ActionWithPayload<occupantsActionTypes.UPDATE_OCCUPANT_REQUEST, IOccupantUpdateRequest>>(
+            occupantsActionTypes.UPDATE_OCCUPANT_REQUEST),
         switchMap((params) => {
             const ajaxParams: AjaxCallParams = {
                 token: params.payload.token,
-                method: HTTPMethod.POST,
+                method: HTTPMethod.PUT,
                 endpoint: endpoints.occupants,
-                body: params.payload.acceptInviteDetails,
+                body: params.payload.occupant,
             };
             return ajaxObservable<number>(ajaxParams).pipe(
                 mergeMap(response => of(
-                    HouseholdsActions.acceptInviteToHouseholdComplete(),
+                    OccupantsActions.updateOccupantComplete(),
                     LoadingActions.loadingComplete(),
                 )),
             );
@@ -33,4 +33,4 @@ const acceptInviteToHouseholdRequestEpic = (action$: Observable<Action>) => {
     );
 };
 
-export default acceptInviteToHouseholdRequestEpic;
+export default occupantUpdateRequestEpic;

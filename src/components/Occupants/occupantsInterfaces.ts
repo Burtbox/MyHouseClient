@@ -5,3 +5,12 @@ export interface IOccupant extends IUser {
 }
 
 export interface IOccupantProps { }
+
+export interface IOccupantUpdate extends IOccupant {
+    acceptInvite: boolean;
+}
+
+export interface IOccupantUpdateRequest {
+    occupant: IOccupantUpdate;
+    token: string;
+}

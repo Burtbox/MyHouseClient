@@ -1,6 +1,6 @@
 import { ActionsUnion, createAction } from '../../helpers/actionCreator';
 import { IAddHouseholdRequest, IGetHouseholdsRequest } from '../AddHousehold/addHouseholdInterfaces';
-import { IAcceptInviteToHouseholdRequest, IHousehold, IInviteToHouseholdRequest } from './householdsInterfaces';
+import { IHousehold, IInviteToHouseholdRequest } from './householdsInterfaces';
 
 export enum householdsActionTypes {
     GET_HOUSEHOLDS_OF_USER_REQUEST = 'GET_HOUSEHOLDS_OF_USER_REQUEST',
@@ -12,7 +12,6 @@ export enum householdsActionTypes {
     INVITE_TO_HOUSEHOLD_REQUEST_COMPLETE = 'INVITE_TO_HOUSEHOLD_REQUEST_COMPLETE',
     ACCEPT_INVITE_TO_HOUSEHOLD_REQUEST = 'ACCEPT_INVITE_TO_HOUSEHOLD_REQUEST',
     ACCEPT_INVITE_TO_HOUSEHOLD_REQUEST_COMPLETE = 'ACCEPT_INVITE_TO_HOUSEHOLD_REQUEST_COMPLETE',
-
 }
 
 const getHouseholdsOfUser = (getHouseholdsRequest: IGetHouseholdsRequest) =>
@@ -36,12 +35,6 @@ const inviteToHousehold = (invitiation: IInviteToHouseholdRequest) =>
 const inviteToHouseholdComplete = () =>
     createAction(householdsActionTypes.INVITE_TO_HOUSEHOLD_REQUEST_COMPLETE);
 
-const acceptInviteToHousehold = (acceptace: IAcceptInviteToHouseholdRequest) =>
-    createAction(householdsActionTypes.ACCEPT_INVITE_TO_HOUSEHOLD_REQUEST, acceptace);
-
-const acceptInviteToHouseholdComplete = () =>
-    createAction(householdsActionTypes.ACCEPT_INVITE_TO_HOUSEHOLD_REQUEST_COMPLETE);
-
 export const HouseholdsActions = {
     getHouseholdsOfUser,
     receiveHouseholdsOfUser,
@@ -50,9 +43,6 @@ export const HouseholdsActions = {
     addHouseholdComplete,
     inviteToHousehold,
     inviteToHouseholdComplete,
-    acceptInviteToHousehold,
-    acceptInviteToHouseholdComplete,
-
 };
 
 export type HouseholdsActions = ActionsUnion<typeof HouseholdsActions>;
