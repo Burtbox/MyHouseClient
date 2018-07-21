@@ -1,7 +1,7 @@
 import { ExpansionPanelDetails, withStyles } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import * as React from 'react';
-import { HouseholdsActions } from './householdsActions';
+import { OccupantsActions } from '../Occupants/occupantsActions';
 import { IHouseholdsAcceptInviteProps, IHouseholdsAcceptInviteState } from './householdsInterfaces';
 import householdListStyles from './householdsListStyles';
 
@@ -9,17 +9,21 @@ export class HouseholdsInvite extends React.Component<IHouseholdsAcceptInvitePro
     constructor(props: IHouseholdsAcceptInviteProps) {
         super(props);
         this.state = {
-            acceptInviteDetails: {
-                occupantId: this.props.household.occupantId,
-                userId: this.props.loggedInUser.userId,
+            occupant: {
+                token: props.loggedInUser.token,
+                occupantId: props.household.occupantId,
+                userId: props.loggedInUser.userId,
+                displayName: props.loggedInUser.displayName,
+                email: props.loggedInUser.email,
+                inviteAccepted: true,
             },
             accepting: false,
         };
     }
 
     inviteToHousehold = () => {
-        this.props.dispatch(HouseholdsActions.acceptInviteToHousehold({
-            acceptInviteDetails: this.state.acceptInviteDetails,
+        this.props.dispatch(OccupantsActions.updateOccupant({
+            occupant: this.state.occupant,
             token: this.props.loggedInUser.token,
         }));
     }

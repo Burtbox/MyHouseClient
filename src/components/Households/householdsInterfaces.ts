@@ -1,6 +1,7 @@
 import { IComponentProps, IConnectedComponentProps } from '../../interfaces/componentInterfaces';
 import { IFormStyles } from '../../styles/styles';
 import { ILoadingReducer } from '../Loading/loadingInterfaces';
+import { IOccupantUpdate } from '../Occupants/occupantsInterfaces';
 import { ILoggedInUser } from '../Users/usersInterfaces';
 import { IHouseholdListSyles } from './householdsListStyles';
 
@@ -58,6 +59,6 @@ export interface IHouseholdsAcceptInviteProps extends IHouseholdListSyles, IHous
 }
 
 export interface IHouseholdsAcceptInviteState {
-    acceptInviteDetails: IAcceptInviteToHousehold;
+    occupant: IOccupantUpdate;
     accepting: boolean;
 }

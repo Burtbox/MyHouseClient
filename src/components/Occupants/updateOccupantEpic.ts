@@ -11,7 +11,7 @@ import { LoadingActions } from '../Loading/loadingActions';
 import { OccupantsActions, occupantsActionTypes } from './occupantsActions';
 import { IOccupantUpdateRequest } from './occupantsInterfaces';
 
-const occupantUpdateRequestEpic = (action$: Observable<Action>) => {
+const updateOccupantRequestEpic = (action$: Observable<Action>) => {
     return action$.pipe(
         ofType<ActionWithPayload<occupantsActionTypes.UPDATE_OCCUPANT_REQUEST, IOccupantUpdateRequest>>(
             occupantsActionTypes.UPDATE_OCCUPANT_REQUEST),
@@ -33,4 +33,4 @@ const occupantUpdateRequestEpic = (action$: Observable<Action>) => {
     );
 };
 
-export default occupantUpdateRequestEpic;
+export default updateOccupantRequestEpic;

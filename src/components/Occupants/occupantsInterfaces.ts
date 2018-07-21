@@ -7,7 +7,7 @@ export interface IOccupant extends IUser {
 export interface IOccupantProps { }
 
 export interface IOccupantUpdate extends IOccupant {
-    acceptInvite: boolean;
+    inviteAccepted: boolean;
 }
 
 export interface IOccupantUpdateRequest {
