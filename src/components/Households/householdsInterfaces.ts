@@ -42,3 +42,22 @@ export interface IInviteToHouseholdRequest {
 }
 
 export interface IHouseholdsInviteStore extends IConnectedComponentProps { }
+
+export interface IAcceptInviteToHouseholdRequest {
+    token: string;
+    acceptInviteDetails: IAcceptInviteToHousehold;
+}
+
+export interface IAcceptInviteToHousehold {
+    occupantId: number;
+    userId: string;
+}
+
+export interface IHouseholdsAcceptInviteProps extends IHouseholdListSyles, IHouseholdsInviteStore, IComponentProps {
+    household: IHousehold;
+}
+
+export interface IHouseholdsAcceptInviteState {
+    acceptInviteDetails: IAcceptInviteToHousehold;
+    accepting: boolean;
+}

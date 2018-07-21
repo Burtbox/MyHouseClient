@@ -2,25 +2,24 @@ import { withStyles } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import * as React from 'react';
 import { HouseholdsActions } from './householdsActions';
-import { IHouseholdsInviteProps, IHouseholdsInviteState } from './householdsInterfaces';
+import { IHouseholdsAcceptInviteProps, IHouseholdsAcceptInviteState } from './householdsInterfaces';
 import householdListStyles from './householdsListStyles';
 
-export class HouseholdsInvite extends React.Component<IHouseholdsInviteProps, IHouseholdsInviteState> {
-    constructor(props: IHouseholdsInviteProps) {
+export class HouseholdsInvite extends React.Component<IHouseholdsAcceptInviteProps, IHouseholdsAcceptInviteState> {
+    constructor(props: IHouseholdsAcceptInviteProps) {
         super(props);
         this.state = {
-            inviteDetails: {
-                email: '',
-                invitedByOccupantId: this.props.household.occupantId,
-                invitedByUserId: this.props.loggedInUser.userId,
+            acceptInviteDetails: {
+                occupantId: this.props.household.occupantId,
+                userId: this.props.loggedInUser.userId,
             },
-            inviting: false,
+            accepting: false,
         };
     }
 
     inviteToHousehold = () => {
         this.props.dispatch(HouseholdsActions.acceptInviteToHousehold({
-            inviteDetails: this.state.inviteDetails,
+            acceptInviteDetails: this.state.acceptInviteDetails,
             token: this.props.loggedInUser.token,
         }));
     }
@@ -29,7 +28,7 @@ export class HouseholdsInvite extends React.Component<IHouseholdsInviteProps, IH
         const { classes } = this.props;
         return (
             <div className={classes.column}>
-                <Button size="small" variant="outlined" onClick={this.inviteToHousehold}>Accept</Button>
+                <Button size="small" variant="outlined" onClick={this.inviteToHousehold} disabled={this.state.accepting}>Accept</Button>
             </div>
         );
     }

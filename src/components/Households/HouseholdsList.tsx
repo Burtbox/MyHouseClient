@@ -4,6 +4,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import * as React from 'react';
+import HouseholdsAcceptInvite from './HouseholdsAcceptInvite';
 import { IHousehold, IHouseholdsListProps } from './householdsInterfaces';
 import { HouseholdsInvite } from './HouseholdsInvite';
 import householdListStyles from './householdsListStyles';
