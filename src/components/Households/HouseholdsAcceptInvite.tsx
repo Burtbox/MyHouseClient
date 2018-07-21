@@ -10,11 +10,9 @@ export class HouseholdsInvite extends React.Component<IHouseholdsAcceptInvitePro
         super(props);
         this.state = {
             occupant: {
-                token: props.loggedInUser.token,
                 occupantId: props.household.occupantId,
                 userId: props.loggedInUser.userId,
                 displayName: props.loggedInUser.displayName,
-                email: props.loggedInUser.email,
                 inviteAccepted: true,
             },
             accepting: false,

@@ -6,8 +6,11 @@ export interface IOccupant extends IUser {
 
 export interface IOccupantProps { }
 
-export interface IOccupantUpdate extends IOccupant {
+export interface IOccupantUpdate {
     inviteAccepted: boolean;
+    displayName: string;
+    userId: string;
+    occupantId: number;
 }
 
 export interface IOccupantUpdateRequest {

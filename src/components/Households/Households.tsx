@@ -1,4 +1,4 @@
-import { Typography } from '@material-ui/core';
+import { Snackbar, Typography } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import * as React from 'react';
 import { connect } from 'react-redux';
@@ -7,11 +7,19 @@ import { IStore } from '../../interfaces/storeInterface';
 import formStyles from '../../styles/styles';
 import { IGetHouseholdsRequest } from '../AddHousehold/addHouseholdInterfaces';
 import Loading from '../Loading';
+import MessageSnackbarContent from '../MessageSnackbarContent';
 import { HouseholdsActions } from './householdsActions';
-import { IHouseholdsProps, IHouseholdsStore } from './householdsInterfaces';
+import { IHouseholdsProps, IHouseholdsState, IHouseholdsStore } from './householdsInterfaces';
 import HouseholdsList from './HouseholdsList';
 
-export class Households extends React.Component<IHouseholdsProps> {
+export class Households extends React.Component<IHouseholdsProps, IHouseholdsState> {
+    constructor(props: IHouseholdsProps) {
+        super(props);
+        this.state = {
+            acceptingInvite: false,
+        };
+    }
+
     componentDidMount() {
         const userDetails: IGetHouseholdsRequest = {
             token: this.props.loggedInUser.token,
@@ -19,6 +27,23 @@ export class Households extends React.Component<IHouseholdsProps> {
             includeInvites: true,
         };
         this.props.dispatch(HouseholdsActions.getHouseholdsOfUser(userDetails));
+    }
+
+    componentWillReceiveProps(nextProps: IHouseholdsProps) {
+        if (nextProps.acceptingInvite) {
+            this.setState({ acceptingInvite: nextProps.acceptingInvite });
+        }
+    }
+
+    handleInviteAcceptedClose = (event: React.MouseEvent<HTMLElement>, reason: string) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+
+        this.setState({
+            acceptingInvite: false,
+        });
+        this.props.dispatch(HouseholdsActions.acceptInviteToHouseholdComplete());
     }
 
     render() {
@@ -42,6 +67,17 @@ export class Households extends React.Component<IHouseholdsProps> {
                             : <Loading />
                     }
                 </div >
+                <Snackbar
+                    open={this.state.acceptingInvite}
+                    autoHideDuration={4000}
+                    onClose={this.handleInviteAcceptedClose}
+                >
+                    <MessageSnackbarContent
+                        onClose={this.handleInviteAcceptedClose}
+                        variant="success"
+                        message="Invite accepted"
+                    />
+                </Snackbar>
             </form>
         );
     }
@@ -52,6 +88,7 @@ const mapStateToProps = (store: IStore) => {
         loggedInUser: store.usersReducer.loggedInUser,
         householdsArray: store.householdsReducer.householdsArray,
         loading: store.loadingReducer.loading,
+        acceptingInvite: store.householdsReducer.acceptingInvite,
     };
     return props;
 };

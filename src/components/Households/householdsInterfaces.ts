@@ -16,11 +16,16 @@ export interface IHouseholdAccept {
 
 export interface IHouseholdsProps extends IComponentProps, IConnectedComponentProps, IHouseholdsStore, IFormStyles { }
 
+export interface IHouseholdsState {
+    acceptingInvite: boolean;
+}
+
 export interface IHouseholdsStore extends IHouseholdsReducer, ILoadingReducer, ILoggedInUser { }
 
 export interface IHouseholdsReducer {
     householdsArray: IHousehold[];
     householdAdded?: boolean;
+    acceptingInvite?: boolean;
 }
 
 export interface IHouseholdsListProps extends IHouseholdsReducer, IHouseholdListSyles, IConnectedComponentProps, IComponentProps { }

@@ -5,6 +5,7 @@ function householdsReducer(
     state: IHouseholdsReducer = {
         householdsArray: [],
         householdAdded: false,
+        acceptingInvite: false,
     },
     action: HouseholdsActions,
 ): IHouseholdsReducer {
@@ -32,19 +33,26 @@ function householdsReducer(
     case householdsActionTypes.ACCEPT_INVITE_TO_HOUSEHOLD:
         nextState = {
             ...state,
+            acceptingInvite: true,
             householdsArray: [
                 ...state.householdsArray.map((household, index) => {
                     let updatedHousehold = household;
                     if (household.occupantId === action.payload.occupantId) {
                         updatedHousehold = {
-                            name: household.name,
                             inviteAccepted: action.payload.inviteAccepted,
                             occupantId: household.occupantId,
+                            name: household.name,
                         };
                     }
                     return updatedHousehold;
                 }),
             ],
+        };
+        break;
+    case householdsActionTypes.ACCEPT_INVITE_TO_HOUSEHOLD_COMPLETE:
+        nextState = {
+            ...state,
+            acceptingInvite: false,
         };
         break;
     default:
