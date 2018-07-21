@@ -21,18 +21,14 @@ switch to ts-lint-react for linter as inconsistent spacing between dom (2 spaces
 
 Flag user as deleted, then a leave household button suffices, Hangfire background cleanup task after a month
 
-Switch to redux loading through action and grab from props (remove loading flags from reducers) =>  make app wide loading thing (steal from HouseFood)
-
 Refactor unit tests - can test each refactored stateless component separately for better unit tests! 
-
-Need to build the invite to household functionality! (see nodeJs app)
 
 BUGS:
 make nav sidebar and form content responsive (if sidebar hidden expand form div!)
 nav sidebar not updating when switching user (until new household list get!)
 errors from API not returning to client properly! Should pop as error message!
 
-
 v2: 
-
 HouseholdsList - Show existing other occupants in this list?
+Household invite sends email, even if not a current firebase user
+Allow decline of invites and 'removal' of household memebers / leaving household
