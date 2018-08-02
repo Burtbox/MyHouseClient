@@ -28,8 +28,7 @@ const inviteToHouseholdRequestEpic = (action$: Observable<Action>) => {
                     LoadingActions.loadingComplete(),
                 )),
             );
-        },
-        ),
+        }),
     );
 };
 
