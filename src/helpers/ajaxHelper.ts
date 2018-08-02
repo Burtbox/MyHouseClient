@@ -7,7 +7,6 @@ import { logoutUser } from '../components/Logout/logoutEpic';
 import { AjaxCallParams } from '../interfaces/apiInterfaces';
 import { store } from '../main/configureStore';
 
-// TODO: Refactor these two if keeping both! Need to decide!
 export default function ajaxObservable<R>(ajaxCallParams: AjaxCallParams) {
     const headers = {
         Authorization: 'Bearer ' + ajaxCallParams.token,
