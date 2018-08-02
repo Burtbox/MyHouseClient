@@ -27,6 +27,7 @@ BUGS:
 make nav sidebar and form content responsive (if sidebar hidden expand form div!)
 nav sidebar not updating when switching user (until new household list get!)
 errors from API not returning to client properly! Should pop as error message!
+Add household not showing progress or completion correctly 
 
 v2: 
 HouseholdsList - Show existing other occupants in this list?
