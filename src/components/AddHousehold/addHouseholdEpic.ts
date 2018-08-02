@@ -24,7 +24,7 @@ const addHouseholdRequestEpic = (action$: Observable<Action>) => {
                 body: params.payload.household,
             };
             return ajaxObservable<IHousehold>(ajaxParams).pipe(
-                mergeMap(response => of(
+                mergeMap((response: IHousehold) => of(
                     HouseholdsActions.receiveHousehold(response),
                     LoadingActions.loadingComplete(),
                 )),

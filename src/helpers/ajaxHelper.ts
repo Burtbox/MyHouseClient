@@ -1,4 +1,4 @@
-import { Observable } from 'rxjs';
+import { of } from 'rxjs';
 import { ajax, AjaxRequest, AjaxResponse } from 'rxjs/ajax';
 import { catchError, map } from 'rxjs/operators';
 import baseURL from '../appConfig';
@@ -9,7 +9,7 @@ import { AjaxCallParams } from '../interfaces/apiInterfaces';
 import { store } from '../main/configureStore';
 
 // TODO: Refactor these two if keeping both! Need to decide!
-export default function ajaxObservable<R>(ajaxCallParams: AjaxCallParams): Observable<R> {
+export default function ajaxObservable<R>(ajaxCallParams: AjaxCallParams) {
     const headers = {
         Authorization: 'Bearer ' + ajaxCallParams.token,
         'Content-Type': 'application/json;charset=UTF-8',
@@ -35,6 +35,18 @@ export default function ajaxObservable<R>(ajaxCallParams: AjaxCallParams): Obser
 
     return ajax(ajaxRequest).pipe(
         map((ajaxResponse: AjaxResponse) => {
+            checkStatus(ajaxResponse.status);
+            return ajaxResponse.response as R;
+        }),
+        catchError((error: any) => of(
+            ErrorMessageActions.addError(error.message),
+            LoadingActions.loadingComplete(),
+        )),
+    );
+}
+
+/*
+ map((ajaxResponse: AjaxResponse) => {
             catchError((error: Error, errorObservable) => errorObservable.pipe(
                 map((error: Error) => {
                     ErrorMessageActions.addError(error.message),
@@ -44,8 +56,7 @@ export default function ajaxObservable<R>(ajaxCallParams: AjaxCallParams): Obser
                 checkStatus(ajaxResponse.status);
             return ajaxResponse.response as R;
         }),
-    );
-}
+*/
 
 export function ajaxPromise<T>(ajaxCallParams: AjaxCallParams): Promise<T> {
     const headers: Headers = new Headers();

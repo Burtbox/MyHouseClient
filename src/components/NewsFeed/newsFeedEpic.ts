@@ -26,7 +26,7 @@ const newsFeedRequestEpic = (action$: Observable<Action>) => {
                 endpoint: endpoints.newsFeeds,
             };
             return ajaxObservable<INewsFeed[]>(ajaxParams).pipe(
-                mergeMap(response => of(
+                mergeMap((response: INewsFeed[]) => of(
                     NewsFeedActions.receiveNewsFeed(response),
                     LoadingActions.loadingComplete(),
                 )),

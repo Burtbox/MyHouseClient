@@ -24,7 +24,7 @@ const updateOccupantRequestEpic = (action$: Observable<Action>) => {
                 body: params.payload.occupant,
             };
             return ajaxObservable<IOccupantUpdate>(ajaxParams).pipe(
-                mergeMap(response => of(
+                mergeMap((response: IOccupantUpdate) => of(
                     HouseholdsActions.acceptInviteToHousehold({
                         inviteAccepted: response.inviteAccepted,
                         occupantId: response.occupantId,
