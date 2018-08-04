@@ -16,6 +16,7 @@ import { IUserDetails } from '../Users/usersInterfaces';
 import LoggedInMenu from './LoggedInMenu';
 import LoggedInNavButtons from './LoggedInNavButtons';
 import LoggedOutMenu from './LoggedOutMenu';
+import { NavActions } from './navActions';
 import { INavProps, INavState, INavStore } from './navInterfaces';
 import navStyles from './navStyles';
 
@@ -37,7 +38,9 @@ export class Nav extends React.Component<INavProps, INavState> {
     }
 
     toggleDrawer = (event: React.MouseEvent<HTMLElement>) => {
-        this.setState({ openSidebar: !this.state.openSidebar });
+        const newState = !this.state.openSidebar;
+        newState ? this.props.dispatch(NavActions.navOpened()) : this.props.dispatch(NavActions.navClosed());
+        this.setState({ openSidebar: newState });
     }
 
     render() {

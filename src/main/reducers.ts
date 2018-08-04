@@ -4,6 +4,7 @@ import householdsReducer from '../components/Households/householdsReducer';
 import loadingReducer from '../components/Loading/loadingReducer';
 import loginReducer from '../components/Login/loginReducer';
 import logoutReducer from '../components/Logout/logoutReducer';
+import navReducer from '../components/Nav/navReducer';
 import newsFeedReducer from '../components/NewsFeed/newsFeedReducer';
 import registerReducer from '../components/Register/registerReducer';
 import usersReducer from '../components/Users/usersReducer';
@@ -18,6 +19,7 @@ const combinedReducers: Reducer<IStore, AnyAction> = combineReducers({
     newsFeedReducer,
     loadingReducer,
     logoutReducer,
+    navReducer,
 });
 
 export default combinedReducers;

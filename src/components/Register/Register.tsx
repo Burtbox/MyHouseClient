@@ -1,6 +1,7 @@
 import { Typography, withStyles } from '@material-ui/core';
 import { default as Button } from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
+import * as classNames from 'classnames';
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
@@ -52,8 +53,10 @@ export class Register extends React.Component<IRegisterProps, IRegisterState> {
     }
 
     render() {
+        const { classes } = this.props;
         return (
-            <form className={this.props.classes.container} onSubmit={this.handleAddUser}>
+            <form className={classNames(classes.formContainer, { [classes.formContainerShift]: this.props.navOpen })}
+                onSubmit={this.handleAddUser}>
                 <Typography variant="headline" gutterBottom={true}>Create Account</Typography>
                 <div style={{ textAlign: 'center' }}>
                     <Typography variant="subheading" gutterBottom={true}>
@@ -131,6 +134,7 @@ export class Register extends React.Component<IRegisterProps, IRegisterState> {
 const mapStateToProps = (store: IStore) => {
     return {
         registering: store.registerReducer.registering,
+        navOpen: store.navReducer.navOpen,
     };
 };
 

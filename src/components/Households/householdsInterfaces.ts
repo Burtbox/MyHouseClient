@@ -1,6 +1,7 @@
 import { IComponentProps, IConnectedComponentProps } from '../../interfaces/componentInterfaces';
 import { IFormStyles } from '../../styles/styles';
 import { ILoadingReducer } from '../Loading/loadingInterfaces';
+import { INavReducer } from '../Nav/navInterfaces';
 import { IOccupantUpdate } from '../Occupants/occupantsInterfaces';
 import { ILoggedInUser } from '../Users/usersInterfaces';
 import { IHouseholdListSyles } from './householdsListStyles';
@@ -20,7 +21,7 @@ export interface IHouseholdsState {
     acceptingInvite: boolean;
 }
 
-export interface IHouseholdsStore extends IHouseholdsReducer, ILoadingReducer, ILoggedInUser { }
+export interface IHouseholdsStore extends IHouseholdsReducer, ILoadingReducer, ILoggedInUser, INavReducer { }
 
 export interface IHouseholdsReducer {
     householdsArray: IHousehold[];

@@ -6,7 +6,9 @@ export interface ILoginState {
     user: IUserAuthenticationObject;
 }
 
-export interface ILoginProps extends IComponentProps, ILoginReducer, IFormStyles { }
+export interface ILoginProps extends IComponentProps, ILoginReducer, IFormStyles {
+    navOpen: boolean;
+}
 
 export interface ILoginStore extends IConnectedComponentProps, ILoginReducer { }
 

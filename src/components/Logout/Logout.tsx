@@ -1,4 +1,5 @@
 import { Button, Typography, withStyles } from '@material-ui/core';
+import * as classNames from 'classnames';
 import * as queryString from 'query-string';
 import * as React from 'react';
 import { connect } from 'react-redux';
@@ -53,8 +54,9 @@ export class Logout extends React.Component<ILogoutProps> {
     }
 
     render() {
+        const { classes } = this.props;
         return (
-            <form className={this.props.classes.container}>
+            <form className={classNames(classes.formContainer, { [classes.formContainerShift]: this.props.navOpen })} >
                 {this.hasLogoutDetails() ?
                     <Typography variant="headline" gutterBottom={true}>{this.logoutMessage()}</Typography> :
                     <div />}
@@ -78,6 +80,7 @@ export class Logout extends React.Component<ILogoutProps> {
 const mapStateToProps = (store: IStore) => {
     return {
         loggingOut: store.logoutReducer.loggingOut,
+        navOpen: store.navReducer.navOpen,
     };
 };
 

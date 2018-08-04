@@ -1,5 +1,6 @@
 import { Snackbar, Typography } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
+import * as classNames from 'classnames';
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
@@ -47,9 +48,10 @@ export class Households extends React.Component<IHouseholdsProps, IHouseholdsSta
     }
 
     render() {
+        const { classes } = this.props;
         return (
-            <form className={this.props.classes.container}>
-                <div style={{ display: 'inline-flex', width: '100%', padding: '2em' }}>
+            <form className={classNames(classes.formContainer, { [classes.formContainerShift]: this.props.navOpen })} >
+                <div style={{ display: 'inline-flex', width: '100%', paddingLeft: 'inherit' }}>
                     {!this.props.loading && this.props.householdsArray && this.props.householdsArray.length > 0
                         ? <HouseholdsList
                             householdsArray={this.props.householdsArray}
@@ -89,6 +91,7 @@ const mapStateToProps = (store: IStore) => {
         householdsArray: store.householdsReducer.householdsArray,
         loading: store.loadingReducer.loading,
         acceptingInvite: store.householdsReducer.acceptingInvite,
+        navOpen: store.navReducer.navOpen,
     };
     return props;
 };

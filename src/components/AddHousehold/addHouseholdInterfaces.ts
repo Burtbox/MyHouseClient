@@ -1,9 +1,10 @@
 import { IComponentProps, IConnectedComponentProps } from '../../interfaces/componentInterfaces';
 import { IFormStyles } from '../../styles/styles';
 import { ILoadingReducer } from '../Loading/loadingInterfaces';
+import { INavReducer } from '../Nav/navInterfaces';
 import { ILoggedInUser, IUserDetails } from '../Users/usersInterfaces';
 
-export interface IAddHouseholdProps extends IComponentProps, IConnectedComponentProps, IAddHouseholdStore, IFormStyles {
+export interface IAddHouseholdProps extends IComponentProps, IConnectedComponentProps, IAddHouseholdStore, IFormStyles, INavReducer {
     householdAdded: boolean;
 }
 
@@ -26,6 +27,6 @@ export interface IAddHouseholdRequest {
     household: IAddHouseholdDetails;
 }
 
-export interface IGetHouseholdsRequest  extends IUserDetails {
+export interface IGetHouseholdsRequest extends IUserDetails {
     includeInvites?: boolean;
 }

@@ -23,6 +23,7 @@ const persistConfig: PersistConfig = {
         'registerReducer',
         'loginReducer',
         'logoutReducer',
+        'navReducer',
     ],
 };
 

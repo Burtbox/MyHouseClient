@@ -12,7 +12,7 @@ const navStyles = (theme: Theme) => createStyles({
         zIndex: theme.zIndex.drawer + 1,
     },
     drawerPaper: {
-        width: 240,
+        width: '28em',
     },
     content: {
         flexGrow: 1,

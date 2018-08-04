@@ -1,8 +1,9 @@
 import { IComponentProps } from '../../interfaces/componentInterfaces';
 import { IFormStyles } from '../../styles/styles';
+import { INavReducer } from '../Nav/navInterfaces';
 import { IUserAuthenticationObject } from '../Users/usersInterfaces';
 
-export interface IRegisterProps extends IRegisterReducer, IComponentProps, IFormStyles { }
+export interface IRegisterProps extends IRegisterReducer, IComponentProps, IFormStyles, INavReducer { }
 
 export interface IRegisterState {
     registerUser: {

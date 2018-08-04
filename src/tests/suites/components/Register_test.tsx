@@ -10,6 +10,7 @@ describe('Register test suite', () => {
             registering: false,
             dispatch: undefined,
             classes: undefined,
+            navOpen: true,
         };
         const registerScreen = shallow(
             <DisconnectedRegister {...props} />,

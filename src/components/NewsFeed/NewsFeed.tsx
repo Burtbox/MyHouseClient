@@ -1,5 +1,6 @@
 import { Card, CardContent, CardHeader, List, ListItem, Typography } from '@material-ui/core';
 import withStyles from '@material-ui/core/styles/withStyles';
+import * as classNames from 'classnames';
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
@@ -15,12 +16,14 @@ export class NewsFeed extends React.Component<INewsFeedProps> {
     }
 
     render() {
+        const { classes } = this.props;
         return (
-            <form className={this.props.classes.container}>
+            <form className={classNames(classes.formContainer, { [classes.formContainerShift]: this.props.navOpen })} >
                 <div style={{
                     display: 'flex',
                     flexDirection: 'column',
                     flexGrow: 1,
+                    paddingLeft: 'inherit',
                 }}>
                     {this.props.loading ? <Loading /> :
                         this.props.newsFeedList && this.props.newsFeedList.length > 0 ?
@@ -57,6 +60,7 @@ const mapStateToProps = (store: IStore) => {
         loggedInUser: store.usersReducer.loggedInUser,
         newsFeedList: store.newsFeedReducer.newsFeedList,
         loading: store.loadingReducer.loading,
+        navOpen: store.navReducer.navOpen,
     };
     return props;
 };

@@ -22,3 +22,7 @@ export interface IHouseholdMenuState {
     houseMoneyMenuOpen: boolean;
     houseFoodMenuOpen: boolean;
 }
+
+export interface INavReducer {
+    navOpen: boolean;
+}

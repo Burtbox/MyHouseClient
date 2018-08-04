@@ -3,9 +3,7 @@ import * as React from 'react';
 
 const Loading: React.StatelessComponent = () => {
     return (
-        <div style={{ textAlign: 'center' }}>
-            <CircularProgress />
-        </div>
+        <CircularProgress />
     );
 };
 

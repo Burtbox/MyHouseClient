@@ -1,6 +1,7 @@
 import { Typography, withStyles } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
+import * as classNames from 'classnames';
 import * as React from 'react';
 import { StyledFirebaseAuth } from 'react-firebaseui';
 import { connect } from 'react-redux';
@@ -73,8 +74,10 @@ export class Login extends React.Component<ILoginProps, ILoginState> {
     }
 
     render() {
+        const { classes } = this.props;
         return (
-            <form className={this.props.classes.container} onSubmit={this.handleLogin}>
+            <form className={classNames(classes.formContainer, { [classes.formContainerShift]: this.props.navOpen })}
+                onSubmit={this.handleLogin}>
                 <Typography variant="headline" gutterBottom={true}>Welcome</Typography>
                 <div>
                     <TextField
@@ -137,6 +140,7 @@ export class Login extends React.Component<ILoginProps, ILoginState> {
 const mapStateToProps = (store: IStore) => {
     return {
         loggingIn: store.loginReducer.loggingIn,
+        navOpen: store.navReducer.navOpen,
     };
 };
 

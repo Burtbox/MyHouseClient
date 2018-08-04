@@ -1,5 +1,6 @@
 import { IComponentProps, IConnectedComponentProps } from '../../interfaces/componentInterfaces';
 import { IFormStyles } from '../../styles/styles';
+import { INavReducer } from '../Nav/navInterfaces';
 
 export interface INewsFeed {
     newsFeedId: number;
@@ -17,4 +18,4 @@ export interface INewsFeedReducer {
     newsFeedList: INewsFeed[];
 }
 
-export interface INewsFeedStore extends IConnectedComponentProps, INewsFeedReducer { }
+export interface INewsFeedStore extends IConnectedComponentProps, INewsFeedReducer, INavReducer { }
