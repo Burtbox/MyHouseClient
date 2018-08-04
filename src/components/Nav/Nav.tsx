@@ -99,10 +99,13 @@ export class Nav extends React.Component<INavProps, INavState> {
 }
 
 const mapStateToProps = (store: IStore) => {
+    const householdsArray = store.householdsReducer && store.householdsReducer.householdsArray
+    ? store.householdsReducer.householdsArray.filter(x => x.inviteAccepted === true)
+    : [];
     const props: INavStore = {
+        householdsArray,
         loggedInUser: store.usersReducer.loggedInUser,
         isLoggedIn: store.usersReducer.isLoggedIn,
-        householdsArray: store.householdsReducer.householdsArray.filter(x => x.inviteAccepted === true),
         loading: store.loadingReducer.loading,
     };
     return props;
