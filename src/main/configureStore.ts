@@ -1,6 +1,7 @@
 import { connectRouter, routerMiddleware } from 'connected-react-router';
 import * as localForage from 'localforage';
-import { applyMiddleware, compose, createStore, Middleware, Store } from 'redux';
+import { applyMiddleware, createStore, Middleware, Store } from 'redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
 import logger from 'redux-logger';
 import { createEpicMiddleware } from 'redux-observable';
 import { PersistConfig, persistReducer, persistStore } from 'redux-persist';
@@ -33,7 +34,7 @@ const connectedRouter = connectRouter(history)(persistedReducer);
 export const store: Store<{}> = createStore(
     connectedRouter,
     undefined,
-    compose(applyMiddleware(thunk, logger, rmiddleware, epicMiddleware)),
+    composeWithDevTools(applyMiddleware(thunk, logger, rmiddleware, epicMiddleware)),
 );
 
 epicMiddleware.run(combinedEpics);
