@@ -24,9 +24,7 @@ export class HouseholdsInvite extends React.Component<IHouseholdsInviteProps, IH
         const value = target.value;
         const name = target.name;
 
-        this.setState(prevState => ({
-            inviteDetails: { ...this.state.inviteDetails, [name]: value },
-        }));
+        this.setState({ inviteDetails: { ...this.state.inviteDetails, [name]: value } });
     }
 
     inviteToHousehold = () => {
@@ -34,6 +32,7 @@ export class HouseholdsInvite extends React.Component<IHouseholdsInviteProps, IH
             inviteDetails: this.state.inviteDetails,
             token: this.props.loggedInUser.token,
         }));
+        this.setState({ inviteDetails: { ...this.state.inviteDetails, email: '' } });
     }
 
     render() {
@@ -49,6 +48,7 @@ export class HouseholdsInvite extends React.Component<IHouseholdsInviteProps, IH
                         required
                         onChange={this.handleInputChange}
                         disabled={this.state.inviting}
+                        value={this.state.inviteDetails.email}
                     />
                 </div>
                 <div className={classes.column} />
