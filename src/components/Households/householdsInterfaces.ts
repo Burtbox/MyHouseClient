@@ -19,6 +19,7 @@ export interface IHouseholdsProps extends IComponentProps, IConnectedComponentPr
 
 export interface IHouseholdsState {
     acceptingInvite: boolean;
+    sendingInvite: boolean;
 }
 
 export interface IHouseholdsStore extends IHouseholdsReducer, ILoadingReducer, ILoggedInUser, INavReducer { }
@@ -27,6 +28,7 @@ export interface IHouseholdsReducer {
     householdsArray: IHousehold[];
     householdAdded?: boolean;
     acceptingInvite?: boolean;
+    sendingInvite?: boolean;
 }
 
 export interface IHouseholdsListProps extends IHouseholdsReducer, IHouseholdListSyles, IConnectedComponentProps, IComponentProps { }

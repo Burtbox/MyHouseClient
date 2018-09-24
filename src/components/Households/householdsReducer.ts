@@ -55,6 +55,18 @@ function householdsReducer(
             acceptingInvite: false,
         };
         break;
+    case householdsActionTypes.INVITE_TO_HOUSEHOLD_REQUEST:
+        nextState = {
+            ...state,
+            sendingInvite: true,
+        };
+        break;
+    case householdsActionTypes.INVITE_TO_HOUSEHOLD_REQUEST_COMPLETE:
+        nextState = {
+            ...state,
+            sendingInvite: false,
+        };
+        break;
     default:
         nextState = state;
         break;

@@ -18,6 +18,7 @@ export class Households extends React.Component<IHouseholdsProps, IHouseholdsSta
         super(props);
         this.state = {
             acceptingInvite: false,
+            sendingInvite: false,
         };
     }
 
@@ -31,8 +32,8 @@ export class Households extends React.Component<IHouseholdsProps, IHouseholdsSta
     }
 
     componentWillReceiveProps(nextProps: IHouseholdsProps) {
-        if (nextProps.acceptingInvite) {
-            this.setState({ acceptingInvite: nextProps.acceptingInvite });
+        if (nextProps.acceptingInvite || nextProps.sendingInvite) {
+            this.setState({ acceptingInvite: nextProps.acceptingInvite, sendingInvite: nextProps.sendingInvite });
         }
     }
 
@@ -41,10 +42,17 @@ export class Households extends React.Component<IHouseholdsProps, IHouseholdsSta
             return;
         }
 
-        this.setState({
-            acceptingInvite: false,
-        });
+        this.setState({ acceptingInvite: false });
         this.props.dispatch(HouseholdsActions.acceptInviteToHouseholdComplete());
+    }
+
+    handleInviteSentClose = (event: React.MouseEvent<HTMLElement>, reason: string) => {
+        if (reason === 'clickaway') {
+            return;
+        }
+
+        this.setState({ sendingInvite: false });
+        this.props.dispatch(HouseholdsActions.inviteToHouseholdComplete());
     }
 
     render() {
@@ -80,6 +88,17 @@ export class Households extends React.Component<IHouseholdsProps, IHouseholdsSta
                         message="Invite accepted"
                     />
                 </Snackbar>
+                <Snackbar
+                    open={this.state.sendingInvite}
+                    autoHideDuration={4000}
+                    onClose={this.handleInviteSentClose}
+                >
+                    <MessageSnackbarContent
+                        onClose={this.handleInviteSentClose}
+                        variant="success"
+                        message="Invite sent"
+                    />
+                </Snackbar>
             </form>
         );
     }
@@ -91,6 +110,7 @@ const mapStateToProps = (store: IStore) => {
         householdsArray: store.householdsReducer.householdsArray,
         loading: store.loadingReducer.loading,
         acceptingInvite: store.householdsReducer.acceptingInvite,
+        sendingInvite: store.householdsReducer.sendingInvite,
         navOpen: store.navReducer.navOpen,
     };
     return props;

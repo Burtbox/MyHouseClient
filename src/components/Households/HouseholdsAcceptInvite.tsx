@@ -5,7 +5,7 @@ import { OccupantsActions } from '../Occupants/occupantsActions';
 import { IHouseholdsAcceptInviteProps, IHouseholdsAcceptInviteState } from './householdsInterfaces';
 import householdListStyles from './householdsListStyles';
 
-export class HouseholdsInvite extends React.Component<IHouseholdsAcceptInviteProps, IHouseholdsAcceptInviteState> {
+export class HouseholdsAcceptInvite extends React.Component<IHouseholdsAcceptInviteProps, IHouseholdsAcceptInviteState> {
     constructor(props: IHouseholdsAcceptInviteProps) {
         super(props);
         this.state = {
@@ -40,4 +40,4 @@ export class HouseholdsInvite extends React.Component<IHouseholdsAcceptInvitePro
     }
 }
 
-export default withStyles(householdListStyles)(HouseholdsInvite);
+export default withStyles(householdListStyles)(HouseholdsAcceptInvite);
