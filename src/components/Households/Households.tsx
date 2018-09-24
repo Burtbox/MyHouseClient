@@ -60,7 +60,7 @@ export class Households extends React.Component<IHouseholdsProps, IHouseholdsSta
                             dispatch={this.props.dispatch}
                             history={this.props.history}
                         />
-                        : this.props.householdsArray.length === 0
+                        : this.props.householdsArray && this.props.householdsArray.length === 0
                             ? <Typography variant="subheading">
                                 You currently don't have any households <p />
                                 Click Add Household to create a new household and invite people <p />
