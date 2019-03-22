@@ -1,20 +1,19 @@
 
 import { Action, Dispatch } from 'redux';
 import { myHouseRoutes } from '../../enums/routesEnum';
-import auth from '../../helpers/firebase';
+import { auth, provider } from '../../helpers/firebase';
 import history from '../../main/history';
 import { ErrorMessageActions } from '../ErrorMessage/errorMessageActions';
 import { LoadingActions } from '../Loading/loadingActions';
-import { IUserAuthenticationObject } from '../Users/usersInterfaces';
 import { LoginActions } from './loginActions';
 
-export function loginUser(dispatch: Dispatch<Action>, login: IUserAuthenticationObject) {
+export function loginUser(dispatch: Dispatch<Action>) {
     dispatch(LoadingActions.loadingStarted());
-    auth.signInWithEmailAndPassword(login.email, login.password)
+    auth.signInWithPopup(provider)
         .then((response) => {
-            auth.currentUser.getIdToken(true).then((idToken: string) => {
+            response.user.getIdToken().then((token) => {
                 dispatch(LoginActions.loginSuccessful({
-                    token: idToken,
+                    token,
                     userId: response.user.uid,
                     displayName: response.user.displayName,
                     email: response.user.email,

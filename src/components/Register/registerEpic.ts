@@ -1,6 +1,6 @@
 import { Action, Dispatch } from 'redux';
 import { myHouseRoutes } from '../../enums/routesEnum';
-import auth from '../../helpers/firebase';
+import { auth } from '../../helpers/firebase';
 import history from '../../main/history';
 import { ErrorMessageActions } from '../ErrorMessage/errorMessageActions';
 import { RegisterActions } from './registerActions';
@@ -8,7 +8,7 @@ import { IRegisterUserObject } from './registerInterfaces';
 
 export function registerUser(dispatch: Dispatch<Action>, user: IRegisterUserObject) {
     dispatch(RegisterActions.registerStarted());
-    auth.createUserWithEmailAndPassword(
+    auth.createUserAndRetrieveDataWithEmailAndPassword(
         user.email,
         user.password,
     ).then(() => {
@@ -16,7 +16,7 @@ export function registerUser(dispatch: Dispatch<Action>, user: IRegisterUserObje
             displayName: user.displayName,
             photoURL: '',
         }).then(() => {
-            auth.currentUser.getIdToken(true).then((token: string) => {
+            auth.currentUser.getIdToken().then((token: string) => {
                 dispatch(RegisterActions.registerSuccessful({
                     token,
                     displayName: auth.currentUser.displayName,

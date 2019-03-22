@@ -1,26 +1,13 @@
 import * as firebase from 'firebase';
-import { uiConfig } from 'react-firebaseui';
 import { firebaseConfig } from '../appConfig';
 
-const firebaseApp: firebase.app.App = firebase.initializeApp(firebaseConfig);
+firebase.initializeApp(firebaseConfig);
 
-const auth: firebase.auth.Auth = firebaseApp.auth();
+export const provider = new firebase.auth.GoogleAuthProvider();
+export const auth = firebase.auth();
 
-export default auth;
+export default firebase;
 
 export const isAuthenticated = () => {
     return !!auth.currentUser;
-};
-
-// Configure FirebaseUI.
-export const firebaseUiConfig: uiConfig = {
-    signInFlow: 'redirect',
-    signInOptions: [
-        firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-    ],
-    callbacks: {
-        // Avoid redirects after sign-in.
-        signInSuccessWithAuthResult: () => false,
-    },
-    tosUrl: 'http://www.google.com',
 };
