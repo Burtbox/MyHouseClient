@@ -1,6 +1,6 @@
 import { Dispatch } from 'react-redux';
 import { Action } from 'redux';
-import auth from '../../helpers/firebase';
+import { auth } from '../../helpers/firebase';
 import { persistor } from '../../main/configureStore';
 import { ErrorMessageActions } from '../ErrorMessage/errorMessageActions';
 import { UsersActions } from '../Users/usersActions';
