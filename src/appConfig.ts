@@ -7,13 +7,13 @@ export const houseFoodLinkUrl: string = 'http://localhost:3002/Occupants/';
 
 // Integration Test Settings
 
-// const baseURL: string = 'http://82.25.191.210/MyHouseTestAPI/api/';
+// const baseURL: string = 'http://90.252.214.72/MyHouseTestAPI/api/';
 // export const houseMoneyLinkUrl: string = 'http://housemoney.surge.sh/Occupants/';
 // export const houseFoodLinkUrl: string = 'http://housefood.surge.sh/Occupants/';
 
 // Dev Staging Settings
 
-// const baseURL: string = 'http://82.25.191.210/MyHouseDevAPI/api/';
+// const baseURL: string = 'http://90.252.214.72/MyHouseDevAPI/api/';
 // export const houseMoneyLinkUrl: string = 'http://housemoney.surge.sh/Occupants/';
 // export const houseFoodLinkUrl: string = 'http://housefood.surge.sh/Occupants/';
 
@@ -29,13 +29,13 @@ export const firebaseConfig = {
 };
 
 // Test Settings
-// const baseURL = 'http://82.25.191.210/MyHouseTestAPI/api/';
+// const baseURL = 'http://90.252.214.72/MyHouseTestAPI/api/';
 // export const houseMoneyLinkUrl: string = 'http://housemoney-test.surge.sh/Occupants/';
 // export const houseFoodLinkUrl: string = 'http://housefood-test.surge.sh/Occupants/';
 
 // Live Settings
 
-// const baseURL = 'http://82.25.191.210/MyHouseAPI/api/';
+// const baseURL = 'http://90.252.214.72/MyHouse_Live/api/';
 // export const houseMoneyLinkUrl: string = 'http://housemoney.surge.sh/Occupants/';
 // export const houseFoodLinkUrl: string = 'http://housefood.surge.sh/Occupants/';
 
