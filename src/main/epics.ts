@@ -4,6 +4,7 @@ import getHouseholdsOfUserRequestEpic from '../components/Households/householdsE
 import inviteToHouseholdRequestEpic from '../components/Households/householdsInviteEpic';
 import newsFeedRequestEpic from '../components/NewsFeed/newsFeedEpic';
 import updateOccupantRequestEpic from '../components/Occupants/updateOccupantEpic';
+import routesEpic from '../components/Routes/routesEpic';
 
 const combinedEpics = combineEpics(
     getHouseholdsOfUserRequestEpic,
@@ -11,6 +12,7 @@ const combinedEpics = combineEpics(
     addHouseholdRequestEpic,
     inviteToHouseholdRequestEpic,
     updateOccupantRequestEpic,
+    routesEpic,
 );
 
 export default combinedEpics;
