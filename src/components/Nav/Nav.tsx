@@ -22,14 +22,6 @@ import navStyles from './navStyles';
 
 // TODO: Add back in user chip, but with different function?
 export class Nav extends React.Component<INavProps, INavState> {
-    constructor(props: INavProps) {
-        super(props);
-
-        this.state = {
-            openSidebar: true,
-        };
-    }
-
     componentDidMount() {
         if (this.props.isLoggedIn) {
             const userDetails: IUserDetails = this.props.loggedInUser;
@@ -38,9 +30,8 @@ export class Nav extends React.Component<INavProps, INavState> {
     }
 
     toggleDrawer = (event: React.MouseEvent<HTMLElement>) => {
-        const newState = !this.state.openSidebar;
+        const newState = !this.props.openSidebar;
         newState ? this.props.dispatch(NavActions.navOpened()) : this.props.dispatch(NavActions.navClosed());
-        this.setState({ openSidebar: newState });
     }
 
     render() {
@@ -62,7 +53,7 @@ export class Nav extends React.Component<INavProps, INavState> {
                 </AppBar>
                 <SwipeableDrawer
                     variant="temporary"
-                    open={this.state.openSidebar}
+                    open={this.props.openSidebar}
                     onClose={this.toggleDrawer}
                     onOpen={this.toggleDrawer}
                     classes={{ paper: classes.drawerPaper }}
@@ -103,13 +94,14 @@ export class Nav extends React.Component<INavProps, INavState> {
 
 const mapStateToProps = (store: IStore) => {
     const householdsArray = store.householdsReducer && store.householdsReducer.householdsArray
-    ? store.householdsReducer.householdsArray.filter(x => x.inviteAccepted === true)
-    : [];
+        ? store.householdsReducer.householdsArray.filter(x => x.inviteAccepted === true)
+        : [];
     const props: INavStore = {
         householdsArray,
         loggedInUser: store.usersReducer.loggedInUser,
         isLoggedIn: store.usersReducer.isLoggedIn,
         loading: store.loadingReducer.loading,
+        openSidebar: store.navReducer.navOpen,
     };
     return props;
 };

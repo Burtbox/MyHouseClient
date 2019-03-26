@@ -3,7 +3,7 @@ import { INavReducer } from './navInterfaces';
 
 function navReducer(
     state: INavReducer = {
-        navOpen: true,
+        navOpen: false,
     },
     action: NavActions,
 ): INavReducer {

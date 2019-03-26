@@ -12,6 +12,7 @@ export interface INavProps extends INavStore, WithStyles<typeof navStyles> {
 export interface INavStore extends ILoadingReducer, IHouseholdsReducer {
     loggedInUser: IUser;
     isLoggedIn: boolean;
+    openSidebar: boolean;
 }
 
 export interface INavState {
